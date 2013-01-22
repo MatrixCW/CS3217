@@ -78,16 +78,6 @@ int main (int argc, const char * argv[]) {
         printf("all test cases passed ! \n \n");
     
     
-    //CGFloat temp[16] = {0.675492, 1.709143, 3.629915,  2.230088, 4.324508,  -1.709143, 1.370085, -2.230088,
-                        //4.358580, 5.331462, 11.252234, 6.547000, 12.641420, -1.331462, 5.747766, -2.547000};
-    
-    //PERectangle* rectTemp = [[PERectangle alloc] initWithOrigin:CGPointMake(0, 0) width:1 height:1 rotation:0];
-    
-    //if([rectTemp isSameSideLinePointOne:CGPointMake(3.629915,  2.230088) LinePointTwo:CGPointMake(4.324508,  -1.709143)
-                                       // testPointOne:CGPointMake(4.358580, 5.331462) testPointFour:CGPointMake(11.252234, 6.547000)])
-        
-       // printf("haha");
-	
     
     // declare rectangle 1 and rectangle 2
 
