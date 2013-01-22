@@ -7,7 +7,7 @@
 
 #import "PERectangle.h"
 
-#define floatComparisonEpsilon 0.0000001  //used for floating point comparison
+#define floatComparisonEpsilon 0.00000000001  //used for floating point comparison
 
 @interface PERectangle ()
 //re-declare properties so they can be modified inside implementation
@@ -230,8 +230,7 @@
     
         
         if([self isSameSideRectLinePointOne:rec1[i] LinePointTwo:rec1[(i + 1) % 4] Rectangle:rec2]   &&
-           ![self isSameSideLinePointOne:rec1[i] LinePointTwo:rec1[(i + 1) % 4] testPointOne:rec1[(i + 2) % 4] testPointFour:rec2[0]]&&
-           ! [self hasCommomePoint:rec1 :rec2]){
+           ![self isSameSideLinePointOne:rec1[i] LinePointTwo:rec1[(i + 1) % 4] testPointOne:rec1[(i + 2) % 4] testPointFour:rec2[0]]){
             
             
             
@@ -239,9 +238,8 @@
                 if([self pointOnSegment:rec1[i] :rec1[(i + 1) % 4] :rec2[j]])
                   return YES;
         
+        return NO;
         
-        
-            return NO;
         }
         
     }
@@ -251,14 +249,14 @@
     for(int i = 0;i < 4;i++){
         
         if([self isSameSideRectLinePointOne:rec2[i] LinePointTwo:rec2[(i + 1) % 4] Rectangle:rec1]   &&
-           ![self isSameSideLinePointOne:rec2[i] LinePointTwo:rec2[(i + 1) % 4] testPointOne:rec2[(i+2)%4] testPointFour:rec1[0]] &&
-           ! [self hasCommomePoint:rec1 :rec2]){
+           ![self isSameSideLinePointOne:rec2[i] LinePointTwo:rec2[(i + 1) % 4] testPointOne:rec2[(i+2)%4] testPointFour:rec1[0]]){
             
             for(int j=0; j < 4;j++)
                 if([self pointOnSegment:rec2[i] :rec2[(i + 1) % 4] :rec1[j]])
                    return YES;
         
         return NO;
+        
         }
         
     }
@@ -269,7 +267,8 @@
 }
  
 
-- (CGRect)boundingBox {	
+
+- (CGRect)boundingBox {
   // EFFECTS: returns the bounding box of this shape.
 
   // optional implementation (not graded)
@@ -352,6 +351,7 @@
             return NO;
     }
     
+    
     //else, this line is not parallel to any axis
     //so the equation for this line is y=(y2-y1)/(x2-x1) * (x - x1) +y1
     
@@ -362,8 +362,8 @@
     
     
     if(   ([self lessThanOrEqualToValueOne:p3.y ValueTwo:p3OnLine]  &&
-           [self lessThanOrEqualToValueOne:p4OnLine ValueTwo:p4.y]) ||
-          ([self lessThanOrEqualToValueOne:p4.y ValueTwo:p4OnLine]  &&
+           [self lessThanOrEqualToValueOne:p4.y ValueTwo:p4OnLine]) ||
+          ([self lessThanOrEqualToValueOne:p4OnLine ValueTwo:p4.y]  &&
            [self lessThanOrEqualToValueOne:p3OnLine ValueTwo:p3.y])
        )
     
@@ -409,35 +409,16 @@
 }
 
 
-//this method tests if two rectangles have common point
--(BOOL) hasCommomePoint:(CGPoint *)rect1 :(CGPoint *)rect2{
-    
-    for(int i = 0; i < 4;i++)
-        for(int j = 0; j < 4; j++){
-            if(fabs(rect1[i].x - rect2[j].x) < floatComparisonEpsilon && fabs(rect1[i].y - rect2[j].y) < floatComparisonEpsilon)
-                
-                return YES;
-        }
-    
-    return NO;
-}
-
-
-
 //this method tests if p3 is on the line formed by p1 and p2
 - (BOOL) pointOnSegment:(CGPoint)p1 :(CGPoint)p2 :(CGPoint)p3{
     
     if(fabs(p1.x - p2.x) < floatComparisonEpsilon){
         if(fabs(p3.x - p1.x) < floatComparisonEpsilon)
-            if([self lessThanOrEqualToValueOne:p3.y ValueTwo:fmax(p1.y,p2.y)]  && [self lessThanOrEqualToValueOne:fmin(p1.y,p2.y) ValueTwo:p3.y])
-                
                 return YES;
     }
     
     if(fabs(p1.y - p2.y) < floatComparisonEpsilon){
         if(fabs(p3.y - p1.y) < floatComparisonEpsilon)
-            if([self lessThanOrEqualToValueOne:p3.x ValueTwo:fmax(p1.x,p2.x)]  && [self lessThanOrEqualToValueOne:fmin(p1.x,p2.x) ValueTwo:p3.x])
-                
                 return YES;
     }
     

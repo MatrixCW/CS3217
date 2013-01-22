@@ -43,16 +43,18 @@ int overlaps(struct Rectangle rect1, struct Rectangle rect2) {
     CGFloat rightSide2 = leftSide2 + rect2.width;
     
     //get the total region along the y-aixs that are occupied by the two rectangles
-    CGFloat totalHeight = fmax(abs(upSide1 - downSide2),abs(upSide2 - downSide1));
+    CGFloat totalHeight = fmax(fabs(upSide1 - downSide2),fabs(upSide2 - downSide1));
+    
+    
     
     
     //get the total region along the x-axis that are occupied by the two rectangles
-    CGFloat totalWidth = fmax(abs(leftSide1 - rightSide2),abs(leftSide2 - rightSide1));
+    CGFloat totalWidth = fmax(fabs(leftSide1 - rightSide2),fabs(leftSide2 - rightSide1));
     
     
     CGFloat heightSum = rect1.height + rect2.height;
     CGFloat widthSum = rect1.width + rect2.width;
-    
+
     
     //no overlapping indicates must be a region between two rectangles
     //which will cause the totalHeight larger that heightSum or
@@ -73,7 +75,18 @@ int main (int argc, const char * argv[]) {
     int indicator = test();
     
     if(indicator == 1)
-        printf("all test cases passed ! \n");
+        printf("all test cases passed ! \n \n");
+    
+    
+    //CGFloat temp[16] = {0.675492, 1.709143, 3.629915,  2.230088, 4.324508,  -1.709143, 1.370085, -2.230088,
+                        //4.358580, 5.331462, 11.252234, 6.547000, 12.641420, -1.331462, 5.747766, -2.547000};
+    
+    //PERectangle* rectTemp = [[PERectangle alloc] initWithOrigin:CGPointMake(0, 0) width:1 height:1 rotation:0];
+    
+    //if([rectTemp isSameSideLinePointOne:CGPointMake(3.629915,  2.230088) LinePointTwo:CGPointMake(4.324508,  -1.709143)
+                                       // testPointOne:CGPointMake(4.358580, 5.331462) testPointFour:CGPointMake(11.252234, 6.547000)])
+        
+       // printf("haha");
 	
     
     // declare rectangle 1 and rectangle 2
@@ -91,6 +104,8 @@ int main (int argc, const char * argv[]) {
     
     printf("Input width and height for the first rectangle: ");
     scanf("%lf %lf",&rectangleOne.width, &rectangleOne.height);
+    
+    assert(rectangleOne.width>0 && rectangleOne.height>0);
 	
 	// input origin for rectangle 2
     
@@ -101,6 +116,8 @@ int main (int argc, const char * argv[]) {
     
     printf("Input width and height for the second rectangle: ");
     scanf("%lf %lf",&rectangleTwo.width, &rectangleTwo.height);
+    
+    assert(rectangleTwo.width>0 && rectangleTwo.height>0);
     
     
     // check if overlapping and write message
@@ -143,8 +160,8 @@ int main (int argc, const char * argv[]) {
         printf("The two rectangle objects are overlapping! \n");
     else
         printf("The two rectangle objects are not overlapping! \n");
-
-	
+    
+        
     // clean up
     
     [rect1 dealloc];
