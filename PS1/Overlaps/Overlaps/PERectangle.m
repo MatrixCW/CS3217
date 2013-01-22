@@ -6,9 +6,6 @@
 //
 
 #import "PERectangle.h"
-#import <math.h>
-#import <assert.h>
-
 
 #define floatComparisonEpsilon 0.0000001  //used for floating point comparison
 
@@ -26,7 +23,7 @@
 // OVERVIEW: This class implements a rectangle and the associated
 //             operations.
 
-@synthesize rotation=_rotation, center=_center, origin =_origin;
+@synthesize rotation = _rotation, center = _center, origin = _origin;
 
 
 -(void) setRotation:(CGFloat)degree{
@@ -39,8 +36,8 @@
   // EFFECTS: returns the coordinates of the centre of mass for this
   // rectangle.
     
-    CGFloat x = _origin.x+_width/2;
-    CGFloat y = _origin.y-_height/2;
+    CGFloat x = _origin.x + _width/2;
+    CGFloat y = _origin.y - _height/2;
     
     return CGPointMake(x, y);
     
@@ -61,7 +58,7 @@
      //printf("dddd %f  %f", _width, _height);
     
     
-    CGFloat rotationMatrix[2][2]={cos(radianAngle),-sin(radianAngle),sin(radianAngle),cos(radianAngle)};
+    CGFloat rotationMatrix[2][2] = {cos(radianAngle), -sin(radianAngle), sin(radianAngle), cos(radianAngle)};
     
 
     CGPoint topLeft = CGPointMake(centerPoint.x - _width / 2, centerPoint.y + _height/2);
@@ -73,75 +70,81 @@
     //printf("dddd %f %f", bottomRight.x, bottomRight.y);
     
     CGPoint returnPoint;
+    CGFloat x = topLeft.x - centerPoint.x;
+    CGFloat y = topLeft.y - centerPoint.y;
     
     switch (corner) {
         
-        case kTopLeftCorner:{
+        case kTopLeftCorner:
             
-            CGFloat x = topLeft.x - centerPoint.x;
-            CGFloat y = topLeft.y - centerPoint.y;
-            
-            returnPoint = CGPointMake(rotationMatrix[0][0] * x+rotationMatrix[0][1] * y + centerPoint.x,
-                    rotationMatrix[1][0] * x + rotationMatrix[1][1] * y + centerPoint.y);
-            
-            }
-            break;
-            
-        case kTopRightCorner:{
-            
-            CGFloat x = topRight.x - centerPoint.x;
-            CGFloat y = topRight.y - centerPoint.y;
+            x = topLeft.x - centerPoint.x;
+            y = topLeft.y - centerPoint.y;
             
             returnPoint = CGPointMake(rotationMatrix[0][0] * x + rotationMatrix[0][1] * y + centerPoint.x,
-                               rotationMatrix[1][0] * x + rotationMatrix[1][1] * y + centerPoint.y);
+                                      rotationMatrix[1][0] * x + rotationMatrix[1][1] * y + centerPoint.y);
             
-        }
             break;
-
-        case kBottomLeftCorner:{
             
-            CGFloat x=bottomLeft.x - centerPoint.x;
-            CGFloat y=bottomLeft.y - centerPoint.y;
+        
+        case kTopRightCorner:
+            
+            x = topRight.x - centerPoint.x;
+            y = topRight.y - centerPoint.y;
             
             returnPoint = CGPointMake(rotationMatrix[0][0] * x + rotationMatrix[0][1] * y + centerPoint.x,
-                               rotationMatrix[1][0] * x + rotationMatrix[1][1] * y + centerPoint.y);
+                                      rotationMatrix[1][0] * x + rotationMatrix[1][1] * y + centerPoint.y);
             
-        }
             break;
 
-        case kBottomRightCorner:{
+        
+        case kBottomLeftCorner:
             
-            CGFloat x = bottomRight.x - centerPoint.x;
-            CGFloat y = bottomRight.y - centerPoint.y;
+            x = bottomLeft.x - centerPoint.x;
+            y = bottomLeft.y - centerPoint.y;
             
             returnPoint = CGPointMake(rotationMatrix[0][0] * x + rotationMatrix[0][1] * y + centerPoint.x,
-                               rotationMatrix[1][0] * x + rotationMatrix[1][1] * y + centerPoint.y);
+                                      rotationMatrix[1][0] * x + rotationMatrix[1][1] * y + centerPoint.y);
             
-        }
+            break;
+
+        
+        case kBottomRightCorner:
+            
+            x = bottomRight.x - centerPoint.x;
+            y = bottomRight.y - centerPoint.y;
+            
+            returnPoint = CGPointMake(rotationMatrix[0][0] * x + rotationMatrix[0][1] * y + centerPoint.x,
+                                      rotationMatrix[1][0] * x + rotationMatrix[1][1] * y + centerPoint.y);
+            
             break;
 
             
         default:
             
             break;
-                }
+            
+    }
 
 
-    
     return returnPoint;
 
 }
+
 
 - (CGPoint*)corners {
   // EFFECTS:  return an array with all the rectangle corners
 
   CGPoint *corners = (CGPoint*) malloc(4*sizeof(CGPoint));
+  
   corners[0] = [self cornerFrom: kTopLeftCorner];
   corners[1] = [self cornerFrom: kTopRightCorner];
   corners[2] = [self cornerFrom: kBottomRightCorner];
   corners[3] = [self cornerFrom: kBottomLeftCorner];
+  
   return corners;
+    
 }
+
 
 - (id)initWithOrigin:(CGPoint)o width:(CGFloat)w height:(CGFloat)h rotation:(CGFloat)r{
   // MODIFIES: self
@@ -151,6 +154,7 @@
     self=[super init];
     
     if(self){
+        
         self.origin = o;
         self.width = w;
         self.height = h;
@@ -162,6 +166,7 @@
     return self;
 
 }
+
 
 - (id)initWithRect:(CGRect)rect {
   // MODIFIES: self
@@ -176,25 +181,29 @@
 
 }
 
+
 - (void)rotate:(CGFloat)angle {
   // MODIFIES: self
   // EFFECTS: rotates this shape anti-clockwise by the specified angle
   // around the center of mass
+    
     _rotation = _rotation + angle;
+
 }
+
 
 - (void)translateX:(CGFloat)dx Y:(CGFloat)dy {
   // MODIFIES: self
   // EFFECTS: translates this shape by the specified dx (along the
   //            X-axis) and dy coordinates (along the Y-axis)
     
-    CGPoint temp = CGPointMake(self.origin.x+dx, self.origin.y+dy);
+    CGPoint temp = CGPointMake(self.origin.x + dx, self.origin.y+dy);
     
     self.origin = temp;
     
     
-
 }
+
 
 - (BOOL)overlapsWithShape:(id<PEShape>)shape {
   // EFFECTS: returns YES if this shape overlaps with specified shape.
@@ -216,11 +225,6 @@
     
     
     
-
-    
-    
-    
-    
     for(int i = 0;i < 4;i++){
         
     
@@ -239,7 +243,9 @@
         
             return NO;
         }
+        
     }
+    
     
     
     for(int i = 0;i < 4;i++){
@@ -253,9 +259,10 @@
                    return YES;
         
         return NO;
-    }
+        }
         
     }
+    
     
     return YES;
     
@@ -299,7 +306,9 @@
 
 
 - (CGFloat) convertDegreeToRadian:(CGFloat)d{
-    return (d/180)*M_PI;
+    
+    return (d / 180) * M_PI;
+
 }
 
 
@@ -359,7 +368,7 @@
        )
     
     return
-          YES;
+        YES;
     else
         return NO;
     
@@ -415,7 +424,7 @@
 
 
 
-//this method tests if p3 is on the segment formed by p1 and p2
+//this method tests if p3 is on the line formed by p1 and p2
 - (BOOL) pointOnSegment:(CGPoint)p1 :(CGPoint)p2 :(CGPoint)p3{
     
     if(fabs(p1.x - p2.x) < floatComparisonEpsilon){

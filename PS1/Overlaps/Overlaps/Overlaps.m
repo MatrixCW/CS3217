@@ -6,8 +6,6 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <Math.h>
-
 
 // Import PERectangle here
 #import "PERectangle.h"
@@ -17,12 +15,13 @@ int test(void);
 
 // define structure Rectangle
 // <definition for struct Rectangle here>
+
 struct Rectangle{
     
-    int topLeftX;
-    int topLeftY;
-    int width;
-    int height;
+    CGFloat topLeftX;
+    CGFloat topLeftY;
+    CGFloat width;
+    CGFloat height;
     
 } ;
 
@@ -32,33 +31,33 @@ int overlaps(struct Rectangle rect1, struct Rectangle rect2) {
   
     
     //get the sides of the first rectangle
-    int upSide1=rect1.topLeftY;
-    int downSide1=upSide1-rect1.height;
-    int leftSide1=rect1.topLeftX;
-    int rightSide1=leftSide1+rect1.width;
+    CGFloat upSide1 = rect1.topLeftY;
+    CGFloat downSide1 = upSide1 - rect1.height;
+    CGFloat leftSide1 = rect1.topLeftX;
+    CGFloat rightSide1 = leftSide1 + rect1.width;
     
     //get the sides of the second rectangle
-    int upSide2=rect2.topLeftY;
-    int downSide2=upSide2-rect2.height;
-    int leftSide2=rect2.topLeftX;
-    int rightSide2=leftSide2+rect2.width;
+    CGFloat upSide2 = rect2.topLeftY;
+    CGFloat downSide2 = upSide2 - rect2.height;
+    CGFloat leftSide2 = rect2.topLeftX;
+    CGFloat rightSide2 = leftSide2 + rect2.width;
     
     //get the total region along the y-aixs that are occupied by the two rectangles
-    int totalHeight=fmax(abs(upSide1-downSide2),abs(upSide2-downSide1));
+    CGFloat totalHeight = fmax(abs(upSide1 - downSide2),abs(upSide2 - downSide1));
     
     
     //get the total region along the x-axis that are occupied by the two rectangles
-    int totalWidth=fmax(abs(leftSide1-rightSide2),abs(leftSide2-rightSide1));
+    CGFloat totalWidth = fmax(abs(leftSide1 - rightSide2),abs(leftSide2 - rightSide1));
     
     
-    int heightSum=rect1.height+rect2.height;
-    int widthSum=rect1.width+rect2.width;
+    CGFloat heightSum = rect1.height + rect2.height;
+    CGFloat widthSum = rect1.width + rect2.width;
     
     
     //no overlapping indicates must be a region between two rectangles
     //which will cause the totalHeight larger that heightSum or
     //totalWidth larger than widthSum
-    if(totalHeight>heightSum || totalWidth>widthSum)
+    if(totalHeight > heightSum || totalWidth > widthSum)
       return 0;
     else
       return 1;
@@ -71,9 +70,10 @@ int main (int argc, const char * argv[]) {
 	/* Problem 1 code (C only!) */
     
     
-    int indicator=test();
+    int indicator = test();
+    
     if(indicator == 1)
-        printf("all test cases passed !");
+        printf("all test cases passed ! \n");
 	
     
     // declare rectangle 1 and rectangle 2
@@ -85,22 +85,22 @@ int main (int argc, const char * argv[]) {
     // input origin for rectangle 1
     
 	printf("Input <x y> coordinates for the origin of the first rectangle: ");
-    scanf("%d %d", &rectangleOne.topLeftX, &rectangleOne.topLeftY);
+    scanf("%lf %lf", &rectangleOne.topLeftX, &rectangleOne.topLeftY);
 	
     // input size (width and height) for rectangle 1
     
     printf("Input width and height for the first rectangle: ");
-    scanf("%d %d",&rectangleOne.width, &rectangleOne.height);
+    scanf("%lf %lf",&rectangleOne.width, &rectangleOne.height);
 	
 	// input origin for rectangle 2
     
     printf("Input <x y> coordinates for the origin of the second rectangle: ");
-    scanf("%d %d",&rectangleTwo.topLeftX, &rectangleTwo.topLeftY);
+    scanf("%lf %lf",&rectangleTwo.topLeftX, &rectangleTwo.topLeftY);
 	
 	// input size (width and height) for rectangle 2
     
     printf("Input width and height for the second rectangle: ");
-    scanf("%d %d",&rectangleTwo.width, &rectangleTwo.height);
+    scanf("%lf %lf",&rectangleTwo.width, &rectangleTwo.height);
     
     
     // check if overlapping and write message
@@ -117,30 +117,15 @@ int main (int argc, const char * argv[]) {
     /* Problem 2 code (Objective-C) */
 	// declare rectangle 1 and rectangle 2 objects
     
-    CGFloat x1,y1,width1,height1;
-    printf("Input <x y> coordinates for the origin of the first rectangle: ");
-    scanf("%lf %lf", &x1, &y1);
-    printf("Input width and height for the first rectangle: ");
-    scanf("%lf %lf",&width1, &height1);
-    
-    PERectangle* rect1 = [[PERectangle alloc] initWithOrigin:CGPointMake(x1,y1) width:width1 height:height1 rotation:0];
+    CGPoint origin1 = CGPointMake(rectangleOne.topLeftX,rectangleOne.topLeftY);
+    PERectangle* rect1 = [[PERectangle alloc] initWithOrigin:origin1 width:rectangleOne.width height:rectangleOne.height rotation:0];
     
     
-    CGFloat x2,y2,width2,height2;
-    printf("Input <x y> coordinates for the origin of the first rectangle: ");
-    scanf("%lf %lf", &x2, &y2);
-    printf("Input width and height for the first rectangle: ");
-    scanf("%lf %lf",&width2, &height2);
+    CGPoint origin2 = CGPointMake(rectangleTwo.topLeftX,rectangleTwo.topLeftY);
+    PERectangle* rect2 = [[PERectangle alloc] initWithOrigin:origin2 width:rectangleTwo.width height:rectangleTwo.height rotation:0];
     
-    PERectangle* rect2 = [[PERectangle alloc] initWithOrigin:CGPointMake(x2,y2) width:width2 height:height2 rotation:0];
-    
-    if([rect1 overlapsWithShape:rect2])
-        printf("The two rectangle objects are overlapping! \n");
-    else
-        printf("The two rectangle objects are not overlapping! \n");
-
-	// input rotation for rectangle 1 and 2
-    
+	
+    // input rotation for rectangle 1 and 2
     CGFloat rotateAngle1, rotateAngle2;
     
     printf("Input rotation angle for the first rectangle: ");
@@ -161,6 +146,9 @@ int main (int argc, const char * argv[]) {
 
 	
     // clean up
+    
+    [rect1 dealloc];
+    [rect2 dealloc];
 
 	// exit program
     
