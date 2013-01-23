@@ -53,7 +53,7 @@
     CGFloat gameareaHeight = backgroundHeight + groundHeight;
     CGFloat gameareaWidth = backgroundWidth;
     [_gamearea setContentSize:CGSizeMake(gameareaWidth, gameareaHeight)];
-
+    
 }
 
 - (void)didReceiveMemoryWarning

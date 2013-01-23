@@ -9,12 +9,8 @@
 #import <UIKit/UIKit.h>
 
 @interface ViewController : UIViewController
-
-
-
 - (IBAction)buttonPressed:(id)sender;
 
-@property (weak, nonatomic) IBOutlet UIScrollView *gamearea;
-
+@property (strong, nonatomic) IBOutlet UIScrollView *gamearea;
 
 @end

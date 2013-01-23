@@ -7,108 +7,108 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		7CBAAF5D16AF85E900A148AB /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7CBAAF5C16AF85E900A148AB /* UIKit.framework */; };
-		7CBAAF5F16AF85E900A148AB /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7CBAAF5E16AF85E900A148AB /* Foundation.framework */; };
-		7CBAAF6116AF85E900A148AB /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7CBAAF6016AF85E900A148AB /* CoreGraphics.framework */; };
-		7CBAAF6716AF85E900A148AB /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 7CBAAF6516AF85E900A148AB /* InfoPlist.strings */; };
-		7CBAAF6916AF85E900A148AB /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CBAAF6816AF85E900A148AB /* main.m */; };
-		7CBAAF6D16AF85E900A148AB /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CBAAF6C16AF85E900A148AB /* AppDelegate.m */; };
-		7CBAAF6F16AF85E900A148AB /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 7CBAAF6E16AF85E900A148AB /* Default.png */; };
-		7CBAAF7116AF85E900A148AB /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7CBAAF7016AF85E900A148AB /* Default@2x.png */; };
-		7CBAAF7316AF85E900A148AB /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7CBAAF7216AF85E900A148AB /* Default-568h@2x.png */; };
-		7CBAAF7616AF85E900A148AB /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7CBAAF7416AF85E900A148AB /* MainStoryboard.storyboard */; };
-		7CBAAF7916AF85E900A148AB /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CBAAF7816AF85E900A148AB /* ViewController.m */; };
-		7CBAAF8616AF8E8200A148AB /* background.png in Resources */ = {isa = PBXBuildFile; fileRef = 7CBAAF8416AF8E8200A148AB /* background.png */; };
-		7CBAAF8716AF8E8200A148AB /* ground.png in Resources */ = {isa = PBXBuildFile; fileRef = 7CBAAF8516AF8E8200A148AB /* ground.png */; };
+		7CDDD7A416B01DAE0025C8EA /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7CDDD7A316B01DAE0025C8EA /* UIKit.framework */; };
+		7CDDD7A616B01DAE0025C8EA /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7CDDD7A516B01DAE0025C8EA /* Foundation.framework */; };
+		7CDDD7A816B01DAE0025C8EA /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7CDDD7A716B01DAE0025C8EA /* CoreGraphics.framework */; };
+		7CDDD7AE16B01DAE0025C8EA /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 7CDDD7AC16B01DAE0025C8EA /* InfoPlist.strings */; };
+		7CDDD7B016B01DAE0025C8EA /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CDDD7AF16B01DAE0025C8EA /* main.m */; };
+		7CDDD7B416B01DAE0025C8EA /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CDDD7B316B01DAE0025C8EA /* AppDelegate.m */; };
+		7CDDD7B616B01DAE0025C8EA /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 7CDDD7B516B01DAE0025C8EA /* Default.png */; };
+		7CDDD7B816B01DAE0025C8EA /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7CDDD7B716B01DAE0025C8EA /* Default@2x.png */; };
+		7CDDD7BA16B01DAE0025C8EA /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7CDDD7B916B01DAE0025C8EA /* Default-568h@2x.png */; };
+		7CDDD7BD16B01DAE0025C8EA /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7CDDD7BB16B01DAE0025C8EA /* MainStoryboard.storyboard */; };
+		7CDDD7C016B01DAE0025C8EA /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CDDD7BF16B01DAE0025C8EA /* ViewController.m */; };
+		7CDDD7C816B01F250025C8EA /* background.png in Resources */ = {isa = PBXBuildFile; fileRef = 7CDDD7C616B01F250025C8EA /* background.png */; };
+		7CDDD7C916B01F250025C8EA /* ground.png in Resources */ = {isa = PBXBuildFile; fileRef = 7CDDD7C716B01F250025C8EA /* ground.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		7CBAAF5816AF85E900A148AB /* Game.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Game.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		7CBAAF5C16AF85E900A148AB /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
-		7CBAAF5E16AF85E900A148AB /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
-		7CBAAF6016AF85E900A148AB /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
-		7CBAAF6416AF85E900A148AB /* Game-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Game-Info.plist"; sourceTree = "<group>"; };
-		7CBAAF6616AF85E900A148AB /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		7CBAAF6816AF85E900A148AB /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		7CBAAF6A16AF85E900A148AB /* Game-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Game-Prefix.pch"; sourceTree = "<group>"; };
-		7CBAAF6B16AF85E900A148AB /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
-		7CBAAF6C16AF85E900A148AB /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		7CBAAF6E16AF85E900A148AB /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
-		7CBAAF7016AF85E900A148AB /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
-		7CBAAF7216AF85E900A148AB /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
-		7CBAAF7516AF85E900A148AB /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard.storyboard; sourceTree = "<group>"; };
-		7CBAAF7716AF85E900A148AB /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		7CBAAF7816AF85E900A148AB /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
-		7CBAAF8416AF8E8200A148AB /* background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = background.png; sourceTree = "<group>"; };
-		7CBAAF8516AF8E8200A148AB /* ground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ground.png; sourceTree = "<group>"; };
+		7CDDD79F16B01DAE0025C8EA /* Game.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Game.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		7CDDD7A316B01DAE0025C8EA /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		7CDDD7A516B01DAE0025C8EA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		7CDDD7A716B01DAE0025C8EA /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		7CDDD7AB16B01DAE0025C8EA /* Game-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Game-Info.plist"; sourceTree = "<group>"; };
+		7CDDD7AD16B01DAE0025C8EA /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		7CDDD7AF16B01DAE0025C8EA /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		7CDDD7B116B01DAE0025C8EA /* Game-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Game-Prefix.pch"; sourceTree = "<group>"; };
+		7CDDD7B216B01DAE0025C8EA /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		7CDDD7B316B01DAE0025C8EA /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		7CDDD7B516B01DAE0025C8EA /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
+		7CDDD7B716B01DAE0025C8EA /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
+		7CDDD7B916B01DAE0025C8EA /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		7CDDD7BC16B01DAE0025C8EA /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard.storyboard; sourceTree = "<group>"; };
+		7CDDD7BE16B01DAE0025C8EA /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		7CDDD7BF16B01DAE0025C8EA /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		7CDDD7C616B01F250025C8EA /* background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = background.png; sourceTree = "<group>"; };
+		7CDDD7C716B01F250025C8EA /* ground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ground.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		7CBAAF5516AF85E900A148AB /* Frameworks */ = {
+		7CDDD79C16B01DAE0025C8EA /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7CBAAF5D16AF85E900A148AB /* UIKit.framework in Frameworks */,
-				7CBAAF5F16AF85E900A148AB /* Foundation.framework in Frameworks */,
-				7CBAAF6116AF85E900A148AB /* CoreGraphics.framework in Frameworks */,
+				7CDDD7A416B01DAE0025C8EA /* UIKit.framework in Frameworks */,
+				7CDDD7A616B01DAE0025C8EA /* Foundation.framework in Frameworks */,
+				7CDDD7A816B01DAE0025C8EA /* CoreGraphics.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		7CBAAF4D16AF85E900A148AB = {
+		7CDDD79416B01DAD0025C8EA = {
 			isa = PBXGroup;
 			children = (
-				7CBAAF6216AF85E900A148AB /* Game */,
-				7CBAAF5B16AF85E900A148AB /* Frameworks */,
-				7CBAAF5916AF85E900A148AB /* Products */,
+				7CDDD7A916B01DAE0025C8EA /* Game */,
+				7CDDD7A216B01DAE0025C8EA /* Frameworks */,
+				7CDDD7A016B01DAE0025C8EA /* Products */,
 			);
 			sourceTree = "<group>";
 		};
-		7CBAAF5916AF85E900A148AB /* Products */ = {
+		7CDDD7A016B01DAE0025C8EA /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				7CBAAF5816AF85E900A148AB /* Game.app */,
+				7CDDD79F16B01DAE0025C8EA /* Game.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		7CBAAF5B16AF85E900A148AB /* Frameworks */ = {
+		7CDDD7A216B01DAE0025C8EA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				7CBAAF5C16AF85E900A148AB /* UIKit.framework */,
-				7CBAAF5E16AF85E900A148AB /* Foundation.framework */,
-				7CBAAF6016AF85E900A148AB /* CoreGraphics.framework */,
+				7CDDD7A316B01DAE0025C8EA /* UIKit.framework */,
+				7CDDD7A516B01DAE0025C8EA /* Foundation.framework */,
+				7CDDD7A716B01DAE0025C8EA /* CoreGraphics.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		7CBAAF6216AF85E900A148AB /* Game */ = {
+		7CDDD7A916B01DAE0025C8EA /* Game */ = {
 			isa = PBXGroup;
 			children = (
-				7CBAAF8416AF8E8200A148AB /* background.png */,
-				7CBAAF8516AF8E8200A148AB /* ground.png */,
-				7CBAAF6B16AF85E900A148AB /* AppDelegate.h */,
-				7CBAAF6C16AF85E900A148AB /* AppDelegate.m */,
-				7CBAAF7416AF85E900A148AB /* MainStoryboard.storyboard */,
-				7CBAAF7716AF85E900A148AB /* ViewController.h */,
-				7CBAAF7816AF85E900A148AB /* ViewController.m */,
-				7CBAAF6316AF85E900A148AB /* Supporting Files */,
+				7CDDD7C616B01F250025C8EA /* background.png */,
+				7CDDD7C716B01F250025C8EA /* ground.png */,
+				7CDDD7B216B01DAE0025C8EA /* AppDelegate.h */,
+				7CDDD7B316B01DAE0025C8EA /* AppDelegate.m */,
+				7CDDD7BB16B01DAE0025C8EA /* MainStoryboard.storyboard */,
+				7CDDD7BE16B01DAE0025C8EA /* ViewController.h */,
+				7CDDD7BF16B01DAE0025C8EA /* ViewController.m */,
+				7CDDD7AA16B01DAE0025C8EA /* Supporting Files */,
 			);
 			path = Game;
 			sourceTree = "<group>";
 		};
-		7CBAAF6316AF85E900A148AB /* Supporting Files */ = {
+		7CDDD7AA16B01DAE0025C8EA /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				7CBAAF6416AF85E900A148AB /* Game-Info.plist */,
-				7CBAAF6516AF85E900A148AB /* InfoPlist.strings */,
-				7CBAAF6816AF85E900A148AB /* main.m */,
-				7CBAAF6A16AF85E900A148AB /* Game-Prefix.pch */,
-				7CBAAF6E16AF85E900A148AB /* Default.png */,
-				7CBAAF7016AF85E900A148AB /* Default@2x.png */,
-				7CBAAF7216AF85E900A148AB /* Default-568h@2x.png */,
+				7CDDD7AB16B01DAE0025C8EA /* Game-Info.plist */,
+				7CDDD7AC16B01DAE0025C8EA /* InfoPlist.strings */,
+				7CDDD7AF16B01DAE0025C8EA /* main.m */,
+				7CDDD7B116B01DAE0025C8EA /* Game-Prefix.pch */,
+				7CDDD7B516B01DAE0025C8EA /* Default.png */,
+				7CDDD7B716B01DAE0025C8EA /* Default@2x.png */,
+				7CDDD7B916B01DAE0025C8EA /* Default-568h@2x.png */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -116,13 +116,13 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		7CBAAF5716AF85E900A148AB /* Game */ = {
+		7CDDD79E16B01DAE0025C8EA /* Game */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 7CBAAF7C16AF85E900A148AB /* Build configuration list for PBXNativeTarget "Game" */;
+			buildConfigurationList = 7CDDD7C316B01DAE0025C8EA /* Build configuration list for PBXNativeTarget "Game" */;
 			buildPhases = (
-				7CBAAF5416AF85E900A148AB /* Sources */,
-				7CBAAF5516AF85E900A148AB /* Frameworks */,
-				7CBAAF5616AF85E900A148AB /* Resources */,
+				7CDDD79B16B01DAE0025C8EA /* Sources */,
+				7CDDD79C16B01DAE0025C8EA /* Frameworks */,
+				7CDDD79D16B01DAE0025C8EA /* Resources */,
 			);
 			buildRules = (
 			);
@@ -130,78 +130,78 @@
 			);
 			name = Game;
 			productName = Game;
-			productReference = 7CBAAF5816AF85E900A148AB /* Game.app */;
+			productReference = 7CDDD79F16B01DAE0025C8EA /* Game.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		7CBAAF4F16AF85E900A148AB /* Project object */ = {
+		7CDDD79616B01DAD0025C8EA /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
 				LastUpgradeCheck = 0450;
 				ORGANIZATIONNAME = nus.cs3217;
 			};
-			buildConfigurationList = 7CBAAF5216AF85E900A148AB /* Build configuration list for PBXProject "Game" */;
+			buildConfigurationList = 7CDDD79916B01DAD0025C8EA /* Build configuration list for PBXProject "Game" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
 			);
-			mainGroup = 7CBAAF4D16AF85E900A148AB;
-			productRefGroup = 7CBAAF5916AF85E900A148AB /* Products */;
+			mainGroup = 7CDDD79416B01DAD0025C8EA;
+			productRefGroup = 7CDDD7A016B01DAE0025C8EA /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				7CBAAF5716AF85E900A148AB /* Game */,
+				7CDDD79E16B01DAE0025C8EA /* Game */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		7CBAAF5616AF85E900A148AB /* Resources */ = {
+		7CDDD79D16B01DAE0025C8EA /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7CBAAF6716AF85E900A148AB /* InfoPlist.strings in Resources */,
-				7CBAAF6F16AF85E900A148AB /* Default.png in Resources */,
-				7CBAAF7116AF85E900A148AB /* Default@2x.png in Resources */,
-				7CBAAF7316AF85E900A148AB /* Default-568h@2x.png in Resources */,
-				7CBAAF7616AF85E900A148AB /* MainStoryboard.storyboard in Resources */,
-				7CBAAF8616AF8E8200A148AB /* background.png in Resources */,
-				7CBAAF8716AF8E8200A148AB /* ground.png in Resources */,
+				7CDDD7AE16B01DAE0025C8EA /* InfoPlist.strings in Resources */,
+				7CDDD7B616B01DAE0025C8EA /* Default.png in Resources */,
+				7CDDD7B816B01DAE0025C8EA /* Default@2x.png in Resources */,
+				7CDDD7BA16B01DAE0025C8EA /* Default-568h@2x.png in Resources */,
+				7CDDD7BD16B01DAE0025C8EA /* MainStoryboard.storyboard in Resources */,
+				7CDDD7C816B01F250025C8EA /* background.png in Resources */,
+				7CDDD7C916B01F250025C8EA /* ground.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		7CBAAF5416AF85E900A148AB /* Sources */ = {
+		7CDDD79B16B01DAE0025C8EA /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7CBAAF6916AF85E900A148AB /* main.m in Sources */,
-				7CBAAF6D16AF85E900A148AB /* AppDelegate.m in Sources */,
-				7CBAAF7916AF85E900A148AB /* ViewController.m in Sources */,
+				7CDDD7B016B01DAE0025C8EA /* main.m in Sources */,
+				7CDDD7B416B01DAE0025C8EA /* AppDelegate.m in Sources */,
+				7CDDD7C016B01DAE0025C8EA /* ViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		7CBAAF6516AF85E900A148AB /* InfoPlist.strings */ = {
+		7CDDD7AC16B01DAE0025C8EA /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
-				7CBAAF6616AF85E900A148AB /* en */,
+				7CDDD7AD16B01DAE0025C8EA /* en */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
 		};
-		7CBAAF7416AF85E900A148AB /* MainStoryboard.storyboard */ = {
+		7CDDD7BB16B01DAE0025C8EA /* MainStoryboard.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
-				7CBAAF7516AF85E900A148AB /* en */,
+				7CDDD7BC16B01DAE0025C8EA /* en */,
 			);
 			name = MainStoryboard.storyboard;
 			sourceTree = "<group>";
@@ -209,7 +209,7 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
-		7CBAAF7A16AF85E900A148AB /* Debug */ = {
+		7CDDD7C116B01DAE0025C8EA /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -238,7 +238,7 @@
 			};
 			name = Debug;
 		};
-		7CBAAF7B16AF85E900A148AB /* Release */ = {
+		7CDDD7C216B01DAE0025C8EA /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -261,7 +261,7 @@
 			};
 			name = Release;
 		};
-		7CBAAF7D16AF85E900A148AB /* Debug */ = {
+		7CDDD7C416B01DAE0025C8EA /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -272,7 +272,7 @@
 			};
 			name = Debug;
 		};
-		7CBAAF7E16AF85E900A148AB /* Release */ = {
+		7CDDD7C516B01DAE0025C8EA /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -286,25 +286,24 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		7CBAAF5216AF85E900A148AB /* Build configuration list for PBXProject "Game" */ = {
+		7CDDD79916B01DAD0025C8EA /* Build configuration list for PBXProject "Game" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				7CBAAF7A16AF85E900A148AB /* Debug */,
-				7CBAAF7B16AF85E900A148AB /* Release */,
+				7CDDD7C116B01DAE0025C8EA /* Debug */,
+				7CDDD7C216B01DAE0025C8EA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		7CBAAF7C16AF85E900A148AB /* Build configuration list for PBXNativeTarget "Game" */ = {
+		7CDDD7C316B01DAE0025C8EA /* Build configuration list for PBXNativeTarget "Game" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				7CBAAF7D16AF85E900A148AB /* Debug */,
-				7CBAAF7E16AF85E900A148AB /* Release */,
+				7CDDD7C416B01DAE0025C8EA /* Debug */,
+				7CDDD7C516B01DAE0025C8EA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
-	rootObject = 7CBAAF4F16AF85E900A148AB /* Project object */;
+	rootObject = 7CDDD79616B01DAD0025C8EA /* Project object */;
 }
