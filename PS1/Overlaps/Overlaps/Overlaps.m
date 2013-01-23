@@ -75,7 +75,7 @@ int main (int argc, const char * argv[]) {
     int indicator = test();
     
     if(indicator == 1)
-        printf("all test cases passed ! \n \n");
+        printf("all test cases passed !\n");
     
     
     
