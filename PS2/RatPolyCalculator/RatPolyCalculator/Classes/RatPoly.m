@@ -218,22 +218,47 @@
  Question 2(a)
  ========
  
- <Your answer here>
+ When we pass a message to a NIL pointer, there will be no error happens in Objective-c, and what happens
+ is that nothing really happens. The invoked method will return a 0, or 0.0 , or NIL, or NO, determined by the
+ return typr of the method. So let's say if we do not check whether self is NIL or not, and we perform such an
+ operation [self add:5/17], what will be returned will be another NIL ponter. This might result in further logic 
+ errors. For example, if we try to call the  doubleValue method in the returned RatNum object(which is actually 
+ a Nil), we get 0.0, then we might naturally think that self is -5/17, which is not true.
+ 
+ adding and mulyiplying a Nan will return a Nan, because a Nan has denom 0, and adding, subtracting and multiplying 
+ will not change this. However, to computer div, we need first inverse the arg, this will actually make a Nan becaome
+  0/something, which is 0.0, and what we get is that self/Nan == 0.0, which is not mathematically correct.
+ 
+ 
  
  Question 2(b)
  ========
  
- <Your answer here>
+ A class method allows itself to be invoked without any instances created, and it cannot access any ivar of any instances
+ of this class directly, unless passed as arguments. In this case, to get valueOf a string representing a rational number,
+ we certainly do not need to access any instance, so a class method is good enough. (Actually it is even better than do it 
+ as a instance method, because otherwise if need to invoke this method, we have to create a instance first, which might result 
+ io memory waste.)
+ 
+ We can also declare this valueOf method a instance method, the drawbacks have been discussed above. Another alternative is
+ to put this method in the sorce file where int main (int argc, const char * argv[]) resides, this way we can treat it as the
+ C language way.
  
  Question 2(c)
  ========
  
- <Your answer here>
+  -(void)checkRep no longer needs to check the gcd part, just delete the part involving gcd, 
+                  resulting code willl be slightly clearer
+  -(id)initWithNumer:(int)x Denom:(int)y needs not change x/y to reduced form, just delete the gcd part
+                  resulting code willl be slightly clearer
+  -(BOOL)isEqual:(id)object must be changed extensively, because now we have to change both rational number to reduced form
+                  resulting code will be much more complex
  
  Question 2(d)
  ========
  
- <Your answer here>
+ RatNum is immutable because both the numer and denom is readOnly, also for whatever methods provided in the
+ class, it will not change the numer and denom property, so it is safe enough to checkRep once only at the end.
  
  Question 2(e)
  ========
@@ -264,14 +289,15 @@
  ==========================
  (a) How many hours did you spend on each problem of this problem set?
  
- <Your answer here>
+ more than 20 hours
  
  (b) In retrospect, what could you have done better to reduce the time you spent solving this problem set?
  
- <Your answer here>
+ if I could follow the instrcutions more closely instead of sometimes experimenting with my own ideas, I could
+ have saved plenty time.
  
  (c) What could the CS3217 teaching staff have done better to improve your learning experience in this problem set?
  
- <Your answer here>
+ This time things are much better than PS1. The instrcutions are a lot more clearer, and the codes provided are really elegant!
  
  */

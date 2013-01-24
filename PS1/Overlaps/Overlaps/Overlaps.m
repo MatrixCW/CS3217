@@ -77,7 +77,14 @@ int main (int argc, const char * argv[]) {
     if(indicator == 1)
         printf("all test cases passed !\n");
     
+    //PERectangle* rectNil = Nil;
     
+    //CGPoint *ptr = [rectNil corners];
+    
+    //if( ptr == Nil)
+       //printf(" %lf \n",5/INFINITY);
+        
+
     
     // declare rectangle 1 and rectangle 2
 
@@ -123,6 +130,9 @@ int main (int argc, const char * argv[]) {
     
     /* Problem 2 code (Objective-C) */
 	// declare rectangle 1 and rectangle 2 objects
+    
+    
+    
     
     CGPoint origin1 = CGPointMake(rectangleOne.topLeftX,rectangleOne.topLeftY);
     PERectangle* rect1 = [[PERectangle alloc] initWithOrigin:origin1 width:rectangleOne.width height:rectangleOne.height rotation:0];

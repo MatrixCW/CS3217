@@ -9,7 +9,20 @@
 // Checks that the representation invariant holds.
 -(void) checkRep{ // 5 points
     // You need to fill in the implementation of this method
-
+    
+    RatNum *ZERO = [RatNum initZERO];
+    
+    if (coeff == Nil){
+		[NSException raise:@"RatNum rep error" format:
+		 @"the coeff of a polynomial term can never be null!"];
+	}
+    
+    if ([coeff isEqual:ZERO] && expt != 0){
+		[NSException raise:@"RatNum rep error" format:
+		 @"invalid coeff/expt combination! only (0,0) allowed"];
+	}
+	
+	
 }
 
 -(id)initWithCoeff:(RatNum*)c Exp:(int)e{
@@ -34,10 +47,18 @@
 +(id)initZERO { // 5 points
     // EFFECTS: returns a zero ratterm
     
+    RatNum *ZERO = [RatNum initZERO];
+    
+    return [[RatTerm alloc] initWithCoeff:ZERO Exp:0];
+    
 }
 
 +(id)initNaN { // 5 points
     // EFFECTS: returns a nan ratterm
+    
+    RatNum *NanCoeff = [RatNum initNaN];
+    
+    return [[RatTerm alloc] initWithCoeff:NanCoeff Exp:1];
     
 }
 
@@ -45,11 +66,29 @@
     // REQUIRES: self != nil
     // EFFECTS: return YES if and only if coeff is NaN
     
+    
+    [self checkRep];
+    
+    if([self.coeff isNaN])
+        return YES;
+    else
+        return NO;
+    
 }
 
 -(BOOL)isZero { // 5 points
     // REQUIRES: self != nil
     // EFFECTS: return YES if and only if coeff is zero
+    
+    
+    [self checkRep];
+    
+    RatNum *ZERO = [RatNum initZERO];
+    
+    if([self.coeff isEqual:ZERO])
+        return YES;
+    else
+        return NO;
     
 }
 
@@ -61,11 +100,30 @@
     //            'd'. For example, "3*x^2" evaluated at 2 is 12. if 
     //            [self isNaN] returns YES, return NaN
     
+    [self checkRep];
+    
+    if([self.coeff isNaN])
+        return NAN;
+    
+    double xTerm = pow(d, (self.expt)*1.0);
+    double coef = [self.coeff doubleValue];
+    
+    return xTerm * coef;
+    
 }
 
 -(RatTerm*)negate{ // 5 points
     // REQUIRES: self != nil 
     // EFFECTS: return the negated term, return NaN if the term is NaN
+    
+    [self checkRep];
+    
+    if([self isNaN])
+        return [RatTerm initNaN];
+    
+    RatNum *newCoeff = [self.coeff negate];
+    
+    return [[RatTerm alloc] initWithCoeff:newCoeff Exp:self.expt];
     
 }
 
@@ -78,6 +136,27 @@
     // EFFECTS: returns a RatTerm equals to (self + arg). If either argument is NaN, then returns NaN.
     //            throws NSException if (self.expt != arg.expt) and neither argument is zero or NaN.
     
+    [self checkRep];
+    [arg checkRep];
+    
+    
+    if((![self isNaN]) && (![arg isNaN]) && (self.expt != arg.expt))
+        [NSException raise:@"RatNum adding error" format:
+		 @"adding ratTerms require same order!"];
+    
+    if([self isNaN] || [arg isNaN])
+        return [RatTerm initNaN];
+    
+    if([self isZero])
+        return arg;
+    
+    if([arg isZero])
+        return self;
+    
+    RatNum *newSum = [self.coeff add:arg.coeff];
+    
+    return [[RatTerm alloc] initWithCoeff:newSum Exp:self.expt];
+    
     
 }
 
@@ -89,6 +168,10 @@
     // EFFECTS: returns a RatTerm equals to (self - arg). If either argument is NaN, then returns NaN.
     //            throws NSException if (self.expt != arg.expt) and neither argument is zero or NaN.
     
+    [self checkRep];
+    [arg checkRep];
+    
+    return [self add:[arg negate]];
     
 }
 
@@ -98,6 +181,19 @@
     // REQUIRES: arg != null, self != nil
     // EFFECTS: return a RatTerm equals to (self*arg). If either argument is NaN, then return NaN
     
+    
+    [self checkRep];
+    [arg checkRep];
+    
+    
+    if([self isNaN] || [arg isNaN])
+        return [RatTerm initNaN];
+    
+    
+    RatNum *newSum = [self.coeff mul:arg.coeff];
+    
+    return [[RatTerm alloc] initWithCoeff:newSum Exp:(self.expt+arg.expt)];
+    
 }
 
 
@@ -105,6 +201,23 @@
 -(RatTerm*)div:(RatTerm*)arg { // 5 points
     // REQUIRES: arg != null, self != nil
     // EFFECTS: return a RatTerm equals to (self/arg). If either argument is NaN, then return NaN
+    
+    [self checkRep];
+    [arg checkRep];
+    
+    
+    
+    if([self isNaN] || [arg isNaN])
+        return [RatTerm initNaN];
+    
+    RatNum *ZERO = [RatNum initZERO];
+    
+    RatNum *newSum = [self.coeff div:arg.coeff];
+    
+    if(![newSum isEqual:ZERO])
+       return [[RatTerm alloc] initWithCoeff:newSum Exp:(self.expt-arg.expt)];
+    else
+        return [RatTerm initZERO];
     
 }
 
@@ -126,7 +239,34 @@
     // 
     //          Valid example outputs include "3/2*x^2", "-1/2", "0", and "NaN".
     
+        
+
+    [self checkRep];
     
+    if(self.expt == 0)
+        return [NSString stringWithFormat:@"%d/%d", self.coeff.numer, self.coeff.denom];
+    
+    if(self.expt == 1)
+        return [NSString stringWithFormat:@"%d/%d*x", self.coeff.numer, self.coeff.denom];
+    
+    
+    if( [ self.coeff isEqual:[[RatNum alloc] initWithInteger:1] ]){
+        
+        switch (self.expt) {
+            case 0:
+                return @"1";
+                break;
+            case 1:
+                return @"x";
+                break;
+            default:
+                [NSString stringWithFormat:@"x^%d", self.expt];
+                break;
+        }
+    }
+        
+    
+    return [NSString stringWithFormat:@"%d/%d*x^%d", self.coeff.numer, self.coeff.denom,self.expt];
 }
 
 // Build a new RatTerm, given a descriptive string.
@@ -144,6 +284,21 @@
     // REQUIRES: self != nil
     // EFFECTS: returns YES if "obj" is an instance of RatTerm, which represents
     //            the same RatTerm as self.
+    
+    if([obj isKindOfClass:[RatTerm class]]){
+        //isKindOfClass returns true if object can be considered as an
+        //instance of the argument class. Each class has a method
+        //called "class", which returns the class object. so [RatNum
+        //class] returns the class object of RatNum class
+        
+		RatTerm *rt = (RatTerm*)obj;
+		if ([self isNaN] && [rt isNaN]) {
+			return YES;
+		} else {
+			return [self.coeff isEqual:rt.coeff] && self.expt==rt.expt;
+		}
+        
+	} else return NO;
     
     
 }
