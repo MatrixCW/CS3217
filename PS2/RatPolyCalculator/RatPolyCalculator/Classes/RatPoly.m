@@ -253,6 +253,10 @@
                   resulting code willl be slightly clearer
   -(BOOL)isEqual:(id)object must be changed extensively, because now we have to change both rational number to reduced form
                   resulting code will be much more complex
+  -(NSString*)stringValue should be changed because it might return something like 6/3 instead of 2. Check gcd first and use temp 
+                  integer to store temp values first. Resulting code can be messy.
+                  
+                  
  
  Question 2(d)
  ========
@@ -260,30 +264,41 @@
  RatNum is immutable because both the numer and denom is readOnly, also for whatever methods provided in the
  class, it will not change the numer and denom property, so it is safe enough to checkRep once only at the end.
  
- Question 2(e)
- ========
- 
- <Your answer here>
  
  Question 3(a)
  ========
  
- <Your answer here>
+ I put checkRep at the end of each initializer to make sure the returned value is valid.
+ I put checkRep at the beginning of other method to make sure the method receives valid arguments.
+ There is no need to checkRep at the end of the method, because the RatTerm is a immutable class, no methods
+ can change the properties of the instances.
  
  Question 3(b)
  ========
  
- <Your answer here>
+ 
+ -(void) checkRep must be changed, obviously, just adding the checking code (RatNum ==Nan -> expt ==0)
+ the resulting code is more complex because of this extra codes
+ -(id)initWithCoeff:(RatNum*)c Exp:(int)e; requires explicitly change e to 0 if the input RatTerm is Nan and e != 0
+ the resulting code is more complex because of this extra codes
+ +(id)initNaN must let expt == 0, not so many changes.
+ 
  
  Question 3(c)
  ========
- 
- <Your answer here>
+
+  -(void) checkRep must be changed, obviously, just adding the checking code (RatNum ==Nan -> expt ==0)
+          the resulting code is more complex because of this extra codes
+  -(id)initWithCoeff:(RatNum*)c Exp:(int)e; requires explicitly change e to 0 if the input RatTerm is Nan and e != 0
+          the resulting code is more complex because of this extra codes 
+  +(id)initNaN must let expt == 0, not so many changes.
  
  Question 3(d)
  ========
  
- <Your answer here>
+ Both. It is really mathematically meaningless to allow a polynomial term whose coefficient is NaN(infinity), but to make programme
+ robust, and take cases like a polynomial divides by 0 into consideration, we have to allow Nan RatTerm. But we must also create a standard
+ for such cases to make representation unambiguous. The same arguments also holds for zero RatTerm.
  
  Question 5: Reflection (Bonus Question)
  ==========================

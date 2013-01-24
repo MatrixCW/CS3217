@@ -30,6 +30,7 @@
     // EFFECTS: returns a RatTerm with coefficient c and exponent e
     
     RatNum *ZERO = [RatNum initZERO];
+    
     // if coefficient is 0, exponent must also be 0
     // we'd like to keep the coefficient, so we must retain it
     
@@ -48,8 +49,10 @@
     // EFFECTS: returns a zero ratterm
     
     RatNum *ZERO = [RatNum initZERO];
+    RatTerm *returnedValue = [[RatTerm alloc] initWithCoeff:ZERO Exp:0];
+    [returnedValue checkRep];
     
-    return [[RatTerm alloc] initWithCoeff:ZERO Exp:0];
+    return returnedValue;
     
 }
 
@@ -57,8 +60,10 @@
     // EFFECTS: returns a nan ratterm
     
     RatNum *NanCoeff = [RatNum initNaN];
-    
-    return [[RatTerm alloc] initWithCoeff:NanCoeff Exp:1];
+    RatTerm *returnedValue = [[RatTerm alloc] initWithCoeff:NanCoeff Exp:0];
+    [returnedValue checkRep];
+
+    return returnedValue;
     
 }
 
@@ -68,11 +73,9 @@
     
     
     [self checkRep];
+
+    return [self.coeff isNaN];
     
-    if([self.coeff isNaN])
-        return YES;
-    else
-        return NO;
     
 }
 
@@ -84,11 +87,8 @@
     [self checkRep];
     
     RatNum *ZERO = [RatNum initZERO];
+    return [self.coeff isEqual:ZERO];
     
-    if([self.coeff isEqual:ZERO])
-        return YES;
-    else
-        return NO;
     
 }
 
@@ -140,9 +140,9 @@
     [arg checkRep];
     
     
-    if((![self isNaN]) && (![arg isNaN]) && (self.expt != arg.expt))
-        [NSException raise:@"RatNum adding error" format:
-		 @"adding ratTerms require same order!"];
+    if(![self isNaN] && ![self isZero] && ![arg isNaN] && ![arg isZero])
+        if(self.expt != arg.expt)
+           [NSException raise:@"RatNum adding error" format:@"adding ratTerms require same order!"];
     
     if([self isNaN] || [arg isNaN])
         return [RatTerm initNaN];
@@ -153,9 +153,19 @@
     if([arg isZero])
         return self;
     
+    RatNum *ZERO = [RatNum initZERO];
+    
     RatNum *newSum = [self.coeff add:arg.coeff];
     
-    return [[RatTerm alloc] initWithCoeff:newSum Exp:self.expt];
+    if(![newSum isEqual:ZERO]){  //only allow (0,0)
+        RatTerm *returnValue = [[RatTerm alloc] initWithCoeff:newSum Exp:self.expt];
+        [returnValue checkRep];
+        return returnValue;
+    }
+    else{ 
+        return [RatTerm initZERO];
+    }
+    
     
     
 }
@@ -189,10 +199,17 @@
     if([self isNaN] || [arg isNaN])
         return [RatTerm initNaN];
     
+    RatNum *ZERO = [RatNum initZERO];
+    RatNum *newMul = [self.coeff mul:arg.coeff];
     
-    RatNum *newSum = [self.coeff mul:arg.coeff];
-    
-    return [[RatTerm alloc] initWithCoeff:newSum Exp:(self.expt+arg.expt)];
+    if(![newMul isEqual:ZERO]){  //only allow (0,0)
+        RatTerm *returnValue = [[RatTerm alloc] initWithCoeff:newMul Exp:(self.expt + arg.expt)];
+        [returnValue checkRep];
+        return returnValue;
+    }
+    else{
+        return [RatTerm initZERO];
+    }
     
 }
 
@@ -212,12 +229,15 @@
     
     RatNum *ZERO = [RatNum initZERO];
     
-    RatNum *newSum = [self.coeff div:arg.coeff];
+    RatNum *newDiv = [self.coeff div:arg.coeff];
     
-    if(![newSum isEqual:ZERO])
-       return [[RatTerm alloc] initWithCoeff:newSum Exp:(self.expt-arg.expt)];
+    if(![newDiv isEqual:ZERO]){
+        RatTerm *returnValue = [[RatTerm alloc] initWithCoeff:newDiv Exp:(self.expt - arg.expt)];
+        [returnValue checkRep];
+        return returnValue;
+    }
     else
-        return [RatTerm initZERO];
+       return [RatTerm initZERO];
     
 }
 
@@ -243,30 +263,40 @@
 
     [self checkRep];
     
-    if(self.expt == 0)
-        return [NSString stringWithFormat:@"%d/%d", self.coeff.numer, self.coeff.denom];
+    RatNum *one = [[RatNum alloc] initWithInteger:1];
+    RatNum *negaOne = [[RatNum alloc] initWithInteger:-1];
     
-    if(self.expt == 1)
-        return [NSString stringWithFormat:@"%d/%d*x", self.coeff.numer, self.coeff.denom];
+    if(self.expt == 0)  //a constant
+        return [self.coeff stringValue];
     
-    
-    if( [ self.coeff isEqual:[[RatNum alloc] initWithInteger:1] ]){
+    if(self.expt == 1){ //easy case first, C*x
         
-        switch (self.expt) {
-            case 0:
-                return @"1";
-                break;
-            case 1:
-                return @"x";
-                break;
-            default:
-                [NSString stringWithFormat:@"x^%d", self.expt];
-                break;
-        }
+        if([self.coeff isEqual: one])
+            return @"x";
+        if([self.coeff isEqual: negaOne])
+            return @"-x";
+        
+        NSString *coe = [self.coeff stringValue];
+        
+        return [coe stringByAppendingString:@"*x"];
     }
-        
     
-    return [NSString stringWithFormat:@"%d/%d*x^%d", self.coeff.numer, self.coeff.denom,self.expt];
+    //degree not 0 and 1 from now
+        
+    if([self.coeff isEqual:one])
+        return [NSString stringWithFormat:@"x^%d", self.expt];
+    if([self.coeff isEqual:negaOne])
+        return [NSString stringWithFormat:@"-x^%d", self.expt];
+    
+    //non-one, non-negaOne coefficient with degree != 0 or 1 now
+    NSString *coe = [self.coeff stringValue];
+    NSString *xTerm = [NSString stringWithFormat:@"*x^%d", self.expt];
+    NSString *result = @"";
+    result = [result stringByAppendingString:coe];
+    result = [result stringByAppendingString:xTerm];
+    
+    
+    return result;
 }
 
 // Build a new RatTerm, given a descriptive string.
@@ -277,6 +307,66 @@
     //             Valid inputs include "0", "x", "-5/3*x^3", and "NaN"
     // EFFECTS: returns a RatTerm t such that [t stringValue] = str
     
+    
+    RatNum *one = [[RatNum alloc] initWithInteger:1];
+    RatNum *negaOne = [[RatNum alloc] initWithInteger:-1];
+    
+    if([str isEqual:@"NaN"])
+        return [RatTerm initNaN];
+    
+    if([str isEqual:@"0"])
+        return [RatTerm initZERO];
+    
+    
+    if([str rangeOfString:@"x"].location == NSNotFound){ //no x, means only a constant term, and not 0
+    
+        RatNum *coef = [RatNum valueOf:str];
+        
+        return [[RatTerm alloc] initWithCoeff:coef Exp:0];
+    
+    }
+    else{  //contains a x
+        
+        if([str rangeOfString:@"*"].location == NSNotFound){   //coefficient == 1 or -1
+            
+            if([str rangeOfString:@"^"].location == NSNotFound){  // just x
+                if([str rangeOfString:@"-"].location == NSNotFound) //positive
+                   return [[RatTerm alloc] initWithCoeff:one Exp:1];
+                else
+                    return [[RatTerm alloc] initWithCoeff:negaOne Exp:1];
+            }else{   //x^e
+                NSArray *tokens = [str componentsSeparatedByString:@"^"];
+                int exp = [[tokens objectAtIndex:1] intValue];
+                
+                if([str rangeOfString:@"-"].location == NSNotFound) //positive
+                    return [[RatTerm alloc] initWithCoeff:one Exp:exp];
+                else
+                    return [[RatTerm alloc] initWithCoeff:negaOne Exp:exp];
+            }
+            
+        }else{  //coefficient != 1
+            
+            NSArray *tokens = [str componentsSeparatedByString:@"*"];
+            
+            RatNum *coef = [RatNum valueOf:[tokens objectAtIndex:0]];
+            NSString *secondPart = [tokens objectAtIndex:1];
+            
+            if([secondPart rangeOfString:@"^"].location == NSNotFound){  // just C*x
+                return [[RatTerm alloc] initWithCoeff:coef Exp:1];
+            }else{   //C*x^e
+                
+                NSArray *tokens2 = [secondPart componentsSeparatedByString:@"^"];
+                int exp = [[tokens2 objectAtIndex:1] intValue];
+                
+                return [[RatTerm alloc] initWithCoeff:coef Exp:exp];
+            }
+            
+            
+        }
+        
+    }
+    
+    
 }
 
 //  Equality test,
@@ -284,6 +374,8 @@
     // REQUIRES: self != nil
     // EFFECTS: returns YES if "obj" is an instance of RatTerm, which represents
     //            the same RatTerm as self.
+    [self checkRep];
+    [obj checkRep];
     
     if([obj isKindOfClass:[RatTerm class]]){
         //isKindOfClass returns true if object can be considered as an
@@ -295,7 +387,7 @@
 		if ([self isNaN] && [rt isNaN]) {
 			return YES;
 		} else {
-			return [self.coeff isEqual:rt.coeff] && self.expt==rt.expt;
+			return [self.coeff isEqual:rt.coeff] && self.expt == rt.expt;
 		}
         
 	} else return NO;

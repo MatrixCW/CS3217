@@ -76,16 +76,7 @@ int main (int argc, const char * argv[]) {
     
     if(indicator == 1)
         printf("all test cases passed !\n");
-    
-    //PERectangle* rectNil = Nil;
-    
-    //CGPoint *ptr = [rectNil corners];
-    
-    //if( ptr == Nil)
-       //printf(" %lf \n",5/INFINITY);
         
-
-    
     // declare rectangle 1 and rectangle 2
 
     
