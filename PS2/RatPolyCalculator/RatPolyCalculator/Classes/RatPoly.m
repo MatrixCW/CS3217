@@ -277,11 +277,14 @@
  ========
  
  
- -(void) checkRep must be changed, obviously, just adding the checking code (RatNum ==Nan -> expt ==0)
- the resulting code is more complex because of this extra codes
- -(id)initWithCoeff:(RatNum*)c Exp:(int)e; requires explicitly change e to 0 if the input RatTerm is Nan and e != 0
- the resulting code is more complex because of this extra codes
- +(id)initNaN must let expt == 0, not so many changes.
+ -(void) checkRep; must be changed, obviously, just deleting the checking code (RatNum == 0 -> expt ==0)
+                  the resulting code is less complex because of this deletion
+ -(id)initWithCoeff:(RatNum*)c Exp:(int)e; no longer requires explicitly change e to 0 if the input RatTerm is 0 and e != 0
+                  the resulting code is less complex 
+ +(id)initZero; the expt now can be any integer not so many changes.
+ 
+ other methods, due to the way of implementation, I think they need not be modified.
+ 
  
  
  Question 3(c)
@@ -292,6 +295,8 @@
   -(id)initWithCoeff:(RatNum*)c Exp:(int)e; requires explicitly change e to 0 if the input RatTerm is Nan and e != 0
           the resulting code is more complex because of this extra codes 
   +(id)initNaN must let expt == 0, not so many changes.
+ 
+ other methods, due to the way of implementation, I think they need not be modified.
  
  Question 3(d)
  ========
