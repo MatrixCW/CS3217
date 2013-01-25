@@ -276,6 +276,7 @@
         if([self.coeff isEqual: negaOne])
             return @"-x";
         
+        //C*x
         NSString *coe = [self.coeff stringValue];
         
         return [coe stringByAppendingString:@"*x"];
@@ -330,11 +331,14 @@
         if([str rangeOfString:@"*"].location == NSNotFound){   //coefficient == 1 or -1
             
             if([str rangeOfString:@"^"].location == NSNotFound){  // just x
+                
                 if([str rangeOfString:@"-"].location == NSNotFound) //positive
                    return [[RatTerm alloc] initWithCoeff:one Exp:1];
                 else
                     return [[RatTerm alloc] initWithCoeff:negaOne Exp:1];
+            
             }else{   //x^e
+                
                 NSArray *tokens = [str componentsSeparatedByString:@"^"];
                 int exp = [[tokens objectAtIndex:1] intValue];
                 
@@ -344,18 +348,18 @@
                     return [[RatTerm alloc] initWithCoeff:negaOne Exp:exp];
             }
             
-        }else{  //coefficient != 1
+        }else{  //coefficient != 1 nor -1
             
-            NSArray *tokens = [str componentsSeparatedByString:@"*"];
+            NSArray *tokens = [str componentsSeparatedByString:@"*"]; //must exits a "*"
             
             RatNum *coef = [RatNum valueOf:[tokens objectAtIndex:0]];
-            NSString *secondPart = [tokens objectAtIndex:1];
+            NSString *xPower = [tokens objectAtIndex:1];
             
-            if([secondPart rangeOfString:@"^"].location == NSNotFound){  // just C*x
+            if([xPower rangeOfString:@"^"].location == NSNotFound){  // just C*x
                 return [[RatTerm alloc] initWithCoeff:coef Exp:1];
             }else{   //C*x^e
                 
-                NSArray *tokens2 = [secondPart componentsSeparatedByString:@"^"];
+                NSArray *tokens2 = [xPower componentsSeparatedByString:@"^"];
                 int exp = [[tokens2 objectAtIndex:1] intValue];
                 
                 return [[RatTerm alloc] initWithCoeff:coef Exp:exp];
@@ -374,23 +378,24 @@
     // REQUIRES: self != nil
     // EFFECTS: returns YES if "obj" is an instance of RatTerm, which represents
     //            the same RatTerm as self.
+    
     [self checkRep];
-    [obj checkRep];
     
     if([obj isKindOfClass:[RatTerm class]]){
-        //isKindOfClass returns true if object can be considered as an
-        //instance of the argument class. Each class has a method
-        //called "class", which returns the class object. so [RatNum
-        //class] returns the class object of RatNum class
         
 		RatTerm *rt = (RatTerm*)obj;
+        
+        [rt checkRep];
+        
 		if ([self isNaN] && [rt isNaN]) {
 			return YES;
 		} else {
 			return [self.coeff isEqual:rt.coeff] && self.expt == rt.expt;
 		}
         
-	} else return NO;
+	}
+    else
+        return NO;
     
     
 }

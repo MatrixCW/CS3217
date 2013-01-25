@@ -188,22 +188,26 @@
         nagate the coefficient
     computer r = p + q
  
+ return r
+ 
  Question 1(b)
  ========
  
- to computer r = p - q:
+ to computer r = p * q:
  
     set r = 0;
  
     foreach term tq in q
-        computer p * tq by both multiplying the coeeficient and increasing the power
-        add the corresponding result to r
+        foreach term tp in p
+             r += tp * tq 
+   
+ return r
  
     
  Question 1(c)
  ========
  
- let q be the quotient and t the reminder
+ let q be the quotient and r the reminder
  
  to computer p / d where d !=0
  
@@ -211,7 +215,7 @@
  
  while r ≠ 0 AND degree(r) ≥ degree(d):
       t ← lead(r)/lead(d)     # Divide the leading terms
-      q = q + t r = r - (t * d))
+      q = q + t, r = r - (t * d))
  
  return (q, r)
  
