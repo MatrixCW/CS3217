@@ -10,28 +10,114 @@
 -(int)degree{ // 5 points
     // EFFECTS: returns the degree of this RatPoly object. 
     
-	//i'm just a skeleton here, do fill me up please, or
-	//I'll throw an exception to remind you of my existence. muahaha
-	[NSException raise:@"RatPoly degree not implemented" format:@"fill me up plz!"];
+
+	[self checkRep];
+    
+    if(self.terms.count == 0)
+        return 0;
+    else
+        return [[self.terms objectAtIndex:0] expt];
 }
 
 // Check that the representation invariant is satisfied
 -(void)checkRep{ // 5 points
-	//i'm just a skeleton here, do fill me up please, or
-	//I'll throw an exception to remind you of my existence. muahaha
-	[NSException raise:@"RatPoly checkRep not implemented" format:@"fill me up plz!"];
+    // Representation Invariant for every RatPoly p:
+    // terms != null &&
+    // forall i such that (0 <= i < length(p)), C(p,i) != 0 &&
+    // forall i such that (0 <= i < length(p)), E(p,i) >= 0 &&
+    // forall i such that (0 <= i < length(p) - 1), E(p,i) > E(p, i+1)
+    // In other words:
+    // * The terms field always points to some usable object.
+    // * No term in a RatPoly has a zero coefficient.
+    // * No term in a RatPoly has a negative exponent.
+    // * The terms in a RatPoly are sorted in descending exponent order.
+    // (It is implied that 'terms' does not contain any null elements by the
+    // above
+    // invariant.)
+	
+    if(self.terms == NULL){
+        [NSException raise:@"Error occurred!\n" format:@"RatPoly cannot have null objects"];
+    }
+    
+
+    if([self.terms count] != 0){
+        
+        for(int i = 0; i <self.terms.count; i++){
+            
+            if([self isZeroTerm:[self.terms objectAtIndex:i]])
+                [NSException raise:@"Error occurred!\n" format:@"RatPoly cannot have terms with 0 coefficient!"];
+            
+            if([self hasNegaExponent:[self.terms objectAtIndex:i]])
+                [NSException raise:@"Error occurred!\n" format:@"RatPoly cannot have terms with negative coefficient!"];
+                
+            }
+        
+        for(int j = 0; j < self.terms.count-1; j++){
+            
+            if([self hasHigherDegreeThanNextTerm:[self.terms objectAtIndex:j] :[self.terms objectAtIndex:j+1]])
+                [NSException raise:@"Error occurred!\n" format:@"RatPoly cannot have non-increasing terms!"];
+
+        }
+
+    
+    }
+
+	
 }
+
+-(BOOL)isZeroTerm:(RatTerm*)term{
+    
+    if([term isZero])
+        return YES;
+    else
+        return NO;
+}
+
+-(BOOL)hasNegaExponent:(RatTerm*)term{
+    
+    if(term.expt < 0)
+        return YES;
+    else
+        return NO;
+}
+
+-(BOOL)hasHigherDegreeThanNextTerm:(RatTerm*)previous :(RatTerm*)next{
+    if(previous.expt > next.expt)
+        return YES;
+    else
+        return NO;
+}
+
 
 -(id)init { // 5 points
     //EFFECTS: constructs a polynomial with zero terms, which is effectively the zero polynomial
     //           remember to call checkRep to check for representation invariant
     
+    self = [super init];
+    
+    if(self){
+        terms = [[NSArray alloc] init];
+    }
+    
+    [self checkRep];
+    
+    return self;
 }
 
 -(id)initWithTerm:(RatTerm*)rt{ // 5 points
     //  REQUIRES: [rt expt] >= 0
     //  EFFECTS: constructs a new polynomial equal to rt. if rt's coefficient is zero, constructs
     //             a zero polynomial remember to call checkRep to check for representation invariant
+    
+    self = [super init];
+    
+    if(self){
+        terms = [[NSArray alloc] initWithObjects:rt, nil];
+    }
+    
+    [self checkRep];
+    
+    return self;
     
     
 }
@@ -41,13 +127,34 @@
     // EFFECTS: constructs a new polynomial using "ts" as part of the representation.
     //            the method does not make a copy of "ts". remember to call checkRep to check for representation invariant
     
+    self = [super init];
+    
+    if(self){
+        terms = ts;
+    }
+    
+    [self checkRep];
+    
+    return self;
     
 }
+
 
 -(RatTerm*)getTerm:(int)deg { // 5 points
     // REQUIRES: self != nil && ![self isNaN]
     // EFFECTS: returns the term associated with degree "deg". If no such term exists, return
     //            the zero RatTerm
+    
+    [self checkRep];
+    
+    for(RatTerm *currentTerm in terms){
+        
+        if(currentTerm.expt == deg)
+            return currentTerm;
+    }
+    
+    
+    return [RatTerm initZERO];
     
 }
 
@@ -55,6 +162,17 @@
     // REQUIRES: self != nil
     //  EFFECTS: returns YES if this RatPoly is NaN
     //             i.e. returns YES if and only if some coefficient = "NaN".
+    
+    [self checkRep];
+    
+    for(RatTerm *currentTerm in terms){
+        
+        if([currentTerm.coeff isNaN])
+            return YES;
+    }
+    
+    
+    return NO;
     
 }
 
@@ -65,14 +183,88 @@
     //            returns a RatPoly equal to "0 - self"; if [self isNaN], returns
     //            some r such that [r isNaN]
     
+    [self checkRep];
+    
+    if([self isNaN])
+        return [[RatPoly alloc] initWithTerm:[RatTerm initNaN]];
+    
+    if(self.terms.count == 0){
+        return [[RatPoly alloc] init];
+    }
+    
+    NSInteger size = self.terms.count;
+    NSMutableArray *negaTerms = [[NSMutableArray alloc] initWithCapacity:size];
+    
+    for(RatTerm *currentTerm in self.terms){
+        [negaTerms addObject:[currentTerm negate]];
+    }
+    
+    NSArray *tempArray = [[NSArray alloc] initWithArray:negaTerms];
+    
+    return [[RatPoly alloc] initWithTerms:tempArray];
+    
+    
+    
 }
 
+
+-(NSArray*)sortAccordingToExpt:(NSArray*)unsortedArray{
+    
+    NSSortDescriptor *sortDescriptor;
+    sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"expt" ascending:NO];
+    NSArray *sortDescriptors = [NSArray arrayWithObject:sortDescriptor];
+    NSArray *sortedArray;
+    sortedArray = [unsortedArray sortedArrayUsingDescriptors:sortDescriptors];
+    
+    return sortedArray;
+    
+}
 
 // Addition operation
 -(RatPoly*)add:(RatPoly*)p { // 5 points
     // REQUIRES: p!=nil, self != nil
     // EFFECTS: returns a RatPoly r, such that r=self+p; if [self isNaN] or [p isNaN], returns
     //            some r such that [r isNaN]
+    
+    [self checkRep];
+    [p checkRep];
+    
+    if([self isNaN] || [p isNaN])
+        return [[RatPoly alloc] initWithTerm:[RatTerm initNaN]];
+    
+    if(self.terms.count == 0)
+        return p;
+    
+    if(p.terms.count == 0)
+        return self;
+    
+    NSMutableArray *sums = [[NSMutableArray alloc] init];
+    
+    
+    for(RatTerm *currentTermSelf in self.terms){
+        
+        RatTerm *sameDegreeTerm = [p getTerm:currentTermSelf.expt];
+        
+        if([sameDegreeTerm isZero]){
+            [sums addObject:currentTermSelf];
+        }else{
+            [sums addObject:[currentTermSelf add:sameDegreeTerm]];
+        }
+    }
+    
+    for(RatTerm *currentTermP in p.terms){
+        
+        RatTerm *sameDegreeTerm = [self getTerm:currentTermP.expt];
+        
+        if([sameDegreeTerm isZero])
+            [sums addObject:currentTermP];
+            
+    }
+    
+    NSArray *sumArray = [self sortAccordingToExpt:sums];
+    
+    return [[RatPoly alloc] initWithTerms:sumArray];
+    
     
 }
 
@@ -82,6 +274,22 @@
     // EFFECTS: returns a RatPoly r, such that r=self-p; if [self isNaN] or [p isNaN], returns
     //            some r such that [r isNaN]
     
+    [self checkRep];
+    [p checkRep];
+    
+    if([self isNaN] || [p isNaN])
+        return [[RatPoly alloc] initWithTerm:[RatTerm initNaN]];
+    
+    if(self.terms.count == 0)
+        return p;
+    
+    if(p.terms.count == 0)
+        return self;
+    
+    
+    return [self add:[p negate]];
+
+    
 }
 
 
@@ -90,6 +298,10 @@
     // REQUIRES: p!=nil, self != nil
     // EFFECTS: returns a RatPoly r, such that r=self*p; if [self isNaN] or [p isNaN], returns
     // some r such that [r isNaN]
+    
+    [self checkRep];
+    [p checkRep];
+
     
 }
 
@@ -117,6 +329,10 @@
     // Note that this truncating behavior is similar to the behavior of integer
     // division on computers.
     
+    [self checkRep];
+    [p checkRep];
+
+    
 }
 
 -(double)eval:(double)d { // 5 points
@@ -125,7 +341,24 @@
     //            for example, "x+2" evaluated at 3 is 5, and "x^2-x" evaluated at 3 is 6.
     //            if [self isNaN], return NaN
     
+    [self checkRep];
     
+    if(self.terms.count == 0)
+        return 0.0;
+    
+    if([self isNaN])
+        return NAN;
+    
+    CGFloat sum = 0.0;
+    
+    for(RatTerm *currentTerm in self.terms){
+        
+        CGFloat temp = [currentTerm eval:d];
+        sum += temp;
+    }
+    
+    
+    return sum;
 }
 
 
@@ -154,6 +387,36 @@
     //        
     // Valid example outputs include "x^17-3/2*x^2+1", "-x+1", "-1/2",
     // and "0".
+    
+    [self checkRep];
+    
+    if([self isNaN])
+        return @"NaN";
+    
+    if(self.terms.count == 0)
+        return @"0";
+    
+   
+    NSString *result = @"";
+    result = [result stringByAppendingString:[[self.terms objectAtIndex:0] stringValue]];
+    
+    
+    for(int i=1; i<self.terms.count;i++){
+        
+        if([[[self.terms objectAtIndex:i] coeff] isNegative]){
+            result = [result stringByAppendingString:@"-"];
+            result = [result stringByAppendingString:[[self.terms objectAtIndex:i] stringValue]];
+        }else{
+            result = [result stringByAppendingString:@"+"];
+            result = [result stringByAppendingString:[[self.terms objectAtIndex:i] stringValue]];
+        }
+        
+    }
+    
+    
+    return result;
+    
+    
     
 }
 

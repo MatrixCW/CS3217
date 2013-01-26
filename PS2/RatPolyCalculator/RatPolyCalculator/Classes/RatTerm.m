@@ -380,7 +380,7 @@
     //            the same RatTerm as self.
     
     [self checkRep];
-    
+
     if([obj isKindOfClass:[RatTerm class]]){
         
 		RatTerm *rt = (RatTerm*)obj;
