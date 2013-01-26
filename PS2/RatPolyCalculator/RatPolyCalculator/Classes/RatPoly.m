@@ -323,6 +323,7 @@
             sum = [sum add:temp];
         }
     
+    [sum checkRep];
     return sum;
     
 
@@ -391,6 +392,8 @@
         
         
     }
+    
+    [quotient checkRep];
     
     return quotient;
     
@@ -488,6 +491,40 @@
     //              expresses a poly in the form defined in the stringValue method.
     //              Valid inputs include "0", "x-10", and "x^3-2*x^2+5/3*x+3", and "NaN".
     // EFFECTS : return a RatPoly p such that [p stringValue] = str
+    
+    if([str isEqual:@"NaN"])
+        return [[RatPoly alloc] initWithTerm:[RatTerm initNaN]];
+    
+    if([str isEqual:@"0"])
+        return [[RatPoly alloc] init];
+    
+    RatPoly *value = [[RatPoly alloc] init];
+    
+    NSArray *splitMinusSign = [str componentsSeparatedByString:@"-"];
+    
+    NSMutableArray *splitMinusSignMutable = [NSMutableArray arrayWithCapacity:splitMinusSign.count];
+    
+    [splitMinusSignMutable addObject:[splitMinusSign objectAtIndex:0]];
+    
+    for(int i = 1; i < splitMinusSign.count; i++){
+        
+        NSString *toAppend = [splitMinusSign objectAtIndex:i];
+        NSString *restoreMinusSign = [@"-" stringByAppendingString:toAppend];
+        [splitMinusSignMutable addObject:restoreMinusSign];
+    }
+    
+    for(NSString *strs in splitMinusSignMutable){
+        NSArray *tokens = [strs componentsSeparatedByString:@"+"];
+        for(NSString *subStrs in tokens){
+            RatTerm *tempTerm = [RatTerm valueOf:subStrs];
+            RatPoly *tempValue = [[RatPoly alloc] initWithTerm:tempTerm];
+            value = [value add:tempValue];
+        }
+    }
+    
+    return value;
+    
+    
     
 }
 
