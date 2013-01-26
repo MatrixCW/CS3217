@@ -42,19 +42,19 @@
 
     if([self.terms count] != 0){
         
-        for(int i = 0; i <self.terms.count; i++){
+        for(RatTerm *currentTerm in self.terms){
             
-            if([self isZeroTerm:[self.terms objectAtIndex:i]])
+            if([currentTerm isZero])
                 [NSException raise:@"Error occurred!\n" format:@"RatPoly cannot have terms with 0 coefficient!"];
             
-            if([self hasNegaExponent:[self.terms objectAtIndex:i]])
+            if(currentTerm.expt < 0)
                 [NSException raise:@"Error occurred!\n" format:@"RatPoly cannot have terms with negative coefficient!"];
                 
             }
         
-        for(int j = 0; j < self.terms.count-1; j++){
+        for(int i = 0; i < self.terms.count-1; i++){
             
-            if([self hasHigherDegreeThanNextTerm:[self.terms objectAtIndex:j] :[self.terms objectAtIndex:j+1]])
+            if(![self hasHigherDegreeThanNextTerm:[self.terms objectAtIndex:i] :[self.terms objectAtIndex:i+1]])
                 [NSException raise:@"Error occurred!\n" format:@"RatPoly cannot have non-increasing terms!"];
 
         }
@@ -63,22 +63,6 @@
     }
 
 	
-}
-
--(BOOL)isZeroTerm:(RatTerm*)term{
-    
-    if([term isZero])
-        return YES;
-    else
-        return NO;
-}
-
--(BOOL)hasNegaExponent:(RatTerm*)term{
-    
-    if(term.expt < 0)
-        return YES;
-    else
-        return NO;
 }
 
 -(BOOL)hasHigherDegreeThanNextTerm:(RatTerm*)previous :(RatTerm*)next{
@@ -111,6 +95,8 @@
     
     self = [super init];
     
+    assert(rt != nil);
+    
     if(self){
         terms = [[NSArray alloc] initWithObjects:rt, nil];
     }
@@ -129,8 +115,16 @@
     
     self = [super init];
     
+    assert(ts != nil);
+    
     if(self){
-        terms = ts;
+        
+        
+        
+        if(ts.count == 1 && [[ts objectAtIndex:0] isZero])
+            self = [self init];
+        else
+            terms = ts;
     }
     
     [self checkRep];
@@ -147,7 +141,7 @@
     
     [self checkRep];
     
-    for(RatTerm *currentTerm in terms){
+    for(RatTerm *currentTerm in self.terms){
         
         if(currentTerm.expt == deg)
             return currentTerm;
@@ -165,7 +159,7 @@
     
     [self checkRep];
     
-    for(RatTerm *currentTerm in terms){
+    for(RatTerm *currentTerm in self.terms){
         
         if([currentTerm.coeff isNaN])
             return YES;
@@ -264,6 +258,7 @@
     NSArray *sumArray = [self sortAccordingToExpt:sums];
     
     return [[RatPoly alloc] initWithTerms:sumArray];
+     
     
     
 }

@@ -30,6 +30,13 @@
 		0696758416A44C5600DE70C8 /* RatTermTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 0696758316A44C5600DE70C8 /* RatTermTests.m */; };
 		0696758A16A44CE700DE70C8 /* RatNum.m in Sources */ = {isa = PBXBuildFile; fileRef = 060AC93816A3FF30008FAD74 /* RatNum.m */; };
 		0696758B16A44CE700DE70C8 /* RatTerm.m in Sources */ = {isa = PBXBuildFile; fileRef = 060AC93C16A3FF30008FAD74 /* RatTerm.m */; };
+		7C669B6116B41E9F0022FDFD /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 060AC94A16A40180008FAD74 /* SenTestingKit.framework */; };
+		7C669B6316B41E9F0022FDFD /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C669B6216B41E9F0022FDFD /* Cocoa.framework */; };
+		7C669B6C16B41E9F0022FDFD /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 7C669B6A16B41E9F0022FDFD /* InfoPlist.strings */; };
+		7C669B6F16B41E9F0022FDFD /* RatPolyTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C669B6E16B41E9F0022FDFD /* RatPolyTest.m */; };
+		7C669B7416B41F890022FDFD /* RatNum.m in Sources */ = {isa = PBXBuildFile; fileRef = 060AC93816A3FF30008FAD74 /* RatNum.m */; };
+		7C669B7516B41F8A0022FDFD /* RatPoly.m in Sources */ = {isa = PBXBuildFile; fileRef = 060AC93A16A3FF30008FAD74 /* RatPoly.m */; };
+		7C669B7616B41F8A0022FDFD /* RatTerm.m in Sources */ = {isa = PBXBuildFile; fileRef = 060AC93C16A3FF30008FAD74 /* RatTerm.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -68,6 +75,16 @@
 		0696758216A44C5600DE70C8 /* RatTermTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RatTermTests.h; sourceTree = "<group>"; };
 		0696758316A44C5600DE70C8 /* RatTermTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RatTermTests.m; sourceTree = "<group>"; };
 		0696758516A44C5600DE70C8 /* RatTermTests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "RatTermTests-Prefix.pch"; sourceTree = "<group>"; };
+		7C669B6016B41E9F0022FDFD /* RatPolyTest.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RatPolyTest.octest; sourceTree = BUILT_PRODUCTS_DIR; };
+		7C669B6216B41E9F0022FDFD /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = Library/Frameworks/Cocoa.framework; sourceTree = DEVELOPER_DIR; };
+		7C669B6416B41E9F0022FDFD /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
+		7C669B6516B41E9F0022FDFD /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		7C669B6616B41E9F0022FDFD /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		7C669B6916B41E9F0022FDFD /* RatPolyTest-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "RatPolyTest-Info.plist"; sourceTree = "<group>"; };
+		7C669B6B16B41E9F0022FDFD /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		7C669B6D16B41E9F0022FDFD /* RatPolyTest.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RatPolyTest.h; sourceTree = "<group>"; };
+		7C669B6E16B41E9F0022FDFD /* RatPolyTest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RatPolyTest.m; sourceTree = "<group>"; };
+		7C669B7016B41E9F0022FDFD /* RatPolyTest-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "RatPolyTest-Prefix.pch"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -97,6 +114,15 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		7C669B5C16B41E9F0022FDFD /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7C669B6116B41E9F0022FDFD /* SenTestingKit.framework in Frameworks */,
+				7C669B6316B41E9F0022FDFD /* Cocoa.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -106,6 +132,7 @@
 				060AC91916A3FEAD008FAD74 /* RatPolyCalculator */,
 				060AC96816A40261008FAD74 /* RatNumTests */,
 				0696757C16A44C5600DE70C8 /* RatTermTests */,
+				7C669B6716B41E9F0022FDFD /* RatPolyTest */,
 				060AC91216A3FEAC008FAD74 /* Frameworks */,
 				060AC91016A3FEAC008FAD74 /* Products */,
 			);
@@ -117,6 +144,7 @@
 				060AC90F16A3FEAC008FAD74 /* RatPolyCalculator.app */,
 				060AC96516A40261008FAD74 /* RatNumTests.octest */,
 				0696757916A44C5600DE70C8 /* RatTermTests.octest */,
+				7C669B6016B41E9F0022FDFD /* RatPolyTest.octest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -128,6 +156,7 @@
 				060AC91516A3FEAC008FAD74 /* Foundation.framework */,
 				060AC91716A3FEAC008FAD74 /* CoreGraphics.framework */,
 				060AC94A16A40180008FAD74 /* SenTestingKit.framework */,
+				7C669B6216B41E9F0022FDFD /* Cocoa.framework */,
 				060AC94E16A40180008FAD74 /* Other Frameworks */,
 			);
 			name = Frameworks;
@@ -177,6 +206,9 @@
 		060AC94E16A40180008FAD74 /* Other Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				7C669B6416B41E9F0022FDFD /* AppKit.framework */,
+				7C669B6516B41E9F0022FDFD /* CoreData.framework */,
+				7C669B6616B41E9F0022FDFD /* Foundation.framework */,
 			);
 			name = "Other Frameworks";
 			sourceTree = "<group>";
@@ -217,6 +249,26 @@
 				0696757E16A44C5600DE70C8 /* RatTermTests-Info.plist */,
 				0696757F16A44C5600DE70C8 /* InfoPlist.strings */,
 				0696758516A44C5600DE70C8 /* RatTermTests-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		7C669B6716B41E9F0022FDFD /* RatPolyTest */ = {
+			isa = PBXGroup;
+			children = (
+				7C669B6D16B41E9F0022FDFD /* RatPolyTest.h */,
+				7C669B6E16B41E9F0022FDFD /* RatPolyTest.m */,
+				7C669B6816B41E9F0022FDFD /* Supporting Files */,
+			);
+			path = RatPolyTest;
+			sourceTree = "<group>";
+		};
+		7C669B6816B41E9F0022FDFD /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				7C669B6916B41E9F0022FDFD /* RatPolyTest-Info.plist */,
+				7C669B6A16B41E9F0022FDFD /* InfoPlist.strings */,
+				7C669B7016B41E9F0022FDFD /* RatPolyTest-Prefix.pch */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -277,6 +329,24 @@
 			productReference = 0696757916A44C5600DE70C8 /* RatTermTests.octest */;
 			productType = "com.apple.product-type.bundle";
 		};
+		7C669B5F16B41E9F0022FDFD /* RatPolyTest */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 7C669B7116B41E9F0022FDFD /* Build configuration list for PBXNativeTarget "RatPolyTest" */;
+			buildPhases = (
+				7C669B5B16B41E9F0022FDFD /* Sources */,
+				7C669B5C16B41E9F0022FDFD /* Frameworks */,
+				7C669B5D16B41E9F0022FDFD /* Resources */,
+				7C669B5E16B41E9F0022FDFD /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = RatPolyTest;
+			productName = RatPolyTest;
+			productReference = 7C669B6016B41E9F0022FDFD /* RatPolyTest.octest */;
+			productType = "com.apple.product-type.bundle";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -301,6 +371,7 @@
 				060AC90E16A3FEAC008FAD74 /* RatPolyCalculator */,
 				060AC96416A40261008FAD74 /* RatNumTests */,
 				0696757816A44C5600DE70C8 /* RatTermTests */,
+				7C669B5F16B41E9F0022FDFD /* RatPolyTest */,
 			);
 		};
 /* End PBXProject section */
@@ -334,6 +405,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		7C669B5D16B41E9F0022FDFD /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7C669B6C16B41E9F0022FDFD /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
@@ -351,6 +430,19 @@
 			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
 		};
 		0696757716A44C5600DE70C8 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
+		};
+		7C669B5E16B41E9F0022FDFD /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -398,6 +490,17 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		7C669B5B16B41E9F0022FDFD /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7C669B7416B41F890022FDFD /* RatNum.m in Sources */,
+				7C669B7516B41F8A0022FDFD /* RatPoly.m in Sources */,
+				7C669B7616B41F8A0022FDFD /* RatTerm.m in Sources */,
+				7C669B6F16B41E9F0022FDFD /* RatPolyTest.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
@@ -429,6 +532,14 @@
 			isa = PBXVariantGroup;
 			children = (
 				0696758016A44C5600DE70C8 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		7C669B6A16B41E9F0022FDFD /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				7C669B6B16B41E9F0022FDFD /* en */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
@@ -494,6 +605,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "RatPolyCalculator/RatPolyCalculator-Prefix.pch";
 				INFOPLIST_FILE = "RatPolyCalculator/RatPolyCalculator-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -505,6 +617,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "RatPolyCalculator/RatPolyCalculator-Prefix.pch";
 				INFOPLIST_FILE = "RatPolyCalculator/RatPolyCalculator-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -584,6 +697,43 @@
 			};
 			name = Release;
 		};
+		7C669B7216B41E9F0022FDFD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = "\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"";
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "RatPolyTest/RatPolyTest-Prefix.pch";
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				INFOPLIST_FILE = "RatPolyTest/RatPolyTest-Info.plist";
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Debug;
+		};
+		7C669B7316B41E9F0022FDFD /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				COMBINE_HIDPI_IMAGES = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				FRAMEWORK_SEARCH_PATHS = "\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"";
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "RatPolyTest/RatPolyTest-Prefix.pch";
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				INFOPLIST_FILE = "RatPolyTest/RatPolyTest-Info.plist";
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -622,6 +772,14 @@
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
+		};
+		7C669B7116B41E9F0022FDFD /* Build configuration list for PBXNativeTarget "RatPolyTest" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7C669B7216B41E9F0022FDFD /* Debug */,
+				7C669B7316B41E9F0022FDFD /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
 		};
 /* End XCConfigurationList section */
 	};
