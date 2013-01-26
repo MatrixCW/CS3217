@@ -301,6 +301,31 @@
     
     [self checkRep];
     [p checkRep];
+    
+    if([self isNaN] || [p isNaN])
+        return [[RatPoly alloc] initWithTerm:[RatTerm initNaN]];
+    
+    if(self.terms.count == 0 || p.terms.count)
+        return [[RatPoly alloc] init];
+    
+    /*
+        foreach term tq in q
+           foreach term tp in p
+              r += tp * tq
+    */
+    
+    RatPoly *sum = [[RatPoly alloc] init];
+    RatPoly *temp = [[RatPoly alloc] init];
+    
+    for(RatTerm *currentTermSelf in self.terms)
+        for(RatTerm *currentTermP in p.terms){
+            temp = [[RatPoly alloc] initWithTerm:[currentTermSelf mul:currentTermP]];
+            sum = [sum add:temp];
+        }
+    
+    return sum;
+    
+
 
     
 }
@@ -331,7 +356,43 @@
     
     [self checkRep];
     [p checkRep];
+    
+    /*
+     set quotient=0 and reminder=self
+     while r ≠ 0 AND degree(reminder) ≥ degree(p):
+     t ← lead(reminder)/lead(p)     # Divide the leading terms
+     quotient = quotient + t, reminder = reminder - (t * p))
+     */
+    
+    
+    if([self isNaN] || [p isNaN] || p.terms.count == 0)
+        return [[RatPoly alloc] initWithTerm:[RatTerm initNaN]];
+    
+    if(self.terms.count == 0)
+        return [[RatPoly alloc] init];
 
+    RatPoly *quotient = [[RatPoly alloc] init];
+    RatPoly *reminder = [[RatPoly alloc] initWithTerms:self.terms];
+    
+    RatTerm *leadingTermP = [p.terms objectAtIndex:0];
+    
+    while(reminder.terms.count !=0 && ([reminder degree] >= [p degree])){
+        
+        [quotient checkRep];
+        [reminder checkRep];
+        
+        RatTerm *leadingTermReminder = [reminder.terms objectAtIndex:0];
+        
+        
+        RatPoly *temp = [[RatPoly alloc] initWithTerm:[leadingTermReminder div:leadingTermP]];
+        quotient = [quotient add:temp];
+        RatPoly *decrementInReminder = [temp mul:p];
+        [reminder sub:decrementInReminder];
+        
+        
+    }
+    
+    return quotient;
     
 }
 
@@ -435,6 +496,33 @@
     // REQUIRES: self != nil
     // EFFECTS: returns YES if and only if "obj" is an instance of a RatPoly, which represents
     //            the same rational polynomial as self. All NaN polynomials are considered equal
+    
+    [self checkRep];
+    
+    if([obj isKindOfClass:[RatPoly class]]){
+        
+		RatPoly *rp = (RatPoly*)obj;
+        
+        [rp checkRep];
+        
+		if ([self isNaN] && [rp isNaN])
+			return YES;
+        
+        if(self.terms.count == 0 && rp.terms.count == 0)
+            return YES;
+        
+        if(self.terms.count != rp.terms.count)
+            return NO;
+        
+        for(int i = 0; i < self.terms.count; i++)
+            if(![[self.terms objectAtIndex:i] isEqual:[rp.terms objectAtIndex:i]])
+                return NO;
+        
+        return YES;
+		         
+	}
+    
+        return NO;
     
 }
 
