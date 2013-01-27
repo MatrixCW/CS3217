@@ -6,6 +6,8 @@
 	<dict>
 		<key>RatNumTests.xcscheme</key>
 		<dict>
+			<key>isShown</key>
+			<true/>
 			<key>orderHint</key>
 			<integer>1</integer>
 		</dict>
@@ -14,7 +16,7 @@
 			<key>orderHint</key>
 			<integer>0</integer>
 		</dict>
-		<key>RatPolyTest.xcscheme</key>
+		<key>RatPolyTests.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
 			<integer>3</integer>
@@ -43,6 +45,16 @@
 			<true/>
 		</dict>
 		<key>7C669B5F16B41E9F0022FDFD</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>7CA4D39B16B4F89200B505A6</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>7CF5A05F16B4FA18005BD77B</key>
 		<dict>
 			<key>primary</key>
 			<true/>

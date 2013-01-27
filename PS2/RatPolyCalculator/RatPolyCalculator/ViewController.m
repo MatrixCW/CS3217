@@ -20,7 +20,8 @@
 }
 
 - (IBAction)buttonPress:(id)sender {
-	NSString *oper = [[sender titleLabel] text];
+    
+    NSString *oper = [[sender titleLabel] text];
 	NSString *arg1 = self.polyText1.text;
 	NSString *arg2 = self.polyText2.text;
 	NSString *resultStr;
@@ -40,6 +41,8 @@
 	resultStr = [resultPoly stringValue];
 	
 	[self.resultDisplay setText:resultStr];
-}
+	}
+
+
 
 @end

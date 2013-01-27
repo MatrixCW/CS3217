@@ -123,6 +123,8 @@
         
         if(ts.count == 1 && [[ts objectAtIndex:0] isZero])
             self = [self init];
+        
+        
         else
             terms = ts;
     }
@@ -223,6 +225,7 @@
     [self checkRep];
     [p checkRep];
     
+    
     if([self isNaN] || [p isNaN])
         return [[RatPoly alloc] initWithTerm:[RatTerm initNaN]];
     
@@ -233,8 +236,7 @@
         return self;
     
     NSMutableArray *sums = [[NSMutableArray alloc] init];
-    
-    
+        
     for(RatTerm *currentTermSelf in self.terms){
         
         RatTerm *sameDegreeTerm = [p getTerm:currentTermSelf.expt];
@@ -253,6 +255,17 @@
         if([sameDegreeTerm isZero])
             [sums addObject:currentTermP];
             
+    }
+    
+    NSMutableArray *removeZeroRatTerm = [[NSMutableArray alloc] init];
+    
+    for(RatTerm *term in sums){
+        if([term isZero])
+            [removeZeroRatTerm addObject:term];
+    }
+    
+    for(RatTerm *term in removeZeroRatTerm){
+        [sums removeObject:term];
     }
     
     NSArray *sumArray = [self sortAccordingToExpt:sums];
@@ -276,7 +289,7 @@
         return [[RatPoly alloc] initWithTerm:[RatTerm initNaN]];
     
     if(self.terms.count == 0)
-        return p;
+        return [p negate];
     
     if(p.terms.count == 0)
         return self;
@@ -300,7 +313,7 @@
     if([self isNaN] || [p isNaN])
         return [[RatPoly alloc] initWithTerm:[RatTerm initNaN]];
     
-    if(self.terms.count == 0 || p.terms.count)
+    if(self.terms.count == 0 || p.terms.count == 0)
         return [[RatPoly alloc] init];
     
     /*
@@ -312,13 +325,16 @@
     RatPoly *sum = [[RatPoly alloc] init];
     RatPoly *temp = [[RatPoly alloc] init];
     
-    for(RatTerm *currentTermSelf in self.terms)
+    for(RatTerm *currentTermSelf in self.terms){
         for(RatTerm *currentTermP in p.terms){
             temp = [[RatPoly alloc] initWithTerm:[currentTermSelf mul:currentTermP]];
             sum = [sum add:temp];
         }
+    }
     
     [sum checkRep];
+    
+    
     return sum;
     
 
@@ -377,13 +393,15 @@
         [quotient checkRep];
         [reminder checkRep];
         
+        
+        
         RatTerm *leadingTermReminder = [reminder.terms objectAtIndex:0];
         
-        
         RatPoly *temp = [[RatPoly alloc] initWithTerm:[leadingTermReminder div:leadingTermP]];
+        
         quotient = [quotient add:temp];
         RatPoly *decrementInReminder = [temp mul:p];
-        [reminder sub:decrementInReminder];
+        reminder = [reminder sub:decrementInReminder];
         
         
     }
@@ -463,7 +481,6 @@
     for(int i=1; i<self.terms.count;i++){
         
         if([[[self.terms objectAtIndex:i] coeff] isNegative]){
-            result = [result stringByAppendingString:@"-"];
             result = [result stringByAppendingString:[[self.terms objectAtIndex:i] stringValue]];
         }else{
             result = [result stringByAppendingString:@"+"];
@@ -495,11 +512,23 @@
     
     RatPoly *value = [[RatPoly alloc] init];
     
+    NSString *firstChar = [str substringToIndex:1];
+    
     NSArray *splitMinusSign = [str componentsSeparatedByString:@"-"];
+    
+    //NSInteger size = splitMinusSign.count;
+    //NSString *o = [splitMinusSign objectAtIndex:0];
+    //NSString *oo = [splitMinusSign objectAtIndex:1];
+    
+    
     
     NSMutableArray *splitMinusSignMutable = [NSMutableArray arrayWithCapacity:splitMinusSign.count];
     
+    
     [splitMinusSignMutable addObject:[splitMinusSign objectAtIndex:0]];
+    
+    if([firstChar isEqual:@"-"])
+        [splitMinusSignMutable removeObjectAtIndex:0];
     
     for(int i = 1; i < splitMinusSign.count; i++){
         
