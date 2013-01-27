@@ -121,10 +121,8 @@
         
         
         
-        if(ts.count == 1 && [[ts objectAtIndex:0] isZero])
+        if(ts.count == 1 && [[ts objectAtIndex:0] isZero])  //cannot have array containing 0
             self = [self init];
-        
-        
         else
             terms = ts;
     }
@@ -204,7 +202,7 @@
 }
 
 
--(NSArray*)sortAccordingToExpt:(NSArray*)unsortedArray{
+-(NSArray*)sortAccordingToExpt:(NSArray*)unsortedArray{ 
     
     NSSortDescriptor *sortDescriptor;
     sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"expt" ascending:NO];
@@ -248,6 +246,8 @@
         }
     }
     
+    
+    //un-summed RatTerm in p may be added
     for(RatTerm *currentTermP in p.terms){
         
         RatTerm *sameDegreeTerm = [self getTerm:currentTermP.expt];
@@ -257,16 +257,16 @@
             
     }
     
+    //sum up may introduce 0 RatTerm, remove them
     NSMutableArray *removeZeroRatTerm = [[NSMutableArray alloc] init];
-    
     for(RatTerm *term in sums){
         if([term isZero])
             [removeZeroRatTerm addObject:term];
     }
-    
     for(RatTerm *term in removeZeroRatTerm){
         [sums removeObject:term];
     }
+    
     
     NSArray *sumArray = [self sortAccordingToExpt:sums];
     
@@ -393,12 +393,8 @@
         [quotient checkRep];
         [reminder checkRep];
         
-        
-        
         RatTerm *leadingTermReminder = [reminder.terms objectAtIndex:0];
-        
         RatPoly *temp = [[RatPoly alloc] initWithTerm:[leadingTermReminder div:leadingTermP]];
-        
         quotient = [quotient add:temp];
         RatPoly *decrementInReminder = [temp mul:p];
         reminder = [reminder sub:decrementInReminder];
