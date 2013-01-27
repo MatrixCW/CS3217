@@ -98,7 +98,11 @@
     assert(rt != nil);
     
     if(self){
-        terms = [[NSArray alloc] initWithObjects:rt, nil];
+        
+        if([rt isZero])
+            return [self init];
+        else
+            terms = [[NSArray alloc] initWithObjects:rt, nil];
     }
     
     [self checkRep];
