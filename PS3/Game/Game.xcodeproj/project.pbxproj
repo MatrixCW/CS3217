@@ -49,6 +49,8 @@
 		7CDDD7C616B01F250025C8EA /* background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = background.png; sourceTree = "<group>"; };
 		7CDDD7C716B01F250025C8EA /* ground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ground.png; sourceTree = "<group>"; };
 		7CE2631616B6983D00821EB1 /* button.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = button.jpg; sourceTree = "<group>"; };
+		7CF19E1F16B9513E009A42A1 /* GameObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameObject.h; sourceTree = "<group>"; };
+		7CF19E2016B9513E009A42A1 /* GameViewControllerExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameViewControllerExtension.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -95,6 +97,8 @@
 		7CDDD7A916B01DAE0025C8EA /* Game */ = {
 			isa = PBXGroup;
 			children = (
+				7CF19E1F16B9513E009A42A1 /* GameObject.h */,
+				7CF19E2016B9513E009A42A1 /* GameViewControllerExtension.h */,
 				7C672DE816B940F200E8D301 /* wolf.png */,
 				7C672DE216B93EC300E8D301 /* straw.png */,
 				7C672DDF16B93E8E00E8D301 /* pig.png */,
