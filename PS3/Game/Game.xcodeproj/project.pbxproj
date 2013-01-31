@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7C35B78D16BAA6FF00ADD901 /* ViewController+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C35B78C16BAA6FF00ADD901 /* ViewController+Extension.m */; };
 		7C672DE016B93E8E00E8D301 /* pig.png in Resources */ = {isa = PBXBuildFile; fileRef = 7C672DDF16B93E8E00E8D301 /* pig.png */; };
 		7C672DE316B93EC300E8D301 /* straw.png in Resources */ = {isa = PBXBuildFile; fileRef = 7C672DE216B93EC300E8D301 /* straw.png */; };
 		7C672DE916B940F200E8D301 /* wolf.png in Resources */ = {isa = PBXBuildFile; fileRef = 7C672DE816B940F200E8D301 /* wolf.png */; };
@@ -27,6 +28,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		7C35B78B16BAA6FF00ADD901 /* ViewController+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ViewController+Extension.h"; sourceTree = "<group>"; };
+		7C35B78C16BAA6FF00ADD901 /* ViewController+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ViewController+Extension.m"; sourceTree = "<group>"; };
 		7C672DDF16B93E8E00E8D301 /* pig.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pig.png; sourceTree = "<group>"; };
 		7C672DE216B93EC300E8D301 /* straw.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = straw.png; sourceTree = "<group>"; };
 		7C672DE816B940F200E8D301 /* wolf.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = wolf.png; sourceTree = "<group>"; };
@@ -50,7 +53,6 @@
 		7CDDD7C716B01F250025C8EA /* ground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ground.png; sourceTree = "<group>"; };
 		7CE2631616B6983D00821EB1 /* button.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = button.jpg; sourceTree = "<group>"; };
 		7CF19E1F16B9513E009A42A1 /* GameObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameObject.h; sourceTree = "<group>"; };
-		7CF19E2016B9513E009A42A1 /* GameViewControllerExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameViewControllerExtension.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -67,6 +69,19 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		7C35B78E16BAA83100ADD901 /* pics */ = {
+			isa = PBXGroup;
+			children = (
+				7C672DE816B940F200E8D301 /* wolf.png */,
+				7C672DE216B93EC300E8D301 /* straw.png */,
+				7C672DDF16B93E8E00E8D301 /* pig.png */,
+				7CE2631616B6983D00821EB1 /* button.jpg */,
+				7CDDD7C616B01F250025C8EA /* background.png */,
+				7CDDD7C716B01F250025C8EA /* ground.png */,
+			);
+			name = pics;
+			sourceTree = "<group>";
+		};
 		7CDDD79416B01DAD0025C8EA = {
 			isa = PBXGroup;
 			children = (
@@ -97,14 +112,10 @@
 		7CDDD7A916B01DAE0025C8EA /* Game */ = {
 			isa = PBXGroup;
 			children = (
+				7C35B78E16BAA83100ADD901 /* pics */,
+				7C35B78B16BAA6FF00ADD901 /* ViewController+Extension.h */,
+				7C35B78C16BAA6FF00ADD901 /* ViewController+Extension.m */,
 				7CF19E1F16B9513E009A42A1 /* GameObject.h */,
-				7CF19E2016B9513E009A42A1 /* GameViewControllerExtension.h */,
-				7C672DE816B940F200E8D301 /* wolf.png */,
-				7C672DE216B93EC300E8D301 /* straw.png */,
-				7C672DDF16B93E8E00E8D301 /* pig.png */,
-				7CE2631616B6983D00821EB1 /* button.jpg */,
-				7CDDD7C616B01F250025C8EA /* background.png */,
-				7CDDD7C716B01F250025C8EA /* ground.png */,
 				7CDDD7B216B01DAE0025C8EA /* AppDelegate.h */,
 				7CDDD7B316B01DAE0025C8EA /* AppDelegate.m */,
 				7CDDD7BB16B01DAE0025C8EA /* MainStoryboard.storyboard */,
@@ -204,6 +215,7 @@
 				7CDDD7B016B01DAE0025C8EA /* main.m in Sources */,
 				7CDDD7B416B01DAE0025C8EA /* AppDelegate.m in Sources */,
 				7CDDD7C016B01DAE0025C8EA /* ViewController.m in Sources */,
+				7C35B78D16BAA6FF00ADD901 /* ViewController+Extension.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

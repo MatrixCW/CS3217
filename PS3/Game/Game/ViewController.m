@@ -7,6 +7,7 @@
 //
 
 #import "ViewController.h"
+#import "ViewController+Extension.h"
 
 @interface ViewController ()
 
@@ -24,6 +25,11 @@
     UIImage *groundImage = [UIImage imageNamed:@"ground.png"];
     
     //Place each of them into a UIImageView
+    
+    //CGRect rect = CGRectMake(0, 0, 1024, 748);
+    ///CGImageRef imageRef = CGImageCreateWithImageInRect([bgImage CGImage], rect);
+    ////UIImage *img = [UIImage imageWithCGImage:imageRef];
+    //CGImageRelease(imageRef);
     
     UIImageView *background = [[UIImageView alloc] initWithImage:bgImage ];
     UIImageView *ground = [[UIImageView alloc] initWithImage:groundImage ];
@@ -54,6 +60,40 @@
     CGFloat gameareaWidth = backgroundWidth;
     [_gamearea setContentSize:CGSizeMake(gameareaWidth, 0)];
     
+    
+    [self setWolf];
+
+    
+}
+
+
+-(void)setWolf{
+    UIImage* wolfImg = [UIImage imageNamed:@"wolf"];
+    UIImageView* wolf = [[UIImageView alloc] initWithImage:wolfImg];
+    
+    wolf.frame = CGRectMake(20, 8, 120, 80);
+    UIPanGestureRecognizer* pan = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(handlePanForWolf:)];
+    [wolf addGestureRecognizer:pan];
+    wolf.userInteractionEnabled = YES;
+    [_selectBar addSubview:wolf];
+
+}
+
+-(void)handlePanForWolf:(UIPanGestureRecognizer*) recognizer{
+    CGPoint translation = [recognizer translationInView:recognizer.view];
+    
+    recognizer.view.center=CGPointMake(recognizer.view.center.x+translation.x, recognizer.view.center.y+ translation.y);
+    
+    [recognizer setTranslation:CGPointMake(0, 0) inView:recognizer.view];
+    
+    if(recognizer.view.center.y>=_selectBar.frame.size.height){
+        if (recognizer.view.superview != _gamearea) {
+        recognizer.view.center = CGPointMake(recognizer.view.center.x, recognizer.view.center.y-_selectBar.frame.size.height);
+        [_gamearea addSubview:recognizer.view];
+        }
+    }
+    
+    
 }
 
 - (void)didReceiveMemoryWarning
@@ -75,10 +115,16 @@
     [button setTintColor:newColor];
      
     
-    
+}
 
-    
+- (void)say {
+    NSLog(@"I can say");
+   
     
 }
 
+- (void)viewDidUnload {
+    [self setSelectBar:nil];
+    [super viewDidUnload];
+}
 @end

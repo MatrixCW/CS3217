@@ -504,6 +504,10 @@
     //              Valid inputs include "0", "x-10", and "x^3-2*x^2+5/3*x+3", and "NaN".
     // EFFECTS : return a RatPoly p such that [p stringValue] = str
     
+    
+    if(str == nil ||[str isEqual:@""])
+        return [[RatPoly alloc] init];
+    
     if([str isEqual:@"NaN"])
         return [[RatPoly alloc] initWithTerm:[RatTerm initNaN]];
     

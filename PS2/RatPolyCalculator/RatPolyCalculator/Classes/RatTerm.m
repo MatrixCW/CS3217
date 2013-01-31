@@ -312,6 +312,9 @@
     RatNum *one = [[RatNum alloc] initWithInteger:1];
     RatNum *negaOne = [[RatNum alloc] initWithInteger:-1];
     
+    if(str == nil || [str isEqual:@""])
+        return [RatTerm initZERO];
+    
     if([str isEqual:@"NaN"])
         return [RatTerm initNaN];
     

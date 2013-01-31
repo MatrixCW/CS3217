@@ -8,11 +8,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "RatPolyCalculator/Classes/RatTerm.m"
-         timestampString = "380801839.30675"
+         timestampString = "381325993.486817"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "393"
-         endingLineNumber = "393"
+         startingLineNumber = "396"
+         endingLineNumber = "396"
          landmarkName = "-isEqual:"
          landmarkType = "5">
       </FileBreakpoint>

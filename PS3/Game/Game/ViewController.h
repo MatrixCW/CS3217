@@ -8,14 +8,16 @@
 
 #import <UIKit/UIKit.h>
 
+
 @interface ViewController : UIViewController
 //- (IBAction)buttonPressed:(id)sender;
 
 @property (strong, nonatomic) IBOutlet UIScrollView *gamearea;
 
+@property (strong, nonatomic) IBOutlet UIView *selectBar;
 
 
-
+- (void)say;
 - (IBAction)buttonPressed:(id)sender;
 
 @end
