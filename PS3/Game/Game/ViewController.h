@@ -7,6 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "GameObject.h"
+#import "GameWolf.h"
 
 
 @interface ViewController : UIViewController
@@ -16,6 +18,7 @@
 
 @property (strong, nonatomic) IBOutlet UIView *selectBar;
 
+@property (strong) GameObject *myWolf;
 
 - (void)say;
 - (IBAction)buttonPressed:(id)sender;

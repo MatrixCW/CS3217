@@ -9,11 +9,38 @@
 #import "ViewController.h"
 #import "ViewController+Extension.h"
 
+
 @interface ViewController ()
 
 @end
 
 @implementation ViewController
+
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
+{
+    return YES;
+}
+
+// Rotation 6.0
+
+// Tell the system It should autorotate
+- (BOOL) shouldAutorotate {
+    return YES;
+}
+
+// Tell the system which initial orientation we want to have
+- (UIInterfaceOrientation)preferredInterfaceOrientationForPresentation {
+    return UIInterfaceOrientationPortrait;
+    
+}
+
+// Tell the system what we support
+-(NSUInteger)supportedInterfaceOrientations
+{
+    // return UIInterfaceOrientationMaskLandscapeRight;
+    return UIInterfaceOrientationMaskAll;
+    // return UIInterfaceOrientationMaskAllButUpsideDown;
+}
 
 - (void)viewDidLoad
 {
@@ -56,45 +83,24 @@
     //Set the content size so the gamearea is scrollable
     //Otherwise it defaults to the current window size
     
-    //CGFloat gameareaHeight = backgroundHeight + groundHeight;  Don't want scrollable vertically
+    NSLog(@"%lf vev", _gamearea.frame.size.height);
+    NSLog(@"%lf erge", backgroundHeight);
+    NSLog(@"%lf efe", groundHeight);
+    
+    
+    
+    CGFloat gameareaHeight = backgroundHeight + groundHeight;  //Don't want scrollable vertically
     CGFloat gameareaWidth = backgroundWidth;
-    [_gamearea setContentSize:CGSizeMake(gameareaWidth, 0)];
+    [_gamearea setContentSize:CGSizeMake(gameareaWidth, gameareaHeight)];
     
+    _myWolf = [[GameWolf alloc] initWithBackground:self.gamearea :self.selectBar];
     
-    [self setWolf];
-
+    [_myWolf setRecognizer];
     
-}
-
-
--(void)setWolf{
-    UIImage* wolfImg = [UIImage imageNamed:@"wolf"];
-    UIImageView* wolf = [[UIImageView alloc] initWithImage:wolfImg];
-    
-    wolf.frame = CGRectMake(20, 8, 120, 80);
-    UIPanGestureRecognizer* pan = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(handlePanForWolf:)];
-    [wolf addGestureRecognizer:pan];
-    wolf.userInteractionEnabled = YES;
-    [_selectBar addSubview:wolf];
-
-}
-
--(void)handlePanForWolf:(UIPanGestureRecognizer*) recognizer{
-    CGPoint translation = [recognizer translationInView:recognizer.view];
-    
-    recognizer.view.center=CGPointMake(recognizer.view.center.x+translation.x, recognizer.view.center.y+ translation.y);
-    
-    [recognizer setTranslation:CGPointMake(0, 0) inView:recognizer.view];
-    
-    if(recognizer.view.center.y>=_selectBar.frame.size.height){
-        if (recognizer.view.superview != _gamearea) {
-        recognizer.view.center = CGPointMake(recognizer.view.center.x, recognizer.view.center.y-_selectBar.frame.size.height);
-        [_gamearea addSubview:recognizer.view];
-        }
-    }
-    
+    [_selectBar addSubview:_myWolf.view];
     
 }
+
 
 - (void)didReceiveMemoryWarning
 {
@@ -117,11 +123,7 @@
     
 }
 
-- (void)say {
-    NSLog(@"I can say");
-   
-    
-}
+
 
 - (void)viewDidUnload {
     [self setSelectBar:nil];

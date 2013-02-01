@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7C0BDF1B16BBE9BC00B60E81 /* wolfs.png in Resources */ = {isa = PBXBuildFile; fileRef = 7C0BDF1A16BBE9BC00B60E81 /* wolfs.png */; };
+		7C0BDF1E16BBEE3400B60E81 /* GameObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C0BDF1D16BBEE3400B60E81 /* GameObject.m */; };
+		7C0BDF2416BC264200B60E81 /* GameWolf.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C0BDF2316BC264200B60E81 /* GameWolf.m */; };
 		7C35B78D16BAA6FF00ADD901 /* ViewController+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C35B78C16BAA6FF00ADD901 /* ViewController+Extension.m */; };
 		7C672DE016B93E8E00E8D301 /* pig.png in Resources */ = {isa = PBXBuildFile; fileRef = 7C672DDF16B93E8E00E8D301 /* pig.png */; };
 		7C672DE316B93EC300E8D301 /* straw.png in Resources */ = {isa = PBXBuildFile; fileRef = 7C672DE216B93EC300E8D301 /* straw.png */; };
@@ -28,6 +31,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		7C0BDF1A16BBE9BC00B60E81 /* wolfs.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = wolfs.png; sourceTree = "<group>"; };
+		7C0BDF1D16BBEE3400B60E81 /* GameObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameObject.m; sourceTree = "<group>"; };
+		7C0BDF2216BC264200B60E81 /* GameWolf.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameWolf.h; sourceTree = SOURCE_ROOT; };
+		7C0BDF2316BC264200B60E81 /* GameWolf.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameWolf.m; sourceTree = SOURCE_ROOT; };
 		7C35B78B16BAA6FF00ADD901 /* ViewController+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ViewController+Extension.h"; sourceTree = "<group>"; };
 		7C35B78C16BAA6FF00ADD901 /* ViewController+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ViewController+Extension.m"; sourceTree = "<group>"; };
 		7C672DDF16B93E8E00E8D301 /* pig.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pig.png; sourceTree = "<group>"; };
@@ -72,6 +79,7 @@
 		7C35B78E16BAA83100ADD901 /* pics */ = {
 			isa = PBXGroup;
 			children = (
+				7C0BDF1A16BBE9BC00B60E81 /* wolfs.png */,
 				7C672DE816B940F200E8D301 /* wolf.png */,
 				7C672DE216B93EC300E8D301 /* straw.png */,
 				7C672DDF16B93E8E00E8D301 /* pig.png */,
@@ -116,6 +124,9 @@
 				7C35B78B16BAA6FF00ADD901 /* ViewController+Extension.h */,
 				7C35B78C16BAA6FF00ADD901 /* ViewController+Extension.m */,
 				7CF19E1F16B9513E009A42A1 /* GameObject.h */,
+				7C0BDF1D16BBEE3400B60E81 /* GameObject.m */,
+				7C0BDF2216BC264200B60E81 /* GameWolf.h */,
+				7C0BDF2316BC264200B60E81 /* GameWolf.m */,
 				7CDDD7B216B01DAE0025C8EA /* AppDelegate.h */,
 				7CDDD7B316B01DAE0025C8EA /* AppDelegate.m */,
 				7CDDD7BB16B01DAE0025C8EA /* MainStoryboard.storyboard */,
@@ -202,6 +213,7 @@
 				7C672DE016B93E8E00E8D301 /* pig.png in Resources */,
 				7C672DE316B93EC300E8D301 /* straw.png in Resources */,
 				7C672DE916B940F200E8D301 /* wolf.png in Resources */,
+				7C0BDF1B16BBE9BC00B60E81 /* wolfs.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -216,6 +228,8 @@
 				7CDDD7B416B01DAE0025C8EA /* AppDelegate.m in Sources */,
 				7CDDD7C016B01DAE0025C8EA /* ViewController.m in Sources */,
 				7C35B78D16BAA6FF00ADD901 /* ViewController+Extension.m in Sources */,
+				7C0BDF1E16BBEE3400B60E81 /* GameObject.m in Sources */,
+				7C0BDF2416BC264200B60E81 /* GameWolf.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
