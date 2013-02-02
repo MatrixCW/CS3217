@@ -31,6 +31,8 @@
 
 - (GameWolf*)initWithBackground:(UIScrollView*) downArea:(UIView*)upArea{
     
+    
+    
     self.originalHeight = 90;
     self.originalWidth = 150;
     self.currentHeight = 150;
@@ -58,6 +60,13 @@
     
     self.selfImgView = wolf;
     self.selfImgView.userInteractionEnabled = YES;
+    
+    self.view.tag = kGameObjectWolf;
+    
+    [self setRecognizer];
+    
+    
+    
     
     return  self;
     

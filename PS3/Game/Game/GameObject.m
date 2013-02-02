@@ -36,8 +36,6 @@
     //          if the object is in the palette, it will be moved in the game area
     
     
-    NSLog(@"%lf", +self.view.frame.size.height);
-    
     self.gamearea.scrollEnabled = NO;
     
     CGPoint translation = [gesture translationInView:gesture.view.superview];
@@ -114,15 +112,15 @@
 
 - (void)setRecognizer{
     
-    UIPanGestureRecognizer* pan = [[UIPanGestureRecognizer alloc]initWithTarget:self action:@selector(translate:)];
+    UIPanGestureRecognizer *pan = [[UIPanGestureRecognizer alloc]initWithTarget:self action:@selector(translate:)];
     [pan setMaximumNumberOfTouches:1];
     
     UITapGestureRecognizer *doubleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleDoubleTap:)];
     [doubleTap setNumberOfTapsRequired:2];
     
-    UIPinchGestureRecognizer* zoom = [[UIPinchGestureRecognizer alloc] initWithTarget:self action:@selector(zoom:)];
+    UIPinchGestureRecognizer *zoom = [[UIPinchGestureRecognizer alloc] initWithTarget:self action:@selector(zoom:)];
     
-    UIRotationGestureRecognizer* rotate = [[UIRotationGestureRecognizer alloc] initWithTarget:self action:@selector(rotate:)];
+    UIRotationGestureRecognizer *rotate = [[UIRotationGestureRecognizer alloc] initWithTarget:self action:@selector(rotate:)];
     
     UITapGestureRecognizer *singleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleSingleTap:)];
     [singleTap setNumberOfTapsRequired:1];
@@ -141,25 +139,28 @@
 
 - (void)handleDoubleTap:(UITapGestureRecognizer*) recognizer{
     
+    
+   
+    [self releaseObject];
+    
+}
+
+-(void) releaseObject{
+    
     self.view.transform = CGAffineTransformIdentity;
     
-    if (recognizer.view.superview != self.selectBar) {
-        
-        self.view.frame = CGRectMake(self.center.x-self.originalWidth/2,
+    self.view.frame = CGRectMake(self.center.x-self.originalWidth/2,
                                      self.center.y-self.originalHeight/2,
                                      self.originalWidth,
                                      self.originalHeight);
         
-       
+        
         
         [self.view setBounds:CGRectMake(ZERO, ZERO, self.originalWidth, self.originalHeight)];
         
-                
         
-        [self.selectBar addSubview:recognizer.view];
-    }
-   
-    
+        
+        [self.selectBar addSubview:self.view];
     
 }
 

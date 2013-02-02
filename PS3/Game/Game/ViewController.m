@@ -45,6 +45,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+
 	// Do any additional setup after loading the view, typically from a nib.
     
     //Load the image into UIImage objects
@@ -78,11 +79,14 @@
     
     //Add these views as subviews of the gamearea
     [_gamearea addSubview:background];
+    
+    
     [_gamearea addSubview:ground];
+   
     
     //Set the content size so the gamearea is scrollable
     //Otherwise it defaults to the current window size
-    
+
     
     CGFloat gameareaHeight = backgroundHeight + groundHeight;  //Don't want scrollable vertically
     CGFloat gameareaWidth = backgroundWidth;
@@ -90,23 +94,21 @@
     
     _myWolf = [[GameWolf alloc] initWithBackground:self.gamearea :self.selectBar];
     
-    [_myWolf setRecognizer];
-    
     [_selectBar addSubview:_myWolf.view];
     
+    
+    
     _myPig = [[GamePig alloc] initWithBackground:self.gamearea :self.selectBar];
-    
-    [_myPig setRecognizer];
-    
+
     [_selectBar addSubview:_myPig.view];
     
-    _myStraw = [[GameStraw alloc] initWithBackground:self.gamearea :self.selectBar];
     
-    [_myStraw setRecognizer];
     
-    [_selectBar addSubview:_myStraw.view];
+    _myBlock = [[GameBlock alloc] initWithBackground:self.gamearea :self.selectBar];
+    [_selectBar addSubview:_myBlock.view];
     
 }
+
 
 
 - (void)didReceiveMemoryWarning
@@ -115,19 +117,17 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (IBAction)buttonPressed:(id)sender {
+- (IBAction)resetButtonPressed:(id)sender {
     
-    UIColor *newColor;
-    UIButton *button = (UIButton*)sender;
     
-    if(button.tintColor == [UIColor blackColor]){
-        newColor = [UIColor redColor];
-    }else{
-        newColor = [UIColor blackColor];
-    }
-    [button setTintColor:newColor];
-     
+    [self reset];
     
+        
+}
+
+- (IBAction)saveButtonPressed:(id)sender {
+    
+    [self save];
 }
 
 

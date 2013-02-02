@@ -17,8 +17,16 @@
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                 <items>
                                     <barButtonItem systemItem="play" id="Hcm-gF-nc0"/>
-                                    <barButtonItem systemItem="refresh" id="Bfq-d9-96r"/>
-                                    <barButtonItem title="Save" id="R90-LF-Ejn"/>
+                                    <barButtonItem systemItem="refresh" id="Bfq-d9-96r">
+                                        <connections>
+                                            <action selector="resetButtonPressed:" destination="2" id="TqP-3E-ttl"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem title="Save" id="R90-LF-Ejn">
+                                        <connections>
+                                            <action selector="saveButtonPressed:" destination="2" id="TGg-5I-d1V"/>
+                                        </connections>
+                                    </barButtonItem>
                                     <barButtonItem title="Load" id="5vT-hM-iBY"/>
                                 </items>
                             </toolbar>

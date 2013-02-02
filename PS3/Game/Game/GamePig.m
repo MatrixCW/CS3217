@@ -36,6 +36,9 @@
 }
 
 - (GamePig*)initWithBackground:(UIScrollView*) downArea:(UIView*)upArea{
+    
+    
+    
     self.originalHeight = 66;
     self.originalWidth = 66;
     self.currentHeight = 88;
@@ -55,6 +58,10 @@
     self.selfImgView = pig;
     self.selfImgView.userInteractionEnabled = YES;
     
+    [self setRecognizer];
+    
+    self.view.tag = kGameObjectPig;
+
     return  self;
     
 }

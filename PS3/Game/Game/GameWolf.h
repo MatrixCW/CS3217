@@ -10,5 +10,6 @@
 
 @interface GameWolf : GameObject<UIGestureRecognizerDelegate>
 
- 
+
+
 @end

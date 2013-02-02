@@ -10,7 +10,8 @@
 #import "GameObject.h"
 #import "GameWolf.h"
 #import "GamePig.h"
-#import "GameStraw.h"
+#import "GameBlock.h"
+
 
 @interface ViewController : UIViewController
 //- (IBAction)buttonPressed:(id)sender;
@@ -21,8 +22,13 @@
 
 @property (strong) GameObject *myWolf;
 @property (strong) GameObject *myPig;
-@property (strong) NSMutableArray *myStraws;
+@property (strong) GameBlock *myBlock;
 
-- (IBAction)buttonPressed:(id)sender;
+
+
+
+- (IBAction)resetButtonPressed:(id)sender;
+
+- (IBAction)saveButtonPressed:(id)sender;
 
 @end

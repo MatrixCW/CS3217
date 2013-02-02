@@ -8,7 +8,10 @@
 
 #import "GameObject.h"
 
-@interface GameStraw : GameObject<UIGestureRecognizerDelegate>
+@interface GameBlock : GameObject<UIGestureRecognizerDelegate>
 
+
+@property (strong) GameBlock *nextGameBlock;
+@property int count;
 
 @end

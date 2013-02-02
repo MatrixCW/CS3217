@@ -23,8 +23,7 @@ typedef enum {GameBlockWood = 4, GameBlockIron = 5, GameBlockStone = 6} StrawTyp
     CGFloat originalHeight;
     CGFloat currentWidth;
     CGFloat currentHeight;
-    //GameObject *son;
-    
+
 
 }
 
@@ -36,7 +35,19 @@ typedef enum {GameBlockWood = 4, GameBlockIron = 5, GameBlockStone = 6} StrawTyp
 @property (nonatomic) CGFloat originalHeight;
 @property (nonatomic) CGFloat currentWidth;
 @property (nonatomic) CGFloat currentHeight;
-//@property (strong) GameObject *son;
+
+
+@property (strong) UIPanGestureRecognizer *pan;
+@property (strong) UITapGestureRecognizer *doubleTap;
+@property (strong) UITapGestureRecognizer *singleTap;
+@property (strong) UIPinchGestureRecognizer* zoom;
+@property (strong) UIRotationGestureRecognizer* rotate;
+
+
+
+
+
+
 
 //@property (nonatomic, readonly) GameObjectType objectType;
 //@property (nonatomic) Boolean isGetBackgroundInformation;
@@ -63,5 +74,7 @@ typedef enum {GameBlockWood = 4, GameBlockIron = 5, GameBlockStone = 6} StrawTyp
 - (id)initWithBackground:(UIScrollView*) downArea:(UIView*)upArea;
 
 - (void)setRecognizer;
+
+-(void) releaseObject;
 
 @end

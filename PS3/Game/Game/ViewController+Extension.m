@@ -10,7 +10,13 @@
 
 @implementation ViewController (Extension)
 - (void)save {
-    NSLog(@"I can save");
+    
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"你马了个逼"
+                                                    message:@"You must be connected to the internet to use this app."
+                                                   delegate:nil
+                                          cancelButtonTitle:@"OK"
+                                          otherButtonTitles:nil];
+    [alert show];    
     
 }
 
@@ -22,7 +28,29 @@
 
 
 - (void)reset{
-    NSLog(@"I can reset");
+    
+    
+    [self.myWolf releaseObject];
+    
+    [self.myPig releaseObject];
+    
+    GameBlock *tempBlock = self.myBlock;
+    
+    while(tempBlock != Nil){
+        
+        if(tempBlock.view.superview == self.selectBar)
+            break;
+        else{
+           [tempBlock releaseObject];
+            tempBlock = tempBlock.nextGameBlock;
+        }
+        
+    }
+    
+    
+     
+    
+
 }
 
 @end
