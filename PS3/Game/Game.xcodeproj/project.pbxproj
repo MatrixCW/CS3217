@@ -10,6 +10,8 @@
 		7C0BDF1B16BBE9BC00B60E81 /* wolfs.png in Resources */ = {isa = PBXBuildFile; fileRef = 7C0BDF1A16BBE9BC00B60E81 /* wolfs.png */; };
 		7C0BDF1E16BBEE3400B60E81 /* GameObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C0BDF1D16BBEE3400B60E81 /* GameObject.m */; };
 		7C0BDF2416BC264200B60E81 /* GameWolf.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C0BDF2316BC264200B60E81 /* GameWolf.m */; };
+		7C2280F216BD3BB4004C6FA0 /* GamePig.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C2280F116BD3BB4004C6FA0 /* GamePig.m */; };
+		7C2280F616BD3E4D004C6FA0 /* GameStraw.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C2280F516BD3E4D004C6FA0 /* GameStraw.m */; };
 		7C35B78D16BAA6FF00ADD901 /* ViewController+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C35B78C16BAA6FF00ADD901 /* ViewController+Extension.m */; };
 		7C672DE016B93E8E00E8D301 /* pig.png in Resources */ = {isa = PBXBuildFile; fileRef = 7C672DDF16B93E8E00E8D301 /* pig.png */; };
 		7C672DE316B93EC300E8D301 /* straw.png in Resources */ = {isa = PBXBuildFile; fileRef = 7C672DE216B93EC300E8D301 /* straw.png */; };
@@ -35,6 +37,10 @@
 		7C0BDF1D16BBEE3400B60E81 /* GameObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameObject.m; sourceTree = "<group>"; };
 		7C0BDF2216BC264200B60E81 /* GameWolf.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameWolf.h; sourceTree = SOURCE_ROOT; };
 		7C0BDF2316BC264200B60E81 /* GameWolf.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameWolf.m; sourceTree = SOURCE_ROOT; };
+		7C2280F016BD3BB4004C6FA0 /* GamePig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GamePig.h; sourceTree = "<group>"; };
+		7C2280F116BD3BB4004C6FA0 /* GamePig.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GamePig.m; sourceTree = "<group>"; };
+		7C2280F416BD3E4D004C6FA0 /* GameStraw.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameStraw.h; sourceTree = "<group>"; };
+		7C2280F516BD3E4D004C6FA0 /* GameStraw.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameStraw.m; sourceTree = "<group>"; };
 		7C35B78B16BAA6FF00ADD901 /* ViewController+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ViewController+Extension.h"; sourceTree = "<group>"; };
 		7C35B78C16BAA6FF00ADD901 /* ViewController+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ViewController+Extension.m"; sourceTree = "<group>"; };
 		7C672DDF16B93E8E00E8D301 /* pig.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pig.png; sourceTree = "<group>"; };
@@ -127,6 +133,10 @@
 				7C0BDF1D16BBEE3400B60E81 /* GameObject.m */,
 				7C0BDF2216BC264200B60E81 /* GameWolf.h */,
 				7C0BDF2316BC264200B60E81 /* GameWolf.m */,
+				7C2280F016BD3BB4004C6FA0 /* GamePig.h */,
+				7C2280F116BD3BB4004C6FA0 /* GamePig.m */,
+				7C2280F416BD3E4D004C6FA0 /* GameStraw.h */,
+				7C2280F516BD3E4D004C6FA0 /* GameStraw.m */,
 				7CDDD7B216B01DAE0025C8EA /* AppDelegate.h */,
 				7CDDD7B316B01DAE0025C8EA /* AppDelegate.m */,
 				7CDDD7BB16B01DAE0025C8EA /* MainStoryboard.storyboard */,
@@ -230,6 +240,8 @@
 				7C35B78D16BAA6FF00ADD901 /* ViewController+Extension.m in Sources */,
 				7C0BDF1E16BBEE3400B60E81 /* GameObject.m in Sources */,
 				7C0BDF2416BC264200B60E81 /* GameWolf.m in Sources */,
+				7C2280F216BD3BB4004C6FA0 /* GamePig.m in Sources */,
+				7C2280F616BD3E4D004C6FA0 /* GameStraw.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

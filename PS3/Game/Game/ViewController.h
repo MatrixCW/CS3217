@@ -9,7 +9,8 @@
 #import <UIKit/UIKit.h>
 #import "GameObject.h"
 #import "GameWolf.h"
-
+#import "GamePig.h"
+#import "GameStraw.h"
 
 @interface ViewController : UIViewController
 //- (IBAction)buttonPressed:(id)sender;
@@ -19,8 +20,9 @@
 @property (strong, nonatomic) IBOutlet UIView *selectBar;
 
 @property (strong) GameObject *myWolf;
+@property (strong) GameObject *myPig;
+@property (strong) NSMutableArray *myStraws;
 
-- (void)say;
 - (IBAction)buttonPressed:(id)sender;
 
 @end

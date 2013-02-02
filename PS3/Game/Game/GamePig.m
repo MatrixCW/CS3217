@@ -1,18 +1,18 @@
 //
-//  GameWolf.m
+//  GamePig.m
 //  Game
 //
 //  Created by Cui Wei on 2/2/13.
 //  Copyright (c) 2013 nus.cs3217. All rights reserved.
 //
 
-#import "GameWolf.h"
+#import "GamePig.h"
 
-@interface GameWolf ()
+@interface GamePig ()
 
 @end
 
-@implementation GameWolf
+@implementation GamePig
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -23,45 +23,40 @@
     return self;
 }
 
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+	// Do any additional setup after loading the view.
+}
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
 
-- (GameWolf*)initWithBackground:(UIScrollView*) downArea:(UIView*)upArea{
-    
-    self.originalHeight = 90;
-    self.originalWidth = 150;
-    self.currentHeight = 150;
-    self.currentWidth = 225;
-    self.center =CGPointMake(80, 60);
+- (GamePig*)initWithBackground:(UIScrollView*) downArea:(UIView*)upArea{
+    self.originalHeight = 66;
+    self.originalWidth = 66;
+    self.currentHeight = 88;
+    self.currentWidth = 88;
+    self.center =CGPointMake(200, 60);
     self.gamearea = downArea;
     self.selectBar = upArea;
     
-    UIImage* wolfsImage = [UIImage imageNamed:@"wolfs.png"];
+    UIImage* pigImg = [UIImage imageNamed:@"pig.png"];
+    UIImageView* pig = [[UIImageView alloc]initWithImage:pigImg];
     
-    CGImageRef imageRef = CGImageCreateWithImageInRect([wolfsImage CGImage], CGRectMake(0,0,225,150));
-    
-    UIImage* singleWolfImage = [UIImage imageWithCGImage:imageRef];
-    
-    CGImageRelease(imageRef);
-    
-    UIImageView* wolf = [[UIImageView alloc] initWithImage:singleWolfImage];
-    
-    [wolf sizeToFit];
-    
-    wolf.frame = CGRectMake(self.center.x-self.originalWidth/2,
+    pig.frame =  CGRectMake(self.center.x-self.originalWidth/2,
                             self.center.y-self.originalHeight/2,
                             self.originalWidth,
                             self.originalHeight);
     
-    self.selfImgView = wolf;
+    self.selfImgView = pig;
     self.selfImgView.userInteractionEnabled = YES;
     
     return  self;
     
 }
-
 
 @end

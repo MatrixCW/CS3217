@@ -83,11 +83,6 @@
     //Set the content size so the gamearea is scrollable
     //Otherwise it defaults to the current window size
     
-    NSLog(@"%lf vev", _gamearea.frame.size.height);
-    NSLog(@"%lf erge", backgroundHeight);
-    NSLog(@"%lf efe", groundHeight);
-    
-    
     
     CGFloat gameareaHeight = backgroundHeight + groundHeight;  //Don't want scrollable vertically
     CGFloat gameareaWidth = backgroundWidth;
@@ -98,6 +93,18 @@
     [_myWolf setRecognizer];
     
     [_selectBar addSubview:_myWolf.view];
+    
+    _myPig = [[GamePig alloc] initWithBackground:self.gamearea :self.selectBar];
+    
+    [_myPig setRecognizer];
+    
+    [_selectBar addSubview:_myPig.view];
+    
+    _myStraw = [[GameStraw alloc] initWithBackground:self.gamearea :self.selectBar];
+    
+    [_myStraw setRecognizer];
+    
+    [_selectBar addSubview:_myStraw.view];
     
 }
 

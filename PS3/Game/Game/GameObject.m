@@ -14,6 +14,15 @@
 
 @implementation GameObject
 
+@synthesize selfImgView;
+@synthesize gamearea;
+@synthesize selectBar;
+@synthesize center;
+@synthesize originalWidth;
+@synthesize originalHeight;
+@synthesize currentWidth;
+@synthesize currentHeight;
+
 
 -(void)loadView{
     self.view = self.selfImgView;
@@ -26,39 +35,32 @@
     // EFFECTS: the user drags around the object with one finger
     //          if the object is in the palette, it will be moved in the game area
     
+    
+    NSLog(@"%lf", +self.view.frame.size.height);
+    
     self.gamearea.scrollEnabled = NO;
     
     CGPoint translation = [gesture translationInView:gesture.view.superview];
     [gesture.view setBounds:CGRectMake(ZERO, ZERO, self.currentWidth, self.currentHeight)];
-    gesture.view.center = CGPointMake(gesture.view.center.x + translation.x,
-                                      gesture.view.center.y + translation.y);
+     gesture.view.center = CGPointMake(gesture.view.center.x + translation.x,
+                                        gesture.view.center.y + translation.y);
     
     [gesture setTranslation:CGPointZero inView:gesture.view.superview];
     
-    NSLog(@"herehere %lf %lf",self.view.center.x,self.view.center.y);
     
     if (gesture.state == UIGestureRecognizerStateChanged &&
         gesture.view.superview == self.selectBar &&
         gesture.view.center.y - self.view.frame.size.height/2 >= self.selectBar.frame.size.height) {
         
-        //NSLog(@"herehere %lf",self.selectBar.frame.size.height);
-        
-        //NSLog(@"gamearea");
-
-        
             gesture.view.center = CGPointMake(self.gamearea.contentOffset.x + gesture.view.center.x,
                                               gesture.view.center.y - self.selectBar.frame.size.height);
             
             [self.gamearea addSubview:gesture.view];
-            
+        
     }
     
     
     if (gesture.state == UIGestureRecognizerStateEnded) {
-        
-         //NSLog(@"bar");
-        
-       // NSLog(@"here %lf",self.selectBar.frame.size.height);
         
         self.gamearea.scrollEnabled = YES;
         
@@ -66,7 +68,7 @@
             
             
             [gesture.view setBounds:CGRectMake(ZERO, ZERO, self.originalWidth, self.originalHeight)];
-            gesture.view.center = CGPointMake(self.originalCenter.x , self.originalCenter.y);
+            gesture.view.center = CGPointMake(self.center.x , self.center.y);
             
         }
         
@@ -81,7 +83,7 @@
     // REQUIRES: game in designer mode, object in game area
     // EFFECTS: the object is rotated with a two-finger rotation gesture
     
-    _gamearea.scrollEnabled = NO;
+    self.gamearea.scrollEnabled = NO;
     
     gesture.view.transform = CGAffineTransformRotate(gesture.view.transform, gesture.rotation);
     gesture.rotation = 0;
@@ -99,7 +101,7 @@
     
     // You will need to define more methods to complete the specification.
     
-    _gamearea.scrollEnabled = NO;
+    self.gamearea.scrollEnabled = NO;
     
     gesture.view.transform = CGAffineTransformScale(gesture.view.transform, gesture.scale, gesture.scale);
     gesture.scale = 1;
@@ -113,6 +115,7 @@
 - (void)setRecognizer{
     
     UIPanGestureRecognizer* pan = [[UIPanGestureRecognizer alloc]initWithTarget:self action:@selector(translate:)];
+    [pan setMaximumNumberOfTouches:1];
     
     UITapGestureRecognizer *doubleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleDoubleTap:)];
     [doubleTap setNumberOfTapsRequired:2];
@@ -138,15 +141,25 @@
 
 - (void)handleDoubleTap:(UITapGestureRecognizer*) recognizer{
     
+    self.view.transform = CGAffineTransformIdentity;
+    
     if (recognizer.view.superview != self.selectBar) {
         
-        self.view.frame = CGRectMake(self.originalCenter.x-self.originalWidth/2, self.originalCenter.y-self.originalHeight/2,
-                                     self.originalWidth, self.originalHeight);
+        self.view.frame = CGRectMake(self.center.x-self.originalWidth/2,
+                                     self.center.y-self.originalHeight/2,
+                                     self.originalWidth,
+                                     self.originalHeight);
+        
+       
         
         [self.view setBounds:CGRectMake(ZERO, ZERO, self.originalWidth, self.originalHeight)];
         
+                
+        
         [self.selectBar addSubview:recognizer.view];
     }
+   
+    
     
 }
 
@@ -165,5 +178,10 @@
 {
     return YES;
 }
+
+- (id)initWithBackground:(UIScrollView*) downArea:(UIView*)upArea{
+    return Nil;
+}
+
 
 @end

@@ -23,22 +23,22 @@ typedef enum {GameBlockWood = 4, GameBlockIron = 5, GameBlockStone = 6} StrawTyp
     CGFloat originalHeight;
     CGFloat currentWidth;
     CGFloat currentHeight;
-    //GameObject* son;
+    //GameObject *son;
     
 
 }
 
-@property (nonatomic, readonly) GameObjectType objectType;
 @property (nonatomic) UIImageView* selfImgView;
 @property (nonatomic) UIScrollView* gamearea;
-@property (nonatomic) CGPoint originalCenter;
 @property (nonatomic) UIView* selectBar;
+@property (nonatomic) CGPoint center;
 @property (nonatomic) CGFloat originalWidth;
 @property (nonatomic) CGFloat originalHeight;
 @property (nonatomic) CGFloat currentWidth;
 @property (nonatomic) CGFloat currentHeight;
+//@property (strong) GameObject *son;
 
-
+//@property (nonatomic, readonly) GameObjectType objectType;
 //@property (nonatomic) Boolean isGetBackgroundInformation;
 //@property (strong) GameObject* son;
 

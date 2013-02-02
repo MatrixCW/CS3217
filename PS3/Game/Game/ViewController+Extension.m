@@ -11,7 +11,6 @@
 @implementation ViewController (Extension)
 - (void)save {
     NSLog(@"I can save");
-    [self say];
     
 }
 
