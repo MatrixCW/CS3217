@@ -10,6 +10,7 @@
 
 @interface ViewController (Extension)
 
+
 - (void)save;
 // REQUIRES: game in designer mode
 // EFFECTS: game objects are saved

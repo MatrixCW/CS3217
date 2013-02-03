@@ -130,6 +130,11 @@
     [self save];
 }
 
+- (IBAction)loadButtonPressed:(id)sender {
+    
+    [self load];
+}
+
 
 
 - (void)viewDidUnload {

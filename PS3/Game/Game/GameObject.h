@@ -12,9 +12,10 @@ typedef enum {kGameObjectWolf = 1, kGameObjectPig = 2, kGameObjectBlock = 3} Gam
 //Constant for the three background of the straw
 typedef enum {GameBlockWood = 4, GameBlockIron = 5, GameBlockStone = 6} StrawType;
 
-@interface GameObject : UIViewController<UIGestureRecognizerDelegate> {
+@interface GameObject : UIViewController<UIGestureRecognizerDelegate, NSCoding> {
   // You might need to add state here.
     
+    /*
     UIImageView* selfImgView;
     UIScrollView* gamearea;
     UIView* selectBar;
@@ -23,6 +24,7 @@ typedef enum {GameBlockWood = 4, GameBlockIron = 5, GameBlockStone = 6} StrawTyp
     CGFloat originalHeight;
     CGFloat currentWidth;
     CGFloat currentHeight;
+     */
 
 
 }
@@ -76,5 +78,7 @@ typedef enum {GameBlockWood = 4, GameBlockIron = 5, GameBlockStone = 6} StrawTyp
 - (void)setRecognizer;
 
 -(void) releaseObject;
+
+-(NSString*) getStringRepresentation;
 
 @end

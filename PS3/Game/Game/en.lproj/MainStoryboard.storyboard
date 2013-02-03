@@ -27,7 +27,11 @@
                                             <action selector="saveButtonPressed:" destination="2" id="TGg-5I-d1V"/>
                                         </connections>
                                     </barButtonItem>
-                                    <barButtonItem title="Load" id="5vT-hM-iBY"/>
+                                    <barButtonItem title="Load" id="5vT-hM-iBY">
+                                        <connections>
+                                            <action selector="loadButtonPressed:" destination="2" id="ccg-4v-UjO"/>
+                                        </connections>
+                                    </barButtonItem>
                                 </items>
                             </toolbar>
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="mIf-LW-mXb">

@@ -48,7 +48,7 @@
     
     if (gesture.state == UIGestureRecognizerStateChanged &&
         gesture.view.superview == self.selectBar &&
-        gesture.view.center.y - self.view.frame.size.height/2 >= self.selectBar.frame.size.height) {
+        gesture.view.center.y - self.view.frame.size.height/2 > self.selectBar.frame.size.height) {
         
             gesture.view.center = CGPointMake(self.gamearea.contentOffset.x + gesture.view.center.x,
                                               gesture.view.center.y - self.selectBar.frame.size.height);
@@ -62,7 +62,7 @@
         
         self.gamearea.scrollEnabled = YES;
         
-        if (gesture.view.center.y <= self.selectBar.frame.size.height && gesture.view.superview == self.selectBar) {
+        if (gesture.view.center.y - self.view.frame.size.height/2 <= self.selectBar.frame.size.height && gesture.view.superview == self.selectBar) {
             
             
             [gesture.view setBounds:CGRectMake(ZERO, ZERO, self.originalWidth, self.originalHeight)];
@@ -83,6 +83,8 @@
     
     self.gamearea.scrollEnabled = NO;
     
+    //NSLog(@"%lf", gesture.rotation);
+    
     gesture.view.transform = CGAffineTransformRotate(gesture.view.transform, gesture.rotation);
     gesture.rotation = 0;
     
@@ -101,7 +103,30 @@
     
     self.gamearea.scrollEnabled = NO;
     
-    gesture.view.transform = CGAffineTransformScale(gesture.view.transform, gesture.scale, gesture.scale);
+    NSLog(@"%lf", gesture.scale);
+
+    CGFloat pictureScaleA = gesture.view.transform.a;
+    CGFloat pictureScaleB = gesture.view.transform.b;
+    CGFloat pictureScaleC = gesture.view.transform.c;
+    CGFloat pictureScaleD = gesture.view.transform.d;
+    
+    CGFloat xScale = sqrt(pictureScaleA*pictureScaleA+pictureScaleC*pictureScaleC);
+    CGFloat yScale = sqrt(pictureScaleB*pictureScaleB+pictureScaleD*pictureScaleD);
+    
+    
+    
+    if(xScale>=2 || yScale >=2){
+    gesture.view.transform = CGAffineTransformScale(gesture.view.transform, 0.99, 0.99);
+    }
+    else
+        if(xScale<=1 || yScale <=1){
+            gesture.view.transform = CGAffineTransformScale(gesture.view.transform, 1.01, 1.01);
+        }
+           else{
+                 gesture.view.transform = CGAffineTransformScale(gesture.view.transform, gesture.scale, gesture.scale);
+    
+                }
+    
     gesture.scale = 1;
     
     if (gesture.state == UIGestureRecognizerStateEnded) {
@@ -184,5 +209,32 @@
     return Nil;
 }
 
+-(NSString*) getStringRepresentation{
+    
+    NSString *information = @"wolf";
+    
+    if(self.view.superview == self.selectBar)
+        return information;
+    
+    NSString *centerCoordinates = [NSString stringWithFormat:@" %lf, %lf",
+                                                             self.view.center.x, self.view.center.y];
+    
+    NSString *transform = [NSString stringWithFormat:@" %lf, %lf, %lf, %lf, %lf, %lf",
+                                                     self.view.transform.a,
+                                                     self.view.transform.b,
+                                                     self.view.transform.c,
+                                                     self.view.transform.d,
+                                                     self.view.transform.tx,
+                                                     self.view.transform.ty];
+    
+    
+    information = [information stringByAppendingString:centerCoordinates];
+    
+    
+    information = [information stringByAppendingString:transform];
+    
+    return information;
+    
+}
 
 @end

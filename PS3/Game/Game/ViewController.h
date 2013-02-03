@@ -16,19 +16,17 @@
 @interface ViewController : UIViewController
 //- (IBAction)buttonPressed:(id)sender;
 
-@property (strong, nonatomic) IBOutlet UIScrollView *gamearea;
-
-@property (strong, nonatomic) IBOutlet UIView *selectBar;
-
 @property (strong) GameObject *myWolf;
 @property (strong) GameObject *myPig;
 @property (strong) GameBlock *myBlock;
 
 
+@property (strong, nonatomic) IBOutlet UIScrollView *gamearea;
+@property (strong, nonatomic) IBOutlet UIView *selectBar;
 
 
 - (IBAction)resetButtonPressed:(id)sender;
-
 - (IBAction)saveButtonPressed:(id)sender;
+- (IBAction)loadButtonPressed:(id)sender;
 
 @end
