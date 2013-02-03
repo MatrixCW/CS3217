@@ -104,8 +104,8 @@
     
     
     
-    _myBlock = [[GameBlock alloc] initWithBackground:self.gamearea :self.selectBar];
-    [_selectBar addSubview:_myBlock.view];
+    _myRootBlock = [[GameBlock alloc] initWithBackground:self.gamearea :self.selectBar];
+    [_selectBar addSubview:_myRootBlock.view];
     
 }
 
@@ -126,7 +126,7 @@
 }
 
 - (IBAction)saveButtonPressed:(id)sender {
-    
+   
     [self save];
 }
 

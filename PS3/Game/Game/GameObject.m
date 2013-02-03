@@ -103,8 +103,6 @@
     
     self.gamearea.scrollEnabled = NO;
     
-    NSLog(@"%lf", gesture.scale);
-
     CGFloat pictureScaleA = gesture.view.transform.a;
     CGFloat pictureScaleB = gesture.view.transform.b;
     CGFloat pictureScaleC = gesture.view.transform.c;

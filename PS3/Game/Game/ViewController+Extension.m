@@ -15,36 +15,62 @@
 
 - (void)save {
     
+    /*
+    NSError *error;
+    NSFileManager *fileMgr = [NSFileManager defaultManager];
+    NSString *fileNameRm = [NSString stringWithFormat:@"%@/dictionay", documentsDirectory];
+    if ([fileMgr removeItemAtPath:fileNameRm error:&error] != YES)
+        NSLog(@"Unable to delete file: %@", [error localizedDescription]);
+     */
+    
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString *documentsDirectory = [paths objectAtIndex:0];
     
+    
     //make a file name to write the data to using the documents directory:
-    NSString *fileName = [NSString stringWithFormat:@"%@/dictionay", documentsDirectory];
+    NSString *fileName = [NSString stringWithFormat:@"%@/gameData", documentsDirectory];
     
     NSArray* subviewsArray = [[NSArray alloc] initWithArray:self.gamearea.subviews];
     
+    
+    if(subviewsArray.count == 4){
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Oops"
+                                                  message:@"It seems that you haven't made any changes in current game view"
+                                                  delegate:self
+                                                  cancelButtonTitle:@"Oh I see."
+                                                  otherButtonTitles:nil];
+        [alert show];
+        
+        return;
+    }
+    
     NSMutableDictionary* dictionary = [NSMutableDictionary dictionary];
     
-    int appendkey = 0;
-    NSString* empty = @"";
+    int keyCount = 0;
+    NSString* keyValue = @"";
     
     for (UIView* view in subviewsArray) {
         
-        if (view.tag == 1||view.tag == 2||view.tag == 3) {
-            printf("when save tag = %d\n",view.tag);
+        if(view.tag >= 1){
             NSNumber* tag = [[NSNumber alloc] initWithInt:view.tag];
             NSNumber* X = [[NSNumber alloc] initWithFloat:view.center.x];
             NSNumber* Y = [[NSNumber alloc] initWithFloat:view.center.y];
             NSString* transform = [self getStringOfTransform:view.transform];
-            NSArray* object = [[NSArray alloc] initWithObjects:tag,X,Y,transform, nil];
-            NSString* key = [empty stringByAppendingFormat:@"%d",appendkey];
-            appendkey++;
-            [dictionary setObject:object forKey:key];
+            NSArray* data = [[NSArray alloc] initWithObjects:tag,X,Y,transform, nil];
+            NSString* key = [keyValue stringByAppendingFormat:@"%d",keyCount];
+            keyCount++;
+            [dictionary setObject:data forKey:key];
         }
+    
+            
+                        
+        
     }
     
-    if([dictionary writeToFile:fileName atomically:YES]==YES){
-        NSLog(@"恭喜，SAVE成功");
+    
+    if([dictionary writeToFile:fileName atomically:YES]){
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"SUCCESS" message:@"Your game data has been stored." delegate:self cancelButtonTitle:@"Got it" otherButtonTitles:nil];
+        [alert show];
     }
    
     
@@ -68,17 +94,74 @@
 
 
 - (void)load{
-    NSLog(@"I can load");
     
-    NSLog(@"%@", [self.myWolf getStringRepresentation]);
+    [self reset];
     
-    //[NSHomeDirectory()
-                                   // stringByAppendingPathComponent:@"Documents"];
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentsDirectory = [paths objectAtIndex:0];
+    NSString *fileName = [NSString stringWithFormat:@"%@/gameData",documentsDirectory];
     
-       
-    //self.myWolf.view.center = CGPointMake(300, 300);
-    //self.myWolf.view.transform = CGAffineTransformIdentity;
-    //[self.gamearea addSubview:self.myWolf.view];
+    NSMutableDictionary* dictionary = [[NSMutableDictionary alloc] initWithContentsOfFile:fileName];
+    
+    
+    NSNumber *wolfTag = [[NSNumber alloc] initWithInt:kGameObjectWolf];
+    NSNumber *PigTag = [[NSNumber alloc] initWithInt:kGameObjectPig];
+    
+    
+    for(NSString *key in [dictionary allKeys]){
+        
+        NSArray *data = [dictionary objectForKey:key];
+        
+        if([[data objectAtIndex:0] isEqual:wolfTag]){ //a wolf is found
+            
+            CGFloat X = [(NSNumber*)[data objectAtIndex:1] floatValue];
+            CGFloat Y = [(NSNumber*)[data objectAtIndex:2] floatValue];
+            NSString* transformValue =(NSString*)[data objectAtIndex:3];
+            
+            [self.myWolf moveToTarget:CGPointMake(X, Y)
+                         withTransform:CGAffineTransformFromString(transformValue)];
+        }else
+            if([[data objectAtIndex:0] isEqual:PigTag]){ // a pig is found
+                
+                CGFloat X = [(NSNumber*)[data objectAtIndex:1] floatValue];
+                CGFloat Y = [(NSNumber*)[data objectAtIndex:2] floatValue];
+                NSString* transformValue =(NSString*)[data objectAtIndex:3];
+                
+                [self.myPig moveToTarget:CGPointMake(X, Y)
+                            withTransform:CGAffineTransformFromString(transformValue)];
+                
+            }else{
+                
+                NSLog(@"%d", self.myCurrentBlock.view.superview == self.selectBar);
+                
+                int currentTag = [[data objectAtIndex:0] intValue];
+                
+                assert(currentTag==3 ||currentTag==4||currentTag==5);
+                
+                int count = (currentTag - kGameObjectBlock)%3;
+                
+                CGFloat X = [(NSNumber*)[data objectAtIndex:1] floatValue];
+                CGFloat Y = [(NSNumber*)[data objectAtIndex:2] floatValue];
+                NSString* transformValue =(NSString*)[data objectAtIndex:3];
+                                          
+                [self.myCurrentBlock moveToTarget:CGPointMake(X, Y)withTransform:CGAffineTransformFromString(transformValue) andTexture:count];
+                                          
+                                          
+                self.myCurrentBlock.nextGameBlock = [[GameBlock alloc] initWithBackground:self.gamearea :self.selectBar];
+                
+                self.myCurrentBlock = self.myCurrentBlock.nextGameBlock;
+                
+                assert(self.myCurrentBlock != nil);
+                
+                [self.selectBar addSubview:self.myCurrentBlock.view];
+
+            }
+      
+    
+    }
+    
+    
+    
 }
 
 
@@ -90,23 +173,22 @@
     
     [self.myPig releaseObject];
     
-    GameBlock *tempBlock = self.myBlock;
     
-    while(tempBlock != Nil){
+    GameBlock *tempBlock = self.myRootBlock;
+    
+    while(tempBlock.view.superview != self.selectBar){
         
-        if(tempBlock.view.superview == self.selectBar)
-            break;
-        else{
-           [tempBlock releaseObject];
+            [tempBlock releaseObject];
             tempBlock = tempBlock.nextGameBlock;
-        }
         
     }
     
+    self.myCurrentBlock = tempBlock; //muCurrentBlock always points to the block located at the 
     
-     
     
-
 }
+
+
+
 
 @end

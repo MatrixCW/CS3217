@@ -99,6 +99,7 @@
         
         [self.selectBar addSubview:self.nextGameBlock.view];
         
+            
     }
     
     
@@ -127,45 +128,62 @@
 
 -(void)handleSingleTap:(UITapGestureRecognizer *)recognizer {
     
+    [self changeTexture];
+    
+    
+}
+
+-(void)changeTexture{
+    
     if(self.view.superview == self.gamearea){
         
         if(self.count == 0){
             
-        self.count = (++self.count)%3;
-        UIImage* blockImg = [UIImage imageNamed:@"stone.png"];
-        UIImageView* block = [[UIImageView alloc]initWithImage:blockImg];
-        block.frame =CGRectMake(0, 0, self.currentWidth, self.currentHeight);
-        [recognizer.view addSubview:block];
-            
-                       
-        }else
-        
-        if(self.count == 1){
             self.count = (++self.count)%3;
-            UIImage* blockImg = [UIImage imageNamed:@"iron.png"];
+            UIImage* blockImg = [UIImage imageNamed:@"stone.png"];
             UIImageView* block = [[UIImageView alloc]initWithImage:blockImg];
             block.frame =CGRectMake(0, 0, self.currentWidth, self.currentHeight);
-            [recognizer.view addSubview:block];
+            [self.view addSubview:block];
+            self.view.tag = 4;
             
             
         }else
-        
-        if(self.count == 2){
-            self.count = (++self.count)%3;
-            UIImage* blockImg = [UIImage imageNamed:@"straw.png"];
-            UIImageView* block = [[UIImageView alloc]initWithImage:blockImg];
-            block.frame =CGRectMake(0, 0, self.currentWidth, self.currentHeight);
-            [recognizer.view addSubview:block];
             
-            
-        }
+            if(self.count == 1){
+                self.count = (++self.count)%3;
+                UIImage* blockImg = [UIImage imageNamed:@"iron.png"];
+                UIImageView* block = [[UIImageView alloc]initWithImage:blockImg];
+                block.frame =CGRectMake(0, 0, self.currentWidth, self.currentHeight);
+                [self.view addSubview:block];
+                self.view.tag = 5;
+
+                
+            }else
+                
+                if(self.count == 2){
+                    self.count = (++self.count)%3;
+                    UIImage* blockImg = [UIImage imageNamed:@"straw.png"];
+                    UIImageView* block = [[UIImageView alloc]initWithImage:blockImg];
+                    block.frame =CGRectMake(0, 0, self.currentWidth, self.currentHeight);
+                    [self.view addSubview:block];
+                    self.view.tag = 3;
+
+                    
+                }
         
         
     }
-    
 }
 
-
+-(void) moveToTarget:(CGPoint)center withTransform:(CGAffineTransform)transform andTexture:(int)count{
+    
+    [self.view setBounds:CGRectMake(0, 0, self.currentWidth, self.currentHeight)];
+    self.view.center = center;
+    self.view.transform = transform;
+    self.count = (count+2)%3;
+    [self.gamearea addSubview:self.view];
+    [self changeTexture];
+}
 
 
 @end

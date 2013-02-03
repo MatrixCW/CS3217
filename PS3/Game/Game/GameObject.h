@@ -79,6 +79,8 @@ typedef enum {GameBlockWood = 4, GameBlockIron = 5, GameBlockStone = 6} StrawTyp
 
 -(void) releaseObject;
 
+
+
 -(NSString*) getStringRepresentation;
 
 @end

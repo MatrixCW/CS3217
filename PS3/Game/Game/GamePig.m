@@ -66,4 +66,17 @@
     
 }
 
+-(void) moveToTarget:(CGPoint)center withTransform:(CGAffineTransform)transform{
+    
+    [self.view setBounds:CGRectMake(0, 0, self.currentWidth, self.currentHeight)];
+    self.view.center = center;
+    self.view.transform = transform;
+    [self.gamearea addSubview:self.view];
+    
+    
+    
+    
+}
+
+
 @end

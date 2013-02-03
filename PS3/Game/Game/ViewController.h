@@ -16,9 +16,10 @@
 @interface ViewController : UIViewController
 //- (IBAction)buttonPressed:(id)sender;
 
-@property (strong) GameObject *myWolf;
-@property (strong) GameObject *myPig;
-@property (strong) GameBlock *myBlock;
+@property (strong) GameWolf *myWolf;
+@property (strong) GamePig *myPig;
+@property (strong) GameBlock *myCurrentBlock;
+@property (strong) GameBlock *myRootBlock;
 
 
 @property (strong, nonatomic) IBOutlet UIScrollView *gamearea;

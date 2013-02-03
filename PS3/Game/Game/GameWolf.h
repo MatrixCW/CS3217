@@ -10,6 +10,7 @@
 
 @interface GameWolf : GameObject<UIGestureRecognizerDelegate>
 
+-(void) moveToTarget:(CGPoint)center withTransform:(CGAffineTransform)transform;
 
 
 @end

@@ -14,4 +14,7 @@
 @property (strong) GameBlock *nextGameBlock;
 @property int count;
 
+
+-(void) moveToTarget:(CGPoint)center withTransform:(CGAffineTransform)transform andTexture:(int)count;
+
 @end
