@@ -22,19 +22,19 @@
                                             <action selector="resetButtonPressed:" destination="2" id="TqP-3E-ttl"/>
                                         </connections>
                                     </barButtonItem>
-                                    <barButtonItem title="Save" id="R90-LF-Ejn">
+                                    <barButtonItem systemItem="add" id="R90-LF-Ejn">
                                         <connections>
                                             <action selector="saveButtonPressed:" destination="2" id="TGg-5I-d1V"/>
                                         </connections>
                                     </barButtonItem>
-                                    <barButtonItem title="Load" id="5vT-hM-iBY">
+                                    <barButtonItem systemItem="reply" id="5vT-hM-iBY">
                                         <connections>
                                             <action selector="loadButtonPressed:" destination="2" id="ccg-4v-UjO"/>
                                         </connections>
                                     </barButtonItem>
-                                    <barButtonItem title="Browse" id="sfH-fR-Tel">
+                                    <barButtonItem systemItem="trash" id="sfH-fR-Tel">
                                         <connections>
-                                            <action selector="browseButtonPressed:" destination="2" id="FSR-5s-fpA"/>
+                                            <action selector="deleteButtonPressed:" destination="2" id="41U-2X-cUz"/>
                                         </connections>
                                     </barButtonItem>
                                 </items>
@@ -74,6 +74,8 @@
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     <connections>
                         <outlet property="gamearea" destination="D6C-3d-O7I" id="YdQ-6n-27O"/>
+                        <outlet property="myDeleteButton" destination="sfH-fR-Tel" id="dIl-G2-D7t"/>
+                        <outlet property="myLoadButton" destination="5vT-hM-iBY" id="ZXG-Af-XPf"/>
                         <outlet property="selectBar" destination="t7P-Uq-1sE" id="4tx-hL-cf4"/>
                     </connections>
                 </viewController>
@@ -82,6 +84,21 @@
             <point key="canvasLocation" x="-6" y="-403"/>
         </scene>
     </scenes>
+    <classes>
+        <class className="ViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/ViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="deleteButtonPressed:"/>
+                <relationship kind="action" name="loadButtonPressed:"/>
+                <relationship kind="action" name="resetButtonPressed:"/>
+                <relationship kind="action" name="saveButtonPressed:"/>
+                <relationship kind="outlet" name="gamearea" candidateClass="UIScrollView"/>
+                <relationship kind="outlet" name="myDeleteButton" candidateClass="UIBarButtonItem"/>
+                <relationship kind="outlet" name="myLoadButton" candidateClass="UIBarButtonItem"/>
+                <relationship kind="outlet" name="selectBar" candidateClass="UIView"/>
+            </relationships>
+        </class>
+    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar" statusBarStyle="blackTranslucent"/>
         <simulatedOrientationMetrics key="orientation"/>

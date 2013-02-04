@@ -12,22 +12,8 @@ typedef enum {kGameObjectWolf = 1, kGameObjectPig = 2, kGameObjectBlock = 3} Gam
 //Constant for the three background of the straw
 typedef enum {GameBlockWood = 4, GameBlockIron = 5, GameBlockStone = 6} StrawType;
 
-@interface GameObject : UIViewController<UIGestureRecognizerDelegate, NSCoding> {
-  // You might need to add state here.
-    
-    /*
-    UIImageView* selfImgView;
-    UIScrollView* gamearea;
-    UIView* selectBar;
-    CGPoint originalCenter;
-    CGFloat originalWidth;
-    CGFloat originalHeight;
-    CGFloat currentWidth;
-    CGFloat currentHeight;
-     */
-
-
-}
+@interface GameObject : UIViewController<UIGestureRecognizerDelegate, NSCoding> 
+ 
 
 @property (nonatomic) UIImageView* selfImgView;
 @property (nonatomic) UIScrollView* gamearea;
@@ -45,15 +31,6 @@ typedef enum {GameBlockWood = 4, GameBlockIron = 5, GameBlockStone = 6} StrawTyp
 @property (strong) UIPinchGestureRecognizer* zoom;
 @property (strong) UIRotationGestureRecognizer* rotate;
 
-
-
-
-
-
-
-//@property (nonatomic, readonly) GameObjectType objectType;
-//@property (nonatomic) Boolean isGetBackgroundInformation;
-//@property (strong) GameObject* son;
 
 - (void)translate:(UIGestureRecognizer *)gesture;
   // MODIFIES: object model (coordinates)
@@ -74,13 +51,14 @@ typedef enum {GameBlockWood = 4, GameBlockIron = 5, GameBlockStone = 6} StrawTyp
 // You will need to define more methods to complete the specification.
 
 - (id)initWithBackground:(UIScrollView*) downArea:(UIView*)upArea;
+//init a gameObject and associate it with the gameArea and selectBar
 
 - (void)setRecognizer;
+// EFFECTS: add the gesture recognizer to the view
 
 -(void) releaseObject;
+// MODIFIES: views in gameArea
+// EFFECTS: add the view back to the selectBar
 
-
-
--(NSString*) getStringRepresentation;
 
 @end

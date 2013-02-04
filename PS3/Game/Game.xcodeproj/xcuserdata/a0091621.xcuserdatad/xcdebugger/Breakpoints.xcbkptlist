@@ -8,25 +8,12 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Game/ViewController+Extension.m"
-         timestampString = "381656143.645585"
+         timestampString = "381665870.691652"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "222"
-         endingLineNumber = "222"
-         landmarkName = "-reset"
-         landmarkType = "5">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "No"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
-         filePath = "Game/GameWolf.m"
-         timestampString = "381591415.497083"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "80"
-         endingLineNumber = "80"
-         landmarkName = "-moveToTarget:withTransform:"
+         startingLineNumber = "230"
+         endingLineNumber = "230"
+         landmarkName = "-loadWithName:"
          landmarkType = "5">
       </FileBreakpoint>
    </FileBreakpoints>

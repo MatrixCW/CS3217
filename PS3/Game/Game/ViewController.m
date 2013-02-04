@@ -10,6 +10,8 @@
 #import "ViewController+Extension.h"
 
 
+
+
 @interface ViewController ()
 
 @end
@@ -92,22 +94,20 @@
     CGFloat gameareaWidth = backgroundWidth;
     [_gamearea setContentSize:CGSizeMake(gameareaWidth, gameareaHeight)];
     
+
     _myWolf = [[GameWolf alloc] initWithBackground:self.gamearea :self.selectBar];
-    
     [_selectBar addSubview:_myWolf.view];
     
     
     
     _myPig = [[GamePig alloc] initWithBackground:self.gamearea :self.selectBar];
-
     [_selectBar addSubview:_myPig.view];
-    
     
     
     _myRootBlock = [[GameBlock alloc] initWithBackground:self.gamearea :self.selectBar];
     [_selectBar addSubview:_myRootBlock.view];
     
-      
+    
 }
 
 
@@ -123,7 +123,6 @@
     
     [self reset];
     
-        
 }
 
 - (IBAction)saveButtonPressed:(id)sender {
@@ -131,32 +130,85 @@
     [self save];
 }
 
+
 - (IBAction)loadButtonPressed:(id)sender {
     
-    [self load];
+
+    
+    NSArray *files = [self getAllFilesUnderGameDirectory];
+    
+    if(files.count == 0){ //currently no file saved
+        
+        UIAlertView* dialog = [[UIAlertView alloc] initWithTitle:NO_DATA_STORED
+                                                         message:Nil
+                                                        delegate:self
+                                               cancelButtonTitle:@"OK"
+                                               otherButtonTitles:nil];
+        [dialog show];
+    }
+    else{
+        
+        UIActionSheet *browseActionSheet = [[UIActionSheet alloc] initWithTitle:CHOOSE_FILE_TO_LOAD
+                                                                  delegate:self
+                                                                  cancelButtonTitle:nil
+                                                                  destructiveButtonTitle:nil
+                                                                  otherButtonTitles:nil];
+        
+        for (NSString* name in files) {
+            
+            [browseActionSheet addButtonWithTitle: name];
+            
+        }
+        
+        browseActionSheet.actionSheetStyle = UIActionSheetStyleAutomatic;
+        
+        [browseActionSheet showFromBarButtonItem: self.myLoadButton animated:YES];
+        
+    }
+
 }
 
-- (IBAction)browseButtonPressed:(id)sender {
-    
-    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-    NSString *documentsDirectory = [paths objectAtIndex:0];
-    
-    NSError *browseError;
-    
-    NSFileManager *fileManager = [[NSFileManager alloc] init];
-    
-    NSArray *files = [fileManager contentsOfDirectoryAtPath:documentsDirectory
-                                                      error:&browseError];
-    for(NSString *fileName in files)
-           NSLog(@"%@",fileName);
-}
 
+
+- (IBAction)deleteButtonPressed:(id)sender {
+    
+    NSArray *files = [self getAllFilesUnderGameDirectory];
+
+    if(files.count == 0){
+        
+        UIAlertView* dialog = [[UIAlertView alloc] initWithTitle:NO_DATA_STORED
+                                                        message:Nil
+                                                        delegate:self
+                                               cancelButtonTitle:@"OK"
+                                               otherButtonTitles:nil];
+        [dialog show];
+        
+    }
+    else{
+    
+    UIActionSheet *browseActionSheet = [[UIActionSheet alloc] initWithTitle:CHOOSE_FILE_TO_DELETE
+                                                              delegate:self
+                                                              cancelButtonTitle:nil
+                                                              destructiveButtonTitle:nil
+                                                              otherButtonTitles:nil];
+        for (NSString* name in files)  
+              [browseActionSheet addButtonWithTitle: name];
+        
+    browseActionSheet.actionSheetStyle = UIActionSheetStyleAutomatic;
+    [browseActionSheet showFromBarButtonItem: self.myDeleteButton animated:YES];
+    
+    }
+    
+   
+}
 
 
 
 
 - (void)viewDidUnload {
     [self setSelectBar:nil];
+    [self setMyDeleteButton:nil];
+    [self setMyLoadButton:nil];
     [super viewDidUnload];
 }
 

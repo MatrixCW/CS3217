@@ -30,8 +30,9 @@
 }
 
 - (GameWolf*)initWithBackground:(UIScrollView*) downArea:(UIView*)upArea{
-    
-    
+//override
+//init a gameObject and associate it with the gameArea and selectBar
+
     
     self.originalHeight = 90;
     self.originalWidth = 150;
@@ -82,9 +83,7 @@
 
     [self.gamearea addSubview:self.view];
         
-    
 
-    
 }
 
 

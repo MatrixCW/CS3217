@@ -8,7 +8,11 @@
 
 #import "ViewController+Extension.h"
 
+#define INITIAL_VIEW_COUNT 4
+
+
 @implementation ViewController (Extension)
+
 
 
 -(void)popOutWindowForFileName{
@@ -16,13 +20,14 @@
     UIAlertView* dialog = [[UIAlertView alloc] initWithTitle:@"Enter file name "
                                                      message:@"Use same file name as an existing file to over-write it"
                                                     delegate:self
-                                           cancelButtonTitle:@"Cancel"
-                                           otherButtonTitles:@"OK", nil];
+                                           cancelButtonTitle:CALCEL_BUTTON
+                                           otherButtonTitles:OK_BUTTON, nil];
     
     dialog.alertViewStyle = UIAlertViewStylePlainTextInput;
     
     [dialog show];
 }
+
 
 
 - (void) alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
@@ -34,15 +39,16 @@
     else{
       
       UITextField* textField = [alertView textFieldAtIndex:0];
-      NSLog(@"%@", textField.text);
-      if(textField.text != Nil && textField.text != @"")
+        
+      if(textField.text != Nil && ![textField.text isEqual:@""])
         [self saveWithFileName:textField.text];
+      
       else{
           
           UIAlertView* savingAborted = [[UIAlertView alloc] initWithTitle:@"Saving aborted!"
                                                            message:Nil
                                                           delegate:self
-                                                 cancelButtonTitle:@"OK"
+                                                 cancelButtonTitle:OK_BUTTON
                                                  otherButtonTitles:Nil];
           [savingAborted show];
           }
@@ -52,23 +58,11 @@
 }
 
 
--(void) deleteFileWithName:(NSString*)fileName{
-    
-    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-    NSString *documentsDirectory = [paths objectAtIndex:0];
-    
-    NSError *error;
-    NSFileManager *fileMgr = [NSFileManager defaultManager];
-    NSString *fileNameRm = [NSString stringWithFormat:@"%@/%@", documentsDirectory,fileName];
-    if ([fileMgr removeItemAtPath:fileNameRm error:&error] != YES)
-        NSLog(@"Unable to delete file: %@", [error localizedDescription]);
-    
-}
-
 
 - (void)save {
     
-    if(self.gamearea.subviews.count == 4){
+    
+    if(self.gamearea.subviews.count == INITIAL_VIEW_COUNT){
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Oops"
                                                         message:@"It seems that you haven't made any changes in current game view"
                                                        delegate:self
@@ -76,14 +70,23 @@
                                               otherButtonTitles:nil];
         [alert show];
         
-        return;
-    }else{
+    }
+    else{
+        
         [self popOutWindowForFileName];
+        
     }
 
 }
 
+
+
+
+
 -(void)saveWithFileName:(NSString*)myFileName{
+// REQUIRES: myFileName not null and not equals @""
+// EFFECTS: save the game state as a dictionary to document directory
+    
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString *documentsDirectory = [paths objectAtIndex:0];
     
@@ -114,44 +117,58 @@
     }
     
     
+    
     if([dictionary writeToFile:fileName atomically:YES]){
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"SUCCESS" message:@"Your game data has been stored." delegate:self cancelButtonTitle:@"Got it" otherButtonTitles:nil];
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"SUCCESS"
+                                                  message:@"Your game data has been stored."
+                                                  delegate:self
+                                                  cancelButtonTitle:@"Got it"
+                                                  otherButtonTitles:nil];
         [alert show];
-    }else{
+     }
+    else
+    {
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"ERROR"
-                                                        message:@"AnError occurred. Your game data did not save successfully"
+                                                        message:@"An Error occurred. Your game data did not save successfully"
                                                        delegate:self
                                                        cancelButtonTitle:@"Got it"
                                                        otherButtonTitles:nil];
         [alert show];
     }
-}
 
-
-
--(NSString*)getStringOfTransform:(CGAffineTransform)transform{
-    NSString* str = @"";
-    CGFloat a = transform.a;
-    CGFloat b = transform.b;
-    CGFloat c = transform.c;
-    CGFloat d = transform.d;
-    CGFloat tx = transform.tx;
-    CGFloat ty = transform.ty;
-    str = [str stringByAppendingFormat:@"{%lf,%lf,%lf,%lf,%lf,%lf}",a,b,c,d,tx,ty];
-    return str;
 }
 
 
 
 
+-(void) deleteFileWithName:(NSString*)fileName{
+// MODIFIES: game data stored in document directory
+// REQUIRES: fileName not null and not equals @""
+// EFFECTS: delete the file with the specified name
+    
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentsDirectory = [paths objectAtIndex:0];
+    
+    NSError *error;
+    NSFileManager *fileMgr = [NSFileManager defaultManager];
+    NSString *fileNameRm = [NSString stringWithFormat:@"%@/%@", documentsDirectory,fileName];
+    if ([fileMgr removeItemAtPath:fileNameRm error:&error] != YES)
+        NSLog(@"Unable to delete file: %@", [error localizedDescription]);
+    
+}
 
-- (void)load{
+
+
+- (void)loadWithName:(NSString*)loadName{
+// MODIFIES: gameArea
+// REQUIRES: loadName a valid name of a game data stored in the document directory
+// EFFECTS: change to gameArea to the state as loadName file specifies
     
     [self reset];
     
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString *documentsDirectory = [paths objectAtIndex:0];
-    NSString *fileName = [NSString stringWithFormat:@"%@/gameData",documentsDirectory];
+    NSString *fileName = [NSString stringWithFormat:@"%@/%@",documentsDirectory,loadName];
     
     NSMutableDictionary* dictionary = [[NSMutableDictionary alloc] initWithContentsOfFile:fileName];
     
@@ -183,8 +200,6 @@
                             withTransform:CGAffineTransformFromString(transformValue)];
                 
             }else{
-                
-                NSLog(@"%d", self.myCurrentBlock.view.superview == self.selectBar);
                 
                 int currentTag = [[data objectAtIndex:0] intValue];
                 
@@ -219,10 +234,10 @@
 
 
 - (void)reset{
-    
+// REQUIRES: transform not equal to null
+// EFFECTS: reset the gameArea
     
     [self.myWolf releaseObject];
-    
     [self.myPig releaseObject];
     
     
@@ -232,15 +247,69 @@
         
             [tempBlock releaseObject];
             tempBlock = tempBlock.nextGameBlock;
-        
     }
     
-    self.myCurrentBlock = tempBlock; //muCurrentBlock always points to the block located at the 
+    self.myCurrentBlock = tempBlock;
+    self.myRootBlock = tempBlock;
+    
+}
+
+
+-(NSArray*)getAllFilesUnderGameDirectory{
+    //EFFECTS: return an array of strings of the fileNames under the document directory
+
+    
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentsDirectory = [paths objectAtIndex:0];
+    
+    NSError *browseError;
+    
+    NSFileManager *fileManager = [[NSFileManager alloc] init];
+    
+    NSArray *files = [fileManager contentsOfDirectoryAtPath:documentsDirectory
+                                                      error:&browseError];
+    
+    return files;
+}
+
+
+- (void) actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex{
+//comform to the UIActionSheetDelegate protocal
+    
+    
+    NSArray *files = [self getAllFilesUnderGameDirectory];
+    
+    
+    if ([actionSheet.title isEqual:CHOOSE_FILE_TO_DELETE] && buttonIndex>=0 && buttonIndex < files.count){
+        NSString *deleteFileName = [actionSheet buttonTitleAtIndex:buttonIndex];
+        [self deleteFileWithName:deleteFileName];
+        return;
+    }
+    
+    
+    if ([actionSheet.title isEqual:CHOOSE_FILE_TO_LOAD] && buttonIndex>=0 && buttonIndex < files.count){
+        NSString *loadFileName = [actionSheet buttonTitleAtIndex:buttonIndex];
+        [self loadWithName:loadFileName];
+        return;
+    }
     
     
 }
 
 
-
+-(NSString*)getStringOfTransform:(CGAffineTransform)transform{
+// REQUIRES: transform not equal to null
+// EFFECTS: return a string representation of the transform
+    
+    NSString* str = @"";
+    CGFloat a = transform.a;
+    CGFloat b = transform.b;
+    CGFloat c = transform.c;
+    CGFloat d = transform.d;
+    CGFloat tx = transform.tx;
+    CGFloat ty = transform.ty;
+    str = [str stringByAppendingFormat:@"{%lf,%lf,%lf,%lf,%lf,%lf}",a,b,c,d,tx,ty];
+    return str;
+}
 
 @end

@@ -13,24 +13,34 @@
 #import "GameBlock.h"
 
 
-@interface ViewController : UIViewController<UIAlertViewDelegate>
-//- (IBAction)buttonPressed:(id)sender;
+#define NO_DATA_STORED         (@"You have no game data stored!")
+#define CHOOSE_FILE_TO_LOAD    (@"Choose a file to load")
+#define CHOOSE_FILE_TO_DELETE  (@"Choose a file to delete")
+#define CALCEL_BUTTON          (@"Cancel")
+#define OK_BUTTON              (@"OK")
+
+
+@interface ViewController : UIViewController<UIAlertViewDelegate,UIActionSheetDelegate>
 
 @property (strong) GameWolf *myWolf;
 @property (strong) GamePig *myPig;
-@property (strong) GameBlock *myCurrentBlock;
-@property (strong) GameBlock *myRootBlock;
+@property (strong) GameBlock *myCurrentBlock; 
+@property (strong) GameBlock *myRootBlock; 
+
+
+@property (strong, nonatomic) IBOutlet UIBarButtonItem *myDeleteButton;
+@property (strong, nonatomic) IBOutlet UIBarButtonItem *myLoadButton;
+//used for trigger UIActionSheet animation
 
 
 @property (strong, nonatomic) IBOutlet UIScrollView *gamearea;
 @property (strong, nonatomic) IBOutlet UIView *selectBar;
 
 
-
 - (IBAction)resetButtonPressed:(id)sender;
 - (IBAction)saveButtonPressed:(id)sender;
 - (IBAction)loadButtonPressed:(id)sender;
-- (IBAction)browseButtonPressed:(id)sender;
+- (IBAction)deleteButtonPressed:(id)sender;
 
 
 @end

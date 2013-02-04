@@ -36,7 +36,8 @@
 }
 
 - (GameBlock*)initWithBackground:(UIScrollView*) downArea:(UIView*)upArea{
-    
+//override
+//init a gameObject and associate it with the gameArea and selectBar
     
         
     self.originalHeight = 55;
@@ -132,6 +133,7 @@
     
     
 }
+
 
 -(void)changeTexture{
     

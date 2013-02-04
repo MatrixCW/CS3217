@@ -36,7 +36,8 @@
 }
 
 - (GamePig*)initWithBackground:(UIScrollView*) downArea:(UIView*)upArea{
-    
+//override
+//init a gameObject and associate it with the gameArea and selectBar
     
     
     self.originalHeight = 66;
@@ -72,9 +73,6 @@
     self.view.center = center;
     self.view.transform = transform;
     [self.gamearea addSubview:self.view];
-    
-    
-    
     
 }
 

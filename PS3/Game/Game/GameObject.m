@@ -180,12 +180,10 @@
         
         
         [self.view setBounds:CGRectMake(ZERO, ZERO, self.originalWidth, self.originalHeight)];
-        
-        
-        
         [self.selectBar addSubview:self.view];
     
 }
+
 
 -(void)handleSingleTap:(UITapGestureRecognizer *)recognizer {
     
@@ -207,32 +205,6 @@
     return Nil;
 }
 
--(NSString*) getStringRepresentation{
-    
-    NSString *information = @"wolf";
-    
-    if(self.view.superview == self.selectBar)
-        return information;
-    
-    NSString *centerCoordinates = [NSString stringWithFormat:@" %lf, %lf",
-                                                             self.view.center.x, self.view.center.y];
-    
-    NSString *transform = [NSString stringWithFormat:@" %lf, %lf, %lf, %lf, %lf, %lf",
-                                                     self.view.transform.a,
-                                                     self.view.transform.b,
-                                                     self.view.transform.c,
-                                                     self.view.transform.d,
-                                                     self.view.transform.tx,
-                                                     self.view.transform.ty];
-    
-    
-    information = [information stringByAppendingString:centerCoordinates];
-    
-    
-    information = [information stringByAppendingString:transform];
-    
-    return information;
-    
-}
+
 
 @end
