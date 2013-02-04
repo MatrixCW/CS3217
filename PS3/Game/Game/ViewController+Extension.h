@@ -25,4 +25,6 @@
 // REQUIRES: game in designer mode
 // EFFECTS: current game objects are deleted and palette contains all objects
 
+-(void) deleteFileWithName:(NSString*)fileName;
+
 @end

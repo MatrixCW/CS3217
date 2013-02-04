@@ -32,6 +32,11 @@
                                             <action selector="loadButtonPressed:" destination="2" id="ccg-4v-UjO"/>
                                         </connections>
                                     </barButtonItem>
+                                    <barButtonItem title="Browse" id="sfH-fR-Tel">
+                                        <connections>
+                                            <action selector="browseButtonPressed:" destination="2" id="FSR-5s-fpA"/>
+                                        </connections>
+                                    </barButtonItem>
                                 </items>
                             </toolbar>
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="mIf-LW-mXb">

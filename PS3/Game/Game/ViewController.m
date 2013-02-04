@@ -107,6 +107,7 @@
     _myRootBlock = [[GameBlock alloc] initWithBackground:self.gamearea :self.selectBar];
     [_selectBar addSubview:_myRootBlock.view];
     
+      
 }
 
 
@@ -135,10 +136,30 @@
     [self load];
 }
 
+- (IBAction)browseButtonPressed:(id)sender {
+    
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentsDirectory = [paths objectAtIndex:0];
+    
+    NSError *browseError;
+    
+    NSFileManager *fileManager = [[NSFileManager alloc] init];
+    
+    NSArray *files = [fileManager contentsOfDirectoryAtPath:documentsDirectory
+                                                      error:&browseError];
+    for(NSString *fileName in files)
+           NSLog(@"%@",fileName);
+}
+
+
+
 
 
 - (void)viewDidUnload {
     [self setSelectBar:nil];
     [super viewDidUnload];
 }
+
+
+
 @end

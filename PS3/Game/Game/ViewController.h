@@ -13,7 +13,7 @@
 #import "GameBlock.h"
 
 
-@interface ViewController : UIViewController
+@interface ViewController : UIViewController<UIAlertViewDelegate>
 //- (IBAction)buttonPressed:(id)sender;
 
 @property (strong) GameWolf *myWolf;
@@ -26,8 +26,11 @@
 @property (strong, nonatomic) IBOutlet UIView *selectBar;
 
 
+
 - (IBAction)resetButtonPressed:(id)sender;
 - (IBAction)saveButtonPressed:(id)sender;
 - (IBAction)loadButtonPressed:(id)sender;
+- (IBAction)browseButtonPressed:(id)sender;
+
 
 @end

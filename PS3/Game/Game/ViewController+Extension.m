@@ -8,48 +8,94 @@
 
 #import "ViewController+Extension.h"
 
-
-
 @implementation ViewController (Extension)
-    
 
-- (void)save {
+
+-(void)popOutWindowForFileName{
     
-    /*
-    NSError *error;
-    NSFileManager *fileMgr = [NSFileManager defaultManager];
-    NSString *fileNameRm = [NSString stringWithFormat:@"%@/dictionay", documentsDirectory];
-    if ([fileMgr removeItemAtPath:fileNameRm error:&error] != YES)
-        NSLog(@"Unable to delete file: %@", [error localizedDescription]);
-     */
+    UIAlertView* dialog = [[UIAlertView alloc] initWithTitle:@"Enter file name "
+                                                     message:@"Use same file name as an existing file to over-write it"
+                                                    delegate:self
+                                           cancelButtonTitle:@"Cancel"
+                                           otherButtonTitles:@"OK", nil];
+    
+    dialog.alertViewStyle = UIAlertViewStylePlainTextInput;
+    
+    [dialog show];
+}
+
+
+- (void) alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    
+    if(buttonIndex == 0){
+        return;
+    }
+    else{
+      
+      UITextField* textField = [alertView textFieldAtIndex:0];
+      NSLog(@"%@", textField.text);
+      if(textField.text != Nil && textField.text != @"")
+        [self saveWithFileName:textField.text];
+      else{
+          
+          UIAlertView* savingAborted = [[UIAlertView alloc] initWithTitle:@"Saving aborted!"
+                                                           message:Nil
+                                                          delegate:self
+                                                 cancelButtonTitle:@"OK"
+                                                 otherButtonTitles:Nil];
+          [savingAborted show];
+          }
+                
+     }
+
+}
+
+
+-(void) deleteFileWithName:(NSString*)fileName{
     
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString *documentsDirectory = [paths objectAtIndex:0];
     
+    NSError *error;
+    NSFileManager *fileMgr = [NSFileManager defaultManager];
+    NSString *fileNameRm = [NSString stringWithFormat:@"%@/%@", documentsDirectory,fileName];
+    if ([fileMgr removeItemAtPath:fileNameRm error:&error] != YES)
+        NSLog(@"Unable to delete file: %@", [error localizedDescription]);
     
-    //make a file name to write the data to using the documents directory:
-    NSString *fileName = [NSString stringWithFormat:@"%@/gameData", documentsDirectory];
+}
+
+
+- (void)save {
     
-    NSArray* subviewsArray = [[NSArray alloc] initWithArray:self.gamearea.subviews];
-    
-    
-    if(subviewsArray.count == 4){
+    if(self.gamearea.subviews.count == 4){
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Oops"
-                                                  message:@"It seems that you haven't made any changes in current game view"
-                                                  delegate:self
-                                                  cancelButtonTitle:@"Oh I see."
-                                                  otherButtonTitles:nil];
+                                                        message:@"It seems that you haven't made any changes in current game view"
+                                                       delegate:self
+                                              cancelButtonTitle:@"Oh I see."
+                                              otherButtonTitles:nil];
         [alert show];
         
         return;
+    }else{
+        [self popOutWindowForFileName];
     }
+
+}
+
+-(void)saveWithFileName:(NSString*)myFileName{
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentsDirectory = [paths objectAtIndex:0];
+    
+    //make a file name to write the data to using the documents directory:
+    NSString *fileName = [NSString stringWithFormat:@"%@/%@", documentsDirectory,myFileName];
     
     NSMutableDictionary* dictionary = [NSMutableDictionary dictionary];
     
     int keyCount = 0;
     NSString* keyValue = @"";
     
-    for (UIView* view in subviewsArray) {
+    for (UIView* view in self.gamearea.subviews) {
         
         if(view.tag >= 1){
             NSNumber* tag = [[NSNumber alloc] initWithInt:view.tag];
@@ -61,9 +107,9 @@
             keyCount++;
             [dictionary setObject:data forKey:key];
         }
-    
-            
-                        
+        
+        
+        
         
     }
     
@@ -71,10 +117,16 @@
     if([dictionary writeToFile:fileName atomically:YES]){
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"SUCCESS" message:@"Your game data has been stored." delegate:self cancelButtonTitle:@"Got it" otherButtonTitles:nil];
         [alert show];
+    }else{
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"ERROR"
+                                                        message:@"AnError occurred. Your game data did not save successfully"
+                                                       delegate:self
+                                                       cancelButtonTitle:@"Got it"
+                                                       otherButtonTitles:nil];
+        [alert show];
     }
-   
-    
 }
+
 
 
 -(NSString*)getStringOfTransform:(CGAffineTransform)transform{
