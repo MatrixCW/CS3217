@@ -9,11 +9,11 @@
 #import <UIKit/UIKit.h>
 #import "Matrix2D.h"
 #import "PERectangle.h"
-#import "UpdatePositionInViewDelegate.h"
+#import "PERectangleViewController.h"
 #import "MyWorld.h"
 
 
-@interface MyPEViewController : UIViewController<UpdatePositionInViewDelegate>
+@interface MyPEViewController : UIViewController
 
 
 @property MyWorld* simulatedWorld;
@@ -22,5 +22,7 @@
 @property PERectangle* lowerBound;
 @property PERectangle* leftBound;
 @property PERectangle* rightBound;
+
+
 
 @end

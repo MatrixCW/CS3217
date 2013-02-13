@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7C695CF816CBCF0300F70DEA /* PERectangleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C695CF716CBCF0300F70DEA /* PERectangleViewController.m */; };
+		7C695CFF16CBE9BF00F70DEA /* ContactPointsFinder.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C695CFE16CBE9BF00F70DEA /* ContactPointsFinder.m */; };
 		7C8AC15D16CA463A004A9A89 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C8AC15C16CA463A004A9A89 /* UIKit.framework */; };
 		7C8AC15F16CA463A004A9A89 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C8AC15E16CA463A004A9A89 /* Foundation.framework */; };
 		7C8AC16116CA463A004A9A89 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C8AC16016CA463A004A9A89 /* CoreGraphics.framework */; };
@@ -27,6 +29,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		7C695CF616CBCF0300F70DEA /* PERectangleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PERectangleViewController.h; sourceTree = "<group>"; };
+		7C695CF716CBCF0300F70DEA /* PERectangleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PERectangleViewController.m; sourceTree = "<group>"; };
+		7C695CFD16CBE9BF00F70DEA /* ContactPointsFinder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactPointsFinder.h; sourceTree = "<group>"; };
+		7C695CFE16CBE9BF00F70DEA /* ContactPointsFinder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactPointsFinder.m; sourceTree = "<group>"; };
 		7C8AC15816CA463A004A9A89 /* PhysicsEngine.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PhysicsEngine.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7C8AC15C16CA463A004A9A89 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		7C8AC15E16CA463A004A9A89 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -72,6 +78,41 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		7C695CF016CBBC7500F70DEA /* simulating */ = {
+			isa = PBXGroup;
+			children = (
+				7CA611A216CA74C200EC4876 /* MyWorld.h */,
+				7CA611A316CA74C200EC4876 /* MyWorld.m */,
+				7C695CFD16CBE9BF00F70DEA /* ContactPointsFinder.h */,
+				7C695CFE16CBE9BF00F70DEA /* ContactPointsFinder.m */,
+				7CA611AB16CAB45B00EC4876 /* CollisionDetector.h */,
+				7CA611AC16CAB45B00EC4876 /* CollisionDetector.m */,
+			);
+			name = simulating;
+			sourceTree = "<group>";
+		};
+		7C695CF116CBBC9800F70DEA /* model */ = {
+			isa = PBXGroup;
+			children = (
+				7CEBDBC616CA5CF70064B92F /* PERectangle.h */,
+				7CEBDBC716CA5CF70064B92F /* PERectangle.m */,
+			);
+			name = model;
+			sourceTree = "<group>";
+		};
+		7C695CF216CBBCA200F70DEA /* utility */ = {
+			isa = PBXGroup;
+			children = (
+				7CA6119916CA664000EC4876 /* ConstantLibrary.h */,
+				7CA6119A16CA664000EC4876 /* ConstantLibrary.m */,
+				7CEBDBBE16CA5B640064B92F /* Matrix2D.h */,
+				7CEBDBBF16CA5B640064B92F /* Matrix2D.m */,
+				7CEBDBC016CA5B640064B92F /* Vector2D.h */,
+				7CEBDBC116CA5B640064B92F /* Vector2D.m */,
+			);
+			name = utility;
+			sourceTree = "<group>";
+		};
 		7C8AC14D16CA4639004A9A89 = {
 			isa = PBXGroup;
 			children = (
@@ -102,24 +143,17 @@
 		7C8AC16216CA463A004A9A89 /* PhysicsEngine */ = {
 			isa = PBXGroup;
 			children = (
+				7C695CF216CBBCA200F70DEA /* utility */,
+				7C695CF116CBBC9800F70DEA /* model */,
+				7C695CF016CBBC7500F70DEA /* simulating */,
 				7CA611A516CA763200EC4876 /* delegateProtocal */,
-				7CEBDBC616CA5CF70064B92F /* PERectangle.h */,
-				7CEBDBC716CA5CF70064B92F /* PERectangle.m */,
-				7CA611AB16CAB45B00EC4876 /* CollisionDetector.h */,
-				7CA611AC16CAB45B00EC4876 /* CollisionDetector.m */,
-				7CA6119916CA664000EC4876 /* ConstantLibrary.h */,
-				7CA6119A16CA664000EC4876 /* ConstantLibrary.m */,
-				7CEBDBBE16CA5B640064B92F /* Matrix2D.h */,
-				7CEBDBBF16CA5B640064B92F /* Matrix2D.m */,
-				7CEBDBC016CA5B640064B92F /* Vector2D.h */,
-				7CEBDBC116CA5B640064B92F /* Vector2D.m */,
 				7C8AC16B16CA463A004A9A89 /* MyPEAppDelegate.h */,
 				7C8AC16C16CA463A004A9A89 /* MyPEAppDelegate.m */,
 				7C8AC17416CA463A004A9A89 /* MainStoryboard.storyboard */,
 				7C8AC17716CA463A004A9A89 /* MyPEViewController.h */,
 				7C8AC17816CA463A004A9A89 /* MyPEViewController.m */,
-				7CA611A216CA74C200EC4876 /* MyWorld.h */,
-				7CA611A316CA74C200EC4876 /* MyWorld.m */,
+				7C695CF616CBCF0300F70DEA /* PERectangleViewController.h */,
+				7C695CF716CBCF0300F70DEA /* PERectangleViewController.m */,
 				7C8AC16316CA463A004A9A89 /* Supporting Files */,
 			);
 			path = PhysicsEngine;
@@ -223,6 +257,8 @@
 				7CA6119B16CA664000EC4876 /* ConstantLibrary.m in Sources */,
 				7CA611A416CA74C200EC4876 /* MyWorld.m in Sources */,
 				7CA611AD16CAB45B00EC4876 /* CollisionDetector.m in Sources */,
+				7C695CF816CBCF0300F70DEA /* PERectangleViewController.m in Sources */,
+				7C695CFF16CBE9BF00F70DEA /* ContactPointsFinder.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

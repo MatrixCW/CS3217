@@ -8,9 +8,7 @@
 
 #import "MyPEViewController.h"
 
-@interface MyPEViewController ()
 
-@end
 
 @implementation MyPEViewController
 
@@ -19,52 +17,49 @@
     [super viewDidLoad];
 	
     _simulatedWorld = [[MyWorld alloc] init];
-    _simulatedWorld.updateViewDelegate = self;
     
     [self setBounds];
     
-    PERectangle* rect1 = [[PERectangle alloc] initPERectangleOrigin:CGPointMake(50, 50) Width:60 Height:260 Mass:10 andColor:[UIColor yellowColor]];
-    PERectangle* rect2 = [[PERectangle alloc] initPERectangleOrigin:CGPointMake(150, 450) Width:90 Height:30 Mass:10 andColor:[UIColor blueColor]];
-    PERectangle* rect3 = [[PERectangle alloc] initPERectangleOrigin:CGPointMake(400, 450) Width:40 Height:200 Mass:10 andColor:[UIColor blackColor]];
     
-        
-    [self.view addSubview:rect1.drawing];
-    [self.view addSubview:rect2.drawing];
-    [self.view addSubview:rect3.drawing];
+    for(int i = 0; i< 2; i++)
+        for(int j=0 ;j < 2; j++){
+            
+            PERectangleViewController* test = [[PERectangleViewController alloc] initPERectangleOrigin:CGPointMake(10*i, 10*j) Width:5 Height:5 mass:99 andColor:[UIColor greenColor]];
+            [self addChildViewController:test];
+            [self.simulatedWorld.objectsInWorld addObject:test.model];
+            [self.view addSubview:test.view];
+        }
     
-    [self.simulatedWorld.objectsInWorld addObject:rect1];
-    [self.simulatedWorld.objectsInWorld addObject:rect2];
-    [self.simulatedWorld.objectsInWorld addObject:rect3];
+
     
     [self.simulatedWorld run];
     
-    
 }
 
 
--(void)UpdatePosition{
-    
-    for (PERectangle* rect in self.simulatedWorld.objectsInWorld)
-        [self.view addSubview:rect.drawing];
-    
-}
 
 -(void)setBounds{
     
-    self.upperBound = [PERectangle getUpperHorizontalBoundRectangle];
-    self.lowerBound = [PERectangle getLowerHorizontalBoundRectangle];
-    self.leftBound = [PERectangle getLeftVerticalBoundRectangle];
-    self.rightBound = [PERectangle getRightVerticalBoundRectangle];
+    PERectangleViewController* upperHorizontal = [PERectangleViewController getUpperHorizontalBoundRectangle];
+    PERectangleViewController* lowerHorizontal = [PERectangleViewController getLowerHorizontalBoundRectangle];
+    PERectangleViewController* leftVertical = [PERectangleViewController getLeftVerticalBoundRectangle];
+    PERectangleViewController* rightVertical = [PERectangleViewController getRightVerticalBoundRectangle];
     
-    [self.view addSubview:self.upperBound.drawing];
-    [self.view addSubview:self.lowerBound.drawing];
-    [self.view addSubview:self.leftBound.drawing];
-    [self.view addSubview:self.rightBound.drawing];
-   
-    [self.simulatedWorld.objectsInWorld addObject:self.upperBound];
-    [self.simulatedWorld.objectsInWorld addObject:self.lowerBound];
-    [self.simulatedWorld.objectsInWorld addObject:self.leftBound];
-    [self.simulatedWorld.objectsInWorld addObject:self.rightBound];
+    [self addChildViewController:upperHorizontal];
+    [self addChildViewController:lowerHorizontal];
+    [self addChildViewController:leftVertical];
+    [self addChildViewController:rightVertical];
+    
+    [self.simulatedWorld.objectsInWorld addObject:upperHorizontal.model];
+    [self.simulatedWorld.objectsInWorld addObject:lowerHorizontal.model];
+    [self.simulatedWorld.objectsInWorld addObject:leftVertical.model];
+    [self.simulatedWorld.objectsInWorld addObject:rightVertical.model];
+    
+    [self.view addSubview:upperHorizontal.view];
+    [self.view addSubview:lowerHorizontal.view];
+    [self.view addSubview:leftVertical.view];
+    [self.view addSubview:rightVertical.view];
+    
     
 }
 

@@ -7,13 +7,14 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "Vector2D.h"
 
-extern double timeInterval;
-extern double defaultFrictionCoefficient;
-extern double defaultRestitutionCoefficient;
-extern double floatComparisonEpsilon;
-extern double gravityScaleValue;
-
+extern CGFloat timeInterval;
+extern CGFloat defaultFrictionCoefficient;
+extern CGFloat defaultRestitutionCoefficient;
+extern CGFloat floatComparisonEpsilon;
+extern CGFloat gravityScaleValue;
+extern CGFloat defaultGravity;
 
 @interface ConstantLibrary : NSObject
 

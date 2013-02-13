@@ -8,19 +8,16 @@
 
 #import <Foundation/Foundation.h>
 #import "Vector2D.h"
-#import "UpdatePositionInViewDelegate.h"
 #import "ConstantLibrary.h"
 #import "PERectangle.h"
 
+
 @interface MyWorld : NSObject<UIAccelerometerDelegate>
-
-@property Vector2D* gravity;
-
-
-@property (weak) id<UpdatePositionInViewDelegate> updateViewDelegate;
 
 @property NSMutableArray* objectsInWorld;
 @property NSTimer* timer;
+@property Vector2D* gravity;
+@property UIAccelerometer* accelerometer;
 
 - (void)run;
 

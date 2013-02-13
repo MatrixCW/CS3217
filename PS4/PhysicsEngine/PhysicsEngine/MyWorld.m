@@ -13,9 +13,11 @@
 -(id)init{
     
     self.objectsInWorld = [[NSMutableArray alloc] init];
-    UIAccelerometer* accel = [UIAccelerometer sharedAccelerometer];
-    accel.delegate = self;
-    accel.updateInterval = timeInterval;
+    self.gravity = [Vector2D vectorWith:0 y:defaultGravity];
+    
+    self.accelerometer = [UIAccelerometer sharedAccelerometer];
+    self.accelerometer.delegate = self;
+    self.accelerometer.updateInterval = timeInterval;
     
     return self;
 }
@@ -23,11 +25,11 @@
 
 - (void)run{
     
-    _timer =  [NSTimer scheduledTimerWithTimeInterval:timeInterval
+    
+    self.timer =  [NSTimer scheduledTimerWithTimeInterval:timeInterval
                                                target:self
-                                             selector:@selector(simulate)
+                                               selector:@selector(simulate:)
                                              userInfo:nil
-               
                                               repeats:YES];
     
     
@@ -35,7 +37,7 @@
 
 
 
--(void)simulate{
+-(void)simulate:(NSTimer*)timer{
     [self applyGravity];
     [self updatePosition];
 }
@@ -43,12 +45,10 @@
 
 - (void)applyGravity{
     
-    
-    for (PERectangle* rect in self.objectsInWorld) {
+    for(PERectangle* rect in self.objectsInWorld)
         if(rect.identity)
-          rect.velocity = [rect.velocity  add:[self.gravity multiply:timeInterval] ];
-        
-    }
+           rect.velocity = [rect.velocity  add:[self.gravity multiply:timeInterval] ];
+    
     
 }
 
@@ -56,10 +56,10 @@
     
     for (PERectangle* rect in self.objectsInWorld){
         if(rect.identity){
-           CGFloat x = rect.drawing.center.x + rect.velocity.x * timeInterval;
-           CGFloat y = rect.drawing.center.y + rect.velocity.y * timeInterval;
-           rect.drawing.center = CGPointMake(x, y);
-           [self.updateViewDelegate UpdatePosition];
+           CGFloat x = rect.origin.x + rect.velocity.x * timeInterval;
+           CGFloat y = rect.origin.y + rect.velocity.y * timeInterval;
+           rect.origin = CGPointMake(x, y);
+           [rect.myDelegate UpdatePosition];
         }
     }
     
@@ -71,6 +71,8 @@
     
     self.gravity = [Vector2D vectorWith:aceler.x*gravityScaleValue y:-aceler.y*gravityScaleValue];
     
+    
 }
+
 
 @end
