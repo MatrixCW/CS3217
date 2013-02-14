@@ -13,24 +13,32 @@
 @interface PERectangle : NSObject
 
 
-@property CGPoint origin;
-@property CGFloat rotation;
+@property CGPoint center;
 @property CGFloat width;
 @property CGFloat height;
 @property CGFloat mass;
 @property CGFloat momentOfInetia;
-@property NSString* shape;
-@property CGFloat angularVelocity;
 @property CGFloat frictionCoefficient;
 @property CGFloat restitutionCoefficient;
+@property CGFloat rotation;
+@property CGFloat angularVelocity;
+
 @property (readonly) int identity;
+
 @property Vector2D* velocity;
 @property (nonatomic) Matrix2D* rotationMatrix;
+
+@property (nonatomic) Vector2D* hVector;
+
 @property UIColor* rectColor;
+
 @property (weak) id<UpdatePositionInViewDelegate> myDelegate;
 
 
--(id)initPERectangleOrigin:(CGPoint)origin Width:(CGFloat)width Height:(CGFloat)height andMass:(CGFloat)mass;
+-(id)initPERectangleWithCenter:(CGPoint)center Width:(CGFloat)width Height:(CGFloat)height andMass:(CGFloat)mass;
+
+-(Vector2D*)centerOfRectangleInUpRightCoordinateSystem;
+
 
 +(id)getUpperHorizontalBoundRectangle;
 +(id)getLowerHorizontalBoundRectangle;

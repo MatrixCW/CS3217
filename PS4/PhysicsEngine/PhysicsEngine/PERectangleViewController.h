@@ -14,7 +14,7 @@
 
 @property PERectangle* model;
 
--(id)initPERectangleOrigin:(CGPoint)origin Width:(CGFloat)width Height:(CGFloat)height mass:(CGFloat)mass andColor:(UIColor*) color;
+-(id)initPERectangleWithCenter:(CGPoint)center Width:(CGFloat)width Height:(CGFloat)height mass:(CGFloat)mass andColor:(UIColor*) color;
 
 +(id)getUpperHorizontalBoundRectangle;
 +(id)getLowerHorizontalBoundRectangle;

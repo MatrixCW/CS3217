@@ -19,12 +19,12 @@
 @synthesize rotationMatrix;
 
 
--(id)initPERectangleOrigin:(CGPoint)origin Width:(CGFloat)width Height:(CGFloat)height andMass:(CGFloat)mass{
+-(id)initPERectangleWithCenter:(CGPoint)center Width:(CGFloat)width Height:(CGFloat)height andMass:(CGFloat)mass{
     self = [super init];
     
     if(self){
         
-        self.origin = origin;
+        self.center = center;
         self.width = width;
         self.height = height;
         self.mass = mass;
@@ -44,7 +44,7 @@
 +(id)getUpperHorizontalBoundRectangle{
     
     PERectangle* temp = [PERectangle alloc];
-    temp = [temp initPERectangleOrigin:CGPointMake(0, 0) Width:768 Height:2 andMass:INFINITY];
+    temp = [temp initPERectangleWithCenter:CGPointMake(384, 1) Width:768 Height:2 andMass:INFINITY];
     temp.identity = 0;
     return temp;
     
@@ -53,7 +53,7 @@
 +(id)getLowerHorizontalBoundRectangle{
     
     PERectangle* temp = [PERectangle alloc];
-    temp = [temp initPERectangleOrigin:CGPointMake(0, 1002) Width:768 Height:2 andMass:INFINITY];
+    temp = [temp initPERectangleWithCenter:CGPointMake(384, 1003) Width:768 Height:2 andMass:INFINITY];
     temp.identity = 0;
     return temp;
     
@@ -61,22 +61,29 @@
 
 +(id)getLeftVerticalBoundRectangle{
     PERectangle* temp = [PERectangle alloc];
-    temp = [temp initPERectangleOrigin:CGPointMake(0, 0) Width:2 Height:1024 andMass:INFINITY];
+    temp = [temp initPERectangleWithCenter:CGPointMake(1, 512) Width:2 Height:1024 andMass:INFINITY];
     temp.identity = 0;
     return temp;
     
 }
 +(id)getRightVerticalBoundRectangle{
     PERectangle* temp = [PERectangle alloc];
-    temp = [temp initPERectangleOrigin:CGPointMake(766, 0) Width:2 Height:1024 andMass:INFINITY];
+    temp = [temp initPERectangleWithCenter:CGPointMake(767, 512) Width:2 Height:1024 andMass:INFINITY];
     temp.identity = 0;
     return temp;
     
 }
 
+-(Vector2D*)centerOfRectangleInUpRightCoordinateSystem{
+    return [Vector2D vectorWith:self.center.x y:-self.center.y];
+}
 
 -(Matrix2D*)rotationMatrix{
     return [Matrix2D initRotationMatrix:self.rotation];
+}
+
+-(Vector2D*)hVector{
+    return [Vector2D vectorWith:self.width/2 y:self.height/2];
 }
 
 

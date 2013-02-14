@@ -56,9 +56,9 @@
     
     for (PERectangle* rect in self.objectsInWorld){
         if(rect.identity){
-           CGFloat x = rect.origin.x + rect.velocity.x * timeInterval;
-           CGFloat y = rect.origin.y + rect.velocity.y * timeInterval;
-           rect.origin = CGPointMake(x, y);
+           CGFloat x = rect.center.x + rect.velocity.x * timeInterval;
+           CGFloat y = rect.center.y + rect.velocity.y * timeInterval;
+           rect.center = CGPointMake(x, y);
            [rect.myDelegate UpdatePosition];
         }
     }
