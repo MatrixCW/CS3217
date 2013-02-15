@@ -124,6 +124,108 @@
                     
                 }
     
+    Vector2D* ni;
+    Vector2D* p;
+    Matrix2D* R;
+    Vector2D* h;
+    
+    if([self testValue:fax isLargerThan:fay and:fbx and:fby] || [self testValue:fay isLargerThan:fax and:fbx and:fby]){
+        ni = [[[RB transpose] multiplyVector:nf] negate];
+        p = pB;
+        R = RB;
+        h = hB;
+    }
+    
+    if([self testValue:fbx isLargerThan:fax and:fay and:fby] || [self testValue:fby isLargerThan:fax and:fay and:fbx]){
+        ni = [[[RA transpose] multiplyVector:nf] negate];
+        p = pA;
+        R = RA;
+        h = hA;
+    }
+    
+    Vector2D* niAbs = [ni abs];
+    Vector2D* v1;
+    Vector2D* v2;
+    
+    if(niAbs.x > niAbs.y && ni.x > 0){
+        v1 = [p add:[R multiplyVector:[Vector2D vectorWith:h.x y:-h.y]]];
+        v2 = [p add:[R multiplyVector:[Vector2D vectorWith:h.x y:h.y]]];
+        
+    }
+    else
+        if(niAbs.x > niAbs.y && ni.x <= 0){
+            v1 = [p add:[R multiplyVector:[Vector2D vectorWith:-h.x y:h.y]]];
+            v2 = [p add:[R multiplyVector:[Vector2D vectorWith:-h.x y:-h.y]]];
+            
+        }
+        else
+            if(niAbs.x <= niAbs.y && ni.x > 0){
+                v1 = [p add:[R multiplyVector:[Vector2D vectorWith:h.x y:h.y]]];
+                v2 = [p add:[R multiplyVector:[Vector2D vectorWith:-h.x y:h.y]]];
+        
+        }
+            else{
+                assert(niAbs.x <= niAbs.y && ni.x <= 0);
+                v1 = [p add:[R multiplyVector:[Vector2D vectorWith:-h.x y:-h.y]]];
+                v2 = [p add:[R multiplyVector:[Vector2D vectorWith:h.x y:-h.y]]];
+            }
+    
+    Vector2D* v1Prime;
+    Vector2D* v2Prime;
+    
+    CGFloat dist1 = -[ns dot:v1] - Dneg;
+    CGFloat dist2 = -[ns dot:v2] - Dneg;
+    
+    if(dist1 > 0 && dist2 > 0) //rectangles not colliding
+        return;
+    
+    if(dist1 < 0 && dist2 < 0){
+        v1Prime = v1;
+        v2Prime = v2;
+    }
+    else
+        if(dist1 < 0 && dist2 > 0){
+            v1Prime = v1;
+            v2Prime = [[[v2 subtract:v1] multiply:dist1/(dist1-dist2)] add:v1];
+        }
+        else{
+            assert(dist1 > 0 && dist2 < 0);
+            v1Prime = v2;
+            v2Prime = [[[v2 subtract:v1] multiply:dist1/(dist1-dist2)] add:v1];
+        }
+    
+    dist1 = [ns dot:v1Prime] - Dpos;
+    dist2 = [ns dot:v2Prime] - Dpos;
+    
+    Vector2D* v1DoublePrime;
+    Vector2D* v2DoublePrime;
+    
+    if(dist1 > 0 && dist2 > 0) //rectangles not colliding
+        return;
+    
+    if(dist1 < 0 && dist2 < 0){
+        v1DoublePrime = v1Prime;
+        v2DoublePrime = v2Prime;
+    }
+    else
+        if(dist1 < 0 && dist2 > 0){
+            v1DoublePrime = v1Prime;
+            v2DoublePrime = [[[v2Prime subtract:v1Prime] multiply:dist1/(dist1-dist2)] add:v1Prime];
+        }
+        else{
+            assert(dist1 > 0 && dist2 < 0);
+            v1DoublePrime = v2Prime;
+            v2DoublePrime = [[[v2Prime subtract:v1Prime] multiply:dist1/(dist1-dist2)] add:v1Prime];
+
+        }
+    
+    CGFloat seperationC1 = [nf dot:v1DoublePrime] - Df;
+    Vector2D* c1 = [v1DoublePrime subtract:[nf multiply:seperationC1]];
+    
+    CGFloat seperationC2 = [nf dot:v2DoublePrime] - Df;
+    Vector2D* c2 = [v2DoublePrime subtract:[nf multiply:seperationC2]];
+    
+    
 }
 
 

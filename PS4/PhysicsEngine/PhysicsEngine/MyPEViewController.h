@@ -11,7 +11,7 @@
 #import "PERectangle.h"
 #import "PERectangleViewController.h"
 #import "MyWorld.h"
-
+#import "CollisionDetector.h"
 
 @interface MyPEViewController : UIViewController
 
