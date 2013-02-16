@@ -21,14 +21,18 @@
     [self setBounds];
     
     
-    for(int i = 1; i< 3; i++)
-        for(int j=1 ;j < 3; j++){
+   
             
-            PERectangleViewController* test = [[PERectangleViewController alloc] initPERectangleWithCenter:CGPointMake(100*i, 100*j) Width:50 Height:50 mass:99 andColor:[UIColor greenColor]];
-            [self addChildViewController:test];
-            [self.simulatedWorld.objectsInWorld addObject:test.model];
-            [self.view addSubview:test.view];
-        }
+    PERectangleViewController* test = [[PERectangleViewController alloc] initPERectangleWithCenter:     CGPointMake(300, 595)
+                                                                                             Width:50
+                                                                                            Height:50
+                                                                                              mass:99
+                                                                                          andColor:[UIColor greenColor]];
+    
+    [self addChildViewController:test];
+    [self.simulatedWorld.objectsInWorld addObject:test.model];
+    [self.view addSubview:test.view];
+        
     
 
     

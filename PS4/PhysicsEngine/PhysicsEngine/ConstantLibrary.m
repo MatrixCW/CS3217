@@ -9,12 +9,13 @@
 #import "ConstantLibrary.h"
 
 
-CGFloat timeInterval = 1.0f/60.0f;
+CGFloat timeInterval = 1.0f/10.0f;
 CGFloat defaultFrictionCoefficient = 0.05;
-CGFloat defaultRestitutionCoefficient = 0.1;
+CGFloat defaultRestitutionCoefficient = 0.5;
 CGFloat floatComparisonEpsilon = 0.00000000001;
 CGFloat gravityScaleValue = 500;
-CGFloat defaultGravity = 1000;
+CGFloat defaultGravity = 100;
+
 
 @implementation ConstantLibrary
 

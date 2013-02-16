@@ -10,12 +10,18 @@
 #import "Vector2D.h"
 #import "Matrix2D.h"
 #import "PERectangle.h"
+#import "ConstantLibrary.h"
+#import "ContactPoint.h"
 
 @interface CollisionDetector : NSObject
 
-@property (weak) PERectangle* rectA;
-@property (weak) PERectangle* rectB;
+@property PERectangle* rectA;
+@property PERectangle* rectB;
 
+@property NSMutableArray* contactPoints;
 
+-(id)initCoiisionDetector;
+-(void)detectCollisionBetweenRectA:(PERectangle*) rectA andRectB:(PERectangle*) rectB;
+-(void)applyImpulse;
 
 @end

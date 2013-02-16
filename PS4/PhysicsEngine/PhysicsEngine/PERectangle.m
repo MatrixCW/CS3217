@@ -53,7 +53,7 @@
 +(id)getLowerHorizontalBoundRectangle{
     
     PERectangle* temp = [PERectangle alloc];
-    temp = [temp initPERectangleWithCenter:CGPointMake(384, 1003) Width:768 Height:2 andMass:INFINITY];
+    temp = [temp initPERectangleWithCenter:CGPointMake(384, 900) Width:768 Height:300 andMass:INFINITY];
     temp.identity = 0;
     return temp;
     
@@ -74,8 +74,8 @@
     
 }
 
--(Vector2D*)centerOfRectangleInUpRightCoordinateSystem{
-    return [Vector2D vectorWith:self.center.x y:-self.center.y];
+-(Vector2D*)centerOfRectangle{
+    return [Vector2D vectorWith:self.center.x y:self.center.y];
 }
 
 -(Matrix2D*)rotationMatrix{

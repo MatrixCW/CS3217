@@ -10,7 +10,7 @@
 #import "Vector2D.h"
 #import "ConstantLibrary.h"
 #import "PERectangle.h"
-
+#import "CollisionDetector.h"
 
 @interface MyWorld : NSObject<UIAccelerometerDelegate>
 
@@ -18,6 +18,7 @@
 @property NSTimer* timer;
 @property Vector2D* gravity;
 @property UIAccelerometer* accelerometer;
+@property CollisionDetector* conllisionDetector;
 
 - (void)run;
 

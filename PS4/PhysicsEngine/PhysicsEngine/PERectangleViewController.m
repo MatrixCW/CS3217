@@ -71,7 +71,8 @@
 -(void)UpdatePosition{
     
     self.view.center = self.model.center;
-    NSLog(@"%lf, %lf", [self.model centerOfRectangleInUpRightCoordinateSystem].x, [self.model centerOfRectangleInUpRightCoordinateSystem].y);
+    [self.view setTransform: CGAffineTransformMakeRotation(self.model.rotation)];
+
 }
 
 @end

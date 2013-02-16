@@ -26,6 +26,7 @@
 		7CA6119F16CA6A2B00EC4876 /* Matrix2D.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CEBDBBF16CA5B640064B92F /* Matrix2D.m */; };
 		7CA611A016CA6A2F00EC4876 /* Vector2D.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CEBDBC116CA5B640064B92F /* Vector2D.m */; };
 		7CA611A416CA74C200EC4876 /* MyWorld.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CA611A316CA74C200EC4876 /* MyWorld.m */; };
+		7CBCC79A16CF128C00580A88 /* ContactPoint.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CBCC79916CF128C00580A88 /* ContactPoint.m */; };
 		7CE3FBD116CCFAD500E23C6F /* CollisionDetector.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CE3FBCF16CCFA8500E23C6F /* CollisionDetector.m */; };
 /* End PBXBuildFile section */
 
@@ -55,6 +56,8 @@
 		7CA6119A16CA664000EC4876 /* ConstantLibrary.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConstantLibrary.m; sourceTree = "<group>"; };
 		7CA611A216CA74C200EC4876 /* MyWorld.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyWorld.h; sourceTree = "<group>"; };
 		7CA611A316CA74C200EC4876 /* MyWorld.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyWorld.m; sourceTree = "<group>"; };
+		7CBCC79816CF128C00580A88 /* ContactPoint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactPoint.h; sourceTree = "<group>"; };
+		7CBCC79916CF128C00580A88 /* ContactPoint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactPoint.m; sourceTree = "<group>"; };
 		7CE3FBCE16CCFA8500E23C6F /* CollisionDetector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CollisionDetector.h; sourceTree = "<group>"; };
 		7CE3FBCF16CCFA8500E23C6F /* CollisionDetector.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CollisionDetector.m; sourceTree = "<group>"; };
 		7CEBDBBE16CA5B640064B92F /* Matrix2D.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Matrix2D.h; sourceTree = "<group>"; };
@@ -86,6 +89,8 @@
 				7CA611A316CA74C200EC4876 /* MyWorld.m */,
 				7CE3FBCE16CCFA8500E23C6F /* CollisionDetector.h */,
 				7CE3FBCF16CCFA8500E23C6F /* CollisionDetector.m */,
+				7CBCC79816CF128C00580A88 /* ContactPoint.h */,
+				7CBCC79916CF128C00580A88 /* ContactPoint.m */,
 			);
 			name = simulating;
 			sourceTree = "<group>";
@@ -261,6 +266,7 @@
 				7CA6119B16CA664000EC4876 /* ConstantLibrary.m in Sources */,
 				7CA611A416CA74C200EC4876 /* MyWorld.m in Sources */,
 				7C695CF816CBCF0300F70DEA /* PERectangleViewController.m in Sources */,
+				7CBCC79A16CF128C00580A88 /* ContactPoint.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

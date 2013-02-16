@@ -37,7 +37,7 @@
 
 -(id)initPERectangleWithCenter:(CGPoint)center Width:(CGFloat)width Height:(CGFloat)height andMass:(CGFloat)mass;
 
--(Vector2D*)centerOfRectangleInUpRightCoordinateSystem;
+-(Vector2D*)centerOfRectangle;
 
 
 +(id)getUpperHorizontalBoundRectangle;

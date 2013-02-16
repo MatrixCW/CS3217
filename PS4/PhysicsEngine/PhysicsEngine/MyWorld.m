@@ -19,6 +19,8 @@
     self.accelerometer.delegate = self;
     self.accelerometer.updateInterval = timeInterval;
     
+    self.conllisionDetector = [[CollisionDetector alloc] initCoiisionDetector];
+    
     return self;
 }
 
@@ -39,6 +41,7 @@
 
 -(void)simulate:(NSTimer*)timer{
     [self applyGravity];
+    [self analyzeDetection];
     [self updatePosition];
 }
 
@@ -65,6 +68,23 @@
     
 }
 
+
+-(void)analyzeDetection{
+    
+    for(int i = 0; i < self.objectsInWorld.count; i++)
+        for(int j = i + 1; j < self.objectsInWorld.count; j++){
+            
+            PERectangle* rectA = [self.objectsInWorld objectAtIndex:i];
+            PERectangle* rectB = [self.objectsInWorld objectAtIndex:j];
+            
+            [self.conllisionDetector detectCollisionBetweenRectA:rectA andRectB:rectB];
+            
+    }
+    
+    
+    [self.conllisionDetector applyImpulse];
+    
+}
 
 - (void)accelerometer:(UIAccelerometer *)acel didAccelerate:(UIAcceleration *)aceler {
     

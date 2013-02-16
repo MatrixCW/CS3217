@@ -16,6 +16,7 @@ extern CGFloat floatComparisonEpsilon;
 extern CGFloat gravityScaleValue;
 extern CGFloat defaultGravity;
 
+
 @interface ConstantLibrary : NSObject
 
 @end
