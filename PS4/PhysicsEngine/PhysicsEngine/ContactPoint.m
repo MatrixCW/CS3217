@@ -26,6 +26,7 @@
         self.t = [n crossZ:1.0];
         
     }
+    
     return self;
 
 }

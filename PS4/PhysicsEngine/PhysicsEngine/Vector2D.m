@@ -82,6 +82,8 @@
   return [Vector2D vectorWith:(v*self.y) y:(-v*self.x)];
 }
 
-
+-(Vector2D*)negateJustY{
+    return [Vector2D vectorWith:self.x y:-self.y];
+}
 
 @end

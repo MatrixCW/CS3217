@@ -44,8 +44,10 @@
 +(id)getUpperHorizontalBoundRectangle{
     
     PERectangle* temp = [PERectangle alloc];
-    temp = [temp initPERectangleWithCenter:CGPointMake(384, 1) Width:768 Height:2 andMass:INFINITY];
+    temp = [temp initPERectangleWithCenter:CGPointMake(384, -149) Width:768 Height:300 andMass:INFINITY];
     temp.identity = 0;
+    temp.frictionCoefficient = groundCoefficient;
+    temp.restitutionCoefficient = groundRestitutionCoefficient;
     return temp;
     
 }
@@ -53,29 +55,38 @@
 +(id)getLowerHorizontalBoundRectangle{
     
     PERectangle* temp = [PERectangle alloc];
-    temp = [temp initPERectangleWithCenter:CGPointMake(384, 900) Width:768 Height:300 andMass:INFINITY];
+    temp = [temp initPERectangleWithCenter:CGPointMake(384, 1152) Width:768 Height:300 andMass:INFINITY];
     temp.identity = 0;
+    temp.frictionCoefficient = groundCoefficient;
+    temp.restitutionCoefficient = groundRestitutionCoefficient;
+
     return temp;
     
 }
 
 +(id)getLeftVerticalBoundRectangle{
     PERectangle* temp = [PERectangle alloc];
-    temp = [temp initPERectangleWithCenter:CGPointMake(1, 512) Width:2 Height:1024 andMass:INFINITY];
+    temp = [temp initPERectangleWithCenter:CGPointMake(-150, 512) Width:300 Height:1024 andMass:INFINITY];
     temp.identity = 0;
+    temp.frictionCoefficient = groundCoefficient;
+    temp.restitutionCoefficient = groundRestitutionCoefficient;
+
     return temp;
     
 }
 +(id)getRightVerticalBoundRectangle{
     PERectangle* temp = [PERectangle alloc];
-    temp = [temp initPERectangleWithCenter:CGPointMake(767, 512) Width:2 Height:1024 andMass:INFINITY];
+    temp = [temp initPERectangleWithCenter:CGPointMake(917, 512) Width:300 Height:1024 andMass:INFINITY];
     temp.identity = 0;
+    temp.frictionCoefficient = groundCoefficient;
+    temp.restitutionCoefficient = groundRestitutionCoefficient;
+
     return temp;
     
 }
 
 -(Vector2D*)centerOfRectangle{
-    return [Vector2D vectorWith:self.center.x y:self.center.y];
+    return [Vector2D vectorWith:self.center.x y:-self.center.y];
 }
 
 -(Matrix2D*)rotationMatrix{
@@ -83,7 +94,7 @@
 }
 
 -(Vector2D*)hVector{
-    return [Vector2D vectorWith:self.width/2 y:self.height/2];
+    return [Vector2D vectorWith:self.width/2.0 y:self.height/2.0];
 }
 
 

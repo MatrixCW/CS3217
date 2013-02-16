@@ -57,4 +57,5 @@
   // EFFECTS: Returns the cross product of this vector
   //		with a Z-component of double v
 
+-(Vector2D*)negateJustY;
 @end

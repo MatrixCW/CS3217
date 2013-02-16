@@ -30,7 +30,7 @@
     PERectangleViewController* temp = [PERectangleViewController alloc];
     temp.model = [PERectangle getUpperHorizontalBoundRectangle];
     temp.view.frame = CGRectMake(temp.model.center.x-temp.model.width/2, temp.model.center.y-temp.model.height/2, temp.model.width, temp.model.height);
-    [temp.view setBackgroundColor:[UIColor redColor]];
+    [temp.view setBackgroundColor:[UIColor blackColor]];
     
     return temp;
 }
@@ -40,7 +40,7 @@
     PERectangleViewController* temp = [PERectangleViewController alloc];
     temp.model = [PERectangle getLowerHorizontalBoundRectangle];
     temp.view.frame = CGRectMake(temp.model.center.x-temp.model.width/2, temp.model.center.y-temp.model.height/2, temp.model.width, temp.model.height);
-    [temp.view setBackgroundColor:[UIColor redColor]];
+    [temp.view setBackgroundColor:[UIColor blackColor]];
     
     return temp;
     
@@ -51,7 +51,7 @@
     PERectangleViewController* temp = [PERectangleViewController alloc];
     temp.model = [PERectangle getLeftVerticalBoundRectangle];
     temp.view.frame = CGRectMake(temp.model.center.x-temp.model.width/2, temp.model.center.y-temp.model.height/2, temp.model.width, temp.model.height);
-    [temp.view setBackgroundColor:[UIColor redColor]];
+    [temp.view setBackgroundColor:[UIColor blackColor]];
     
     return temp;
     
@@ -61,7 +61,7 @@
     PERectangleViewController* temp = [PERectangleViewController alloc];
     temp.model = [PERectangle getRightVerticalBoundRectangle];
     temp.view.frame = CGRectMake(temp.model.center.x-temp.model.width/2, temp.model.center.y-temp.model.height/2, temp.model.width, temp.model.height);
-    [temp.view setBackgroundColor:[UIColor redColor]];
+    [temp.view setBackgroundColor:[UIColor blackColor]];
     
     return temp;
     
@@ -71,7 +71,7 @@
 -(void)UpdatePosition{
     
     self.view.center = self.model.center;
-    [self.view setTransform: CGAffineTransformMakeRotation(self.model.rotation)];
+    [self.view setTransform: CGAffineTransformMakeRotation(-self.model.rotation)];
 
 }
 

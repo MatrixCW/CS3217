@@ -62,6 +62,8 @@
            CGFloat x = rect.center.x + rect.velocity.x * timeInterval;
            CGFloat y = rect.center.y + rect.velocity.y * timeInterval;
            rect.center = CGPointMake(x, y);
+            
+            rect.rotation += rect.angularVelocity * timeInterval;
            [rect.myDelegate UpdatePosition];
         }
     }
@@ -70,6 +72,7 @@
 
 
 -(void)analyzeDetection{
+    
     
     for(int i = 0; i < self.objectsInWorld.count; i++)
         for(int j = i + 1; j < self.objectsInWorld.count; j++){
@@ -82,7 +85,11 @@
     }
     
     
-    [self.conllisionDetector applyImpulse];
+    if(self.conllisionDetector.contactPoints.count)
+        for(int i = 0; i < 8;i++)
+           [self.conllisionDetector applyImpulse];
+    
+    [self.conllisionDetector.contactPoints removeAllObjects];
     
 }
 
