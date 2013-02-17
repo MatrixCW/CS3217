@@ -6,11 +6,14 @@
 
 #import<Foundation/Foundation.h>
 #import "Vector2D.h"
-#import "Matrix2D.h"
+#import "Matrix2D.h"v
 #import "ConstantLibrary.h"
 #import "UpdatePositionInViewDelegate.h"
  
 @interface PERectangle : NSObject
+// OVERVIEW: This class implements an rectangle object
+// used for the view controller as a model
+
 
 
 @property CGPoint center;
@@ -30,7 +33,7 @@
 
 @property (nonatomic) Vector2D* hVector;
 
-@property UIColor* rectColor;
+
 
 @property (weak) id<UpdatePositionInViewDelegate> myDelegate;
 

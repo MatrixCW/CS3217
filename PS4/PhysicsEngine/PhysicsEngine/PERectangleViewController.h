@@ -13,6 +13,8 @@
 @interface PERectangleViewController : UIViewController<UpdatePositionInViewDelegate>
 
 @property PERectangle* model;
+// OVERVIEW: This class is a child view controller of the main view controller
+// it is responsible for updating position of all the objects in the main view
 
 -(id)initPERectangleWithCenter:(CGPoint)center Width:(CGFloat)width Height:(CGFloat)height mass:(CGFloat)mass andColor:(UIColor*) color;
 

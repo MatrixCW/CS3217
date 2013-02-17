@@ -9,7 +9,11 @@
 #import "CollisionDetector.h"
 
 @implementation CollisionDetector
-
+// OVERVIEW: This class implements an collision detecter
+// that can determine if two moving objects are colliding or not
+// and it they do collide, find the colliding points
+// it will keep track of all the colliding points and then laster
+// apply impulse to the cossiding bodies
 
 -(id)initCoiisionDetector{
     
@@ -190,17 +194,17 @@
     Matrix2D* R;
     Vector2D* h;
    
-    if([self testValue:fax isLargerThan:fay and:fbx and:fby] || [self testValue:fay isLargerThan:fax and:fbx and:fby]){
+    if(flag == 1 || flag == 2){
         ni = [[[RB transpose] multiplyVector:nf] negate];
         p = pB;
         R = RB;
         h = hB;
     }
-    else if([self testValue:fbx isLargerThan:fax and:fay and:fby] || [self testValue:fby isLargerThan:fax and:fay and:fbx]){
-           ni = [[[RA transpose] multiplyVector:nf] negate];
-           p = pA;
-           R = RA;
-           h = hA;
+    else{
+        ni = [[[RA transpose] multiplyVector:nf] negate];
+        p = pA;
+        R = RA;
+        h = hA;
     }
     
     Vector2D* niAbs = [ni abs];
@@ -208,16 +212,16 @@
     Vector2D* v2;
     
     if(niAbs.x > niAbs.y && ni.x > 0){
-        v1 = [p add:[R multiplyVector:[Vector2D vectorWith:h.x y:-h.y]]];
-        v2 = [p add:[R multiplyVector:[Vector2D vectorWith:h.x y:h.y]]];
+            v1 = [p add:[R multiplyVector:[Vector2D vectorWith:h.x y:-h.y]]];
+            v2 = [p add:[R multiplyVector:[Vector2D vectorWith:h.x y:h.y]]];
         
     }else if(niAbs.x > niAbs.y && ni.x <= 0){
             v1 = [p add:[R multiplyVector:[Vector2D vectorWith:-h.x y:h.y]]];
             v2 = [p add:[R multiplyVector:[Vector2D vectorWith:-h.x y:-h.y]]];
             
     }else if(niAbs.x <= niAbs.y && ni.y > 0){
-                v1 = [p add:[R multiplyVector:[Vector2D vectorWith:h.x y:h.y]]];
-                v2 = [p add:[R multiplyVector:[Vector2D vectorWith:-h.x y:h.y]]];
+            v1 = [p add:[R multiplyVector:[Vector2D vectorWith:h.x y:h.y]]];
+            v2 = [p add:[R multiplyVector:[Vector2D vectorWith:-h.x y:h.y]]];
         
     }else{
             assert(niAbs.x <= niAbs.y && ni.y <= 0);
@@ -336,36 +340,37 @@
         CGFloat un = [u dot:point.n];
         CGFloat ut = [u dot:point.t];
         
+        
         CGFloat mn = 1.0/rectA.mass + 1.0/rectB.mass
                      + ([rA dot:rA] - pow([rA dot:point.n], 2.0))/rectA.momentOfInetia
                      + ([rB dot:rB] - pow([rB dot:point.n], 2.0))/rectB.momentOfInetia;
-        
         mn = 1.0/mn;
+        
         
         CGFloat mt = 1.0/rectA.mass + 1.0/rectB.mass
                      + ([rA dot:rA] - pow([rA dot:point.t], 2.0))/rectA.momentOfInetia
                      + ([rB dot:rB] - pow([rB dot:point.t], 2.0))/rectB.momentOfInetia;
-        
         mt = 1.0/mt;
+        
         
         CGFloat e = sqrt(rectA.restitutionCoefficient * rectB.restitutionCoefficient);
         
-        CGFloat bias = 0.0;
         
+        CGFloat bias = 0.0;
         if(fabs(point.separation) > kappa)
             bias = fabs((kappa + point.separation) * epsilon / timeInterval);
             
+        
         Vector2D* Pn = [point.n multiply:(fmin(mn*(1.0+e)*un - bias,0.0))];
         
        
         CGFloat dPt = mt * ut;
-        
         CGFloat Ptmax = rectA.frictionCoefficient * rectB.frictionCoefficient * [Pn length];
-        
         dPt = fmax(fmin( Ptmax,dPt), -Ptmax);
         
         Vector2D* Pt = [point.t multiply:dPt];
                
+        
         if(rectA.identity){
            
            rectA.velocity = [[rectA.velocity negateJustY] add:[[Pn add:Pt] multiply:(1.0/rectA.mass)]];
@@ -373,6 +378,7 @@
            rectA.angularVelocity = rectA.angularVelocity + [rA cross:[Pn add:Pt]]/rectA.momentOfInetia;
             
         }
+        
         
         if(rectB.identity){
             
@@ -388,12 +394,14 @@
     
 }
 
+
 -(BOOL)testValue:(CGFloat)valueA isLargerThan:(CGFloat)valueB and:(CGFloat)valueC and:(CGFloat)valueD{
     return (valueA >= valueB && valueA >= valueC && valueA >= valueD);
 }
 
 
--(BOOL)isLargetRegardingEtaIndex:(int) index theArray:(CGFloat*) array{
+
+-(BOOL)isLargetRegardingEtaIndex:(int)index theArray:(CGFloat*) array{
     
     for(int i = 0 ; i < 4; i++){
         if( i != index)
@@ -408,4 +416,5 @@
 -(BOOL)isSameVectorVectorA:(Vector2D*)vect1 VectorB:(Vector2D*)vect2{
     return (fabs(vect1.x - vect2.x) < floatComparisonEpsilon && fabs(vect1.y - vect2.y) < floatComparisonEpsilon);
 }
+
 @end

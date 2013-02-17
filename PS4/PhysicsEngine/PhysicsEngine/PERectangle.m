@@ -15,6 +15,8 @@
 
 
 @implementation PERectangle
+// OVERVIEW: This class implements an rectangle object
+// used for the view controller as a model
 
 @synthesize rotationMatrix;
 
@@ -44,7 +46,7 @@
 +(id)getUpperHorizontalBoundRectangle{
     
     PERectangle* temp = [PERectangle alloc];
-    temp = [temp initPERectangleWithCenter:CGPointMake(384, -149) Width:768 Height:300 andMass:INFINITY];
+    temp = [temp initPERectangleWithCenter:CGPointMake(384, -150) Width:768 Height:300 andMass:INFINITY];
     temp.identity = 0;
     temp.frictionCoefficient = groundCoefficient;
     temp.restitutionCoefficient = groundRestitutionCoefficient;
@@ -55,7 +57,7 @@
 +(id)getLowerHorizontalBoundRectangle{
     
     PERectangle* temp = [PERectangle alloc];
-    temp = [temp initPERectangleWithCenter:CGPointMake(384, 1152) Width:768 Height:300 andMass:INFINITY];
+    temp = [temp initPERectangleWithCenter:CGPointMake(384, 1154) Width:768 Height:300 andMass:INFINITY];
     temp.identity = 0;
     temp.frictionCoefficient = groundCoefficient;
     temp.restitutionCoefficient = groundRestitutionCoefficient;
@@ -76,7 +78,7 @@
 }
 +(id)getRightVerticalBoundRectangle{
     PERectangle* temp = [PERectangle alloc];
-    temp = [temp initPERectangleWithCenter:CGPointMake(917, 512) Width:300 Height:1024 andMass:INFINITY];
+    temp = [temp initPERectangleWithCenter:CGPointMake(918, 512) Width:300 Height:1024 andMass:INFINITY];
     temp.identity = 0;
     temp.frictionCoefficient = groundCoefficient;
     temp.restitutionCoefficient = groundRestitutionCoefficient;

@@ -14,6 +14,11 @@
 #import "ContactPoint.h"
 
 @interface CollisionDetector : NSObject
+// OVERVIEW: This class implements an collision detecter
+// that can determine if two moving objects are colliding or not
+// and it they do collide, find the colliding points
+// it will keep track of all the colliding points and then laster
+// apply impulse to the cossiding bodies
 
 @property PERectangle* rectA;
 @property PERectangle* rectB;

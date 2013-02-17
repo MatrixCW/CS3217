@@ -14,7 +14,7 @@
 #import "CollisionDetector.h"
 
 @interface MyPEViewController : UIViewController
-
+// OVERVIEW: main view controller of the app
 
 @property MyWorld* simulatedWorld;
 

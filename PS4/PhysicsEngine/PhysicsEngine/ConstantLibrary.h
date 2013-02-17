@@ -20,13 +20,8 @@ extern CGFloat defaultGravity;
 extern CGFloat epsilon;
 extern CGFloat kappa;
 extern CGFloat eta;
-
-typedef enum {
-    ax,
-    ay,
-    bx,
-    by
-}referenceEdge;
+extern CGFloat defaultDensity;
+extern int numOfIteration;
 
 @interface ConstantLibrary : NSObject
 

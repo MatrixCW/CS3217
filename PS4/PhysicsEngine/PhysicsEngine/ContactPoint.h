@@ -11,7 +11,8 @@
 #import "PERectangle.h"
 
 @interface ContactPoint : NSObject
-
+// OVERVIEW: This class implements an contact point to
+// store all the necessay infomation about the colliding point
 
 @property PERectangle* rectA;
 @property PERectangle* rectB;

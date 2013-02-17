@@ -9,7 +9,8 @@
 #import "ContactPoint.h"
 
 @implementation ContactPoint
-
+// OVERVIEW: This class implements an contact point to
+// store all the necessay infomation about the colliding point
 
 
 -(id)initWithRectA:(PERectangle*)rectA RectB:(PERectangle*)rectB Normal:(Vector2D*)n Separation:(CGFloat)s Position:(Vector2D*)c{

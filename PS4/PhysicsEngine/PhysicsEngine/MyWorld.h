@@ -13,6 +13,8 @@
 #import "CollisionDetector.h"
 
 @interface MyWorld : NSObject<UIAccelerometerDelegate>
+// OVERVIEW: This class implements an simulated world
+// where all the object models are added and the interaction simulated
 
 @property NSMutableArray* objectsInWorld;
 @property NSTimer* timer;

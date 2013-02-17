@@ -9,6 +9,8 @@
 #import "PERectangleViewController.h"
 
 @interface PERectangleViewController ()
+// OVERVIEW: This class is a child view controller of the main view controller
+// it is responsible for updating position of all the objects in the main view
 
 @end
 

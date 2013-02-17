@@ -9,6 +9,8 @@
 #import "MyWorld.h"
 
 @implementation MyWorld
+// OVERVIEW: This class implements an simulated world
+// where all the object models are added and the interaction simulated
 
 -(id)init{
     
@@ -86,7 +88,7 @@
     
     
     if(self.conllisionDetector.contactPoints.count)
-        for(int i = 0; i < 8;i++)
+        for(int i = 0; i < numOfIteration ; i++)
            [self.conllisionDetector applyImpulse];
     
     [self.conllisionDetector.contactPoints removeAllObjects];
