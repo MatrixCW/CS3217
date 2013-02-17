@@ -5,6 +5,7 @@
 //  Name: <Cui Wei>
 //
 
+
 #import "PERectangle.h"
 
 @interface PERectangle()
@@ -57,7 +58,7 @@
 +(id)getLowerHorizontalBoundRectangle{
     
     PERectangle* temp = [PERectangle alloc];
-    temp = [temp initPERectangleWithCenter:CGPointMake(384, 1154) Width:768 Height:300 andMass:INFINITY];
+    temp = [temp initPERectangleWithCenter:CGPointMake(384, 1144) Width:768 Height:300 andMass:INFINITY];
     temp.identity = 0;
     temp.frictionCoefficient = groundCoefficient;
     temp.restitutionCoefficient = groundRestitutionCoefficient;
