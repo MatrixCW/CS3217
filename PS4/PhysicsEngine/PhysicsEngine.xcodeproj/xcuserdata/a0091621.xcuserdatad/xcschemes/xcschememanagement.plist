@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>SchemeUserState</key>
+	<dict>
+		<key>PERectangleTest.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>1</integer>
+		</dict>
+		<key>PhysicsEngine.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>0</integer>
+		</dict>
+		<key>detectorTest.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>2</integer>
+		</dict>
+	</dict>
+	<key>SuppressBuildableAutocreation</key>
+	<dict>
+		<key>7C8AC15716CA463A004A9A89</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>7CDA11DB16D117A200F0F456</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>7CDA11FB16D1242700F0F456</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>7CDA121716D1279100F0F456</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>7CDA122D16D127DA00F0F456</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>7CDA124D16D1291200F0F456</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+	</dict>
+</dict>
+</plist>

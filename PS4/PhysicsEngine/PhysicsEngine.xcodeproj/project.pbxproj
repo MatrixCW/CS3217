@@ -1,0 +1,732 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		7C695CF816CBCF0300F70DEA /* PERectangleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C695CF716CBCF0300F70DEA /* PERectangleViewController.m */; };
+		7C75762216CDD55B00DD48D2 /* atom.png in Resources */ = {isa = PBXBuildFile; fileRef = 7C75762116CDD55B00DD48D2 /* atom.png */; };
+		7C75762416CDD5D100DD48D2 /* atom.000.png in Resources */ = {isa = PBXBuildFile; fileRef = 7C75762316CDD5D100DD48D2 /* atom.000.png */; };
+		7C8AC15D16CA463A004A9A89 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C8AC15C16CA463A004A9A89 /* UIKit.framework */; };
+		7C8AC15F16CA463A004A9A89 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C8AC15E16CA463A004A9A89 /* Foundation.framework */; };
+		7C8AC16116CA463A004A9A89 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C8AC16016CA463A004A9A89 /* CoreGraphics.framework */; };
+		7C8AC16716CA463A004A9A89 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 7C8AC16516CA463A004A9A89 /* InfoPlist.strings */; };
+		7C8AC16916CA463A004A9A89 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C8AC16816CA463A004A9A89 /* main.m */; };
+		7C8AC16D16CA463A004A9A89 /* MyPEAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C8AC16C16CA463A004A9A89 /* MyPEAppDelegate.m */; };
+		7C8AC16F16CA463A004A9A89 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 7C8AC16E16CA463A004A9A89 /* Default.png */; };
+		7C8AC17116CA463A004A9A89 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7C8AC17016CA463A004A9A89 /* Default@2x.png */; };
+		7C8AC17316CA463A004A9A89 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7C8AC17216CA463A004A9A89 /* Default-568h@2x.png */; };
+		7C8AC17616CA463A004A9A89 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7C8AC17416CA463A004A9A89 /* MainStoryboard.storyboard */; };
+		7C8AC17916CA463A004A9A89 /* MyPEViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C8AC17816CA463A004A9A89 /* MyPEViewController.m */; };
+		7CA6119B16CA664000EC4876 /* ConstantLibrary.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CA6119A16CA664000EC4876 /* ConstantLibrary.m */; };
+		7CA6119E16CA6A0300EC4876 /* PERectangle.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CEBDBC716CA5CF70064B92F /* PERectangle.m */; };
+		7CA6119F16CA6A2B00EC4876 /* Matrix2D.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CEBDBBF16CA5B640064B92F /* Matrix2D.m */; };
+		7CA611A016CA6A2F00EC4876 /* Vector2D.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CEBDBC116CA5B640064B92F /* Vector2D.m */; };
+		7CA611A416CA74C200EC4876 /* MyWorld.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CA611A316CA74C200EC4876 /* MyWorld.m */; };
+		7CB9B10B16DE847F002F0F00 /* circle.png in Resources */ = {isa = PBXBuildFile; fileRef = 7CB9B10A16DE847F002F0F00 /* circle.png */; };
+		7CB9B10F16DE8544002F0F00 /* PECircleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CB9B10E16DE8544002F0F00 /* PECircleViewController.m */; };
+		7CBCC79A16CF128C00580A88 /* ContactPoint.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CBCC79916CF128C00580A88 /* ContactPoint.m */; };
+		7CDA11DE16D117A200F0F456 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7CDA11DD16D117A200F0F456 /* SenTestingKit.framework */; };
+		7CDA11E016D117A200F0F456 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7CDA11DF16D117A200F0F456 /* Cocoa.framework */; };
+		7CDA11EA16D117A200F0F456 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 7CDA11E816D117A200F0F456 /* InfoPlist.strings */; };
+		7CDA11ED16D117A200F0F456 /* PERectangleTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CDA11EC16D117A200F0F456 /* PERectangleTest.m */; };
+		7CDA11F316D11A6800F0F456 /* PERectangle.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CEBDBC716CA5CF70064B92F /* PERectangle.m */; };
+		7CDA11F416D11A8700F0F456 /* ConstantLibrary.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CA6119A16CA664000EC4876 /* ConstantLibrary.m */; };
+		7CDA11F516D11AAD00F0F456 /* Matrix2D.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CEBDBBF16CA5B640064B92F /* Matrix2D.m */; };
+		7CDA11F616D11AAD00F0F456 /* Vector2D.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CEBDBC116CA5B640064B92F /* Vector2D.m */; };
+		7CDA124F16D1291200F0F456 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7CDA11DD16D117A200F0F456 /* SenTestingKit.framework */; };
+		7CDA125016D1291200F0F456 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7CDA11DF16D117A200F0F456 /* Cocoa.framework */; };
+		7CDA125616D1291300F0F456 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 7CDA125416D1291300F0F456 /* InfoPlist.strings */; };
+		7CDA125916D1291300F0F456 /* detectorTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CDA125816D1291300F0F456 /* detectorTest.m */; };
+		7CDA125E16D1293D00F0F456 /* ConstantLibrary.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CA6119A16CA664000EC4876 /* ConstantLibrary.m */; };
+		7CDA125F16D1293D00F0F456 /* Matrix2D.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CEBDBBF16CA5B640064B92F /* Matrix2D.m */; };
+		7CDA126016D1293D00F0F456 /* Vector2D.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CEBDBC116CA5B640064B92F /* Vector2D.m */; };
+		7CDA126116D1293D00F0F456 /* PERectangle.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CEBDBC716CA5CF70064B92F /* PERectangle.m */; };
+		7CDA126316D1293D00F0F456 /* CollisionDetector.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CE3FBCF16CCFA8500E23C6F /* CollisionDetector.m */; };
+		7CDA126416D1293D00F0F456 /* ContactPoint.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CBCC79916CF128C00580A88 /* ContactPoint.m */; };
+		7CE3FBD116CCFAD500E23C6F /* CollisionDetector.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CE3FBCF16CCFA8500E23C6F /* CollisionDetector.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		7C695CF616CBCF0300F70DEA /* PERectangleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PERectangleViewController.h; sourceTree = "<group>"; };
+		7C695CF716CBCF0300F70DEA /* PERectangleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PERectangleViewController.m; sourceTree = "<group>"; };
+		7C75762116CDD55B00DD48D2 /* atom.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = atom.png; sourceTree = "<group>"; };
+		7C75762316CDD5D100DD48D2 /* atom.000.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = atom.000.png; sourceTree = "<group>"; };
+		7C8AC15816CA463A004A9A89 /* PhysicsEngine.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PhysicsEngine.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		7C8AC15C16CA463A004A9A89 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		7C8AC15E16CA463A004A9A89 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		7C8AC16016CA463A004A9A89 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		7C8AC16416CA463A004A9A89 /* PhysicsEngine-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "PhysicsEngine-Info.plist"; sourceTree = "<group>"; };
+		7C8AC16616CA463A004A9A89 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		7C8AC16816CA463A004A9A89 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		7C8AC16A16CA463A004A9A89 /* PhysicsEngine-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "PhysicsEngine-Prefix.pch"; sourceTree = "<group>"; };
+		7C8AC16B16CA463A004A9A89 /* MyPEAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyPEAppDelegate.h; sourceTree = "<group>"; };
+		7C8AC16C16CA463A004A9A89 /* MyPEAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyPEAppDelegate.m; sourceTree = "<group>"; };
+		7C8AC16E16CA463A004A9A89 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
+		7C8AC17016CA463A004A9A89 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
+		7C8AC17216CA463A004A9A89 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		7C8AC17516CA463A004A9A89 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard.storyboard; sourceTree = "<group>"; };
+		7C8AC17716CA463A004A9A89 /* MyPEViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyPEViewController.h; sourceTree = "<group>"; };
+		7C8AC17816CA463A004A9A89 /* MyPEViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyPEViewController.m; sourceTree = "<group>"; };
+		7C8AC17F16CA4681004A9A89 /* UpdatePositionInViewDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UpdatePositionInViewDelegate.h; sourceTree = "<group>"; };
+		7CA6119916CA664000EC4876 /* ConstantLibrary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConstantLibrary.h; sourceTree = "<group>"; };
+		7CA6119A16CA664000EC4876 /* ConstantLibrary.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConstantLibrary.m; sourceTree = "<group>"; };
+		7CA611A216CA74C200EC4876 /* MyWorld.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyWorld.h; sourceTree = "<group>"; };
+		7CA611A316CA74C200EC4876 /* MyWorld.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyWorld.m; sourceTree = "<group>"; };
+		7CB9B10A16DE847F002F0F00 /* circle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = circle.png; sourceTree = "<group>"; };
+		7CB9B10D16DE8544002F0F00 /* PECircleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PECircleViewController.h; sourceTree = "<group>"; };
+		7CB9B10E16DE8544002F0F00 /* PECircleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PECircleViewController.m; sourceTree = "<group>"; };
+		7CBCC79816CF128C00580A88 /* ContactPoint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactPoint.h; sourceTree = "<group>"; };
+		7CBCC79916CF128C00580A88 /* ContactPoint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactPoint.m; sourceTree = "<group>"; };
+		7CDA11DC16D117A200F0F456 /* PERectangleTest.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PERectangleTest.octest; sourceTree = BUILT_PRODUCTS_DIR; };
+		7CDA11DD16D117A200F0F456 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
+		7CDA11DF16D117A200F0F456 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = Library/Frameworks/Cocoa.framework; sourceTree = DEVELOPER_DIR; };
+		7CDA11E216D117A200F0F456 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
+		7CDA11E316D117A200F0F456 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		7CDA11E416D117A200F0F456 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		7CDA11E716D117A200F0F456 /* PERectangleTest-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "PERectangleTest-Info.plist"; sourceTree = "<group>"; };
+		7CDA11E916D117A200F0F456 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		7CDA11EB16D117A200F0F456 /* PERectangleTest.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PERectangleTest.h; sourceTree = "<group>"; };
+		7CDA11EC16D117A200F0F456 /* PERectangleTest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PERectangleTest.m; sourceTree = "<group>"; };
+		7CDA11EE16D117A200F0F456 /* PERectangleTest-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "PERectangleTest-Prefix.pch"; sourceTree = "<group>"; };
+		7CDA124E16D1291200F0F456 /* detectorTest.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = detectorTest.octest; sourceTree = BUILT_PRODUCTS_DIR; };
+		7CDA125316D1291300F0F456 /* detectorTest-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "detectorTest-Info.plist"; sourceTree = "<group>"; };
+		7CDA125516D1291300F0F456 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		7CDA125716D1291300F0F456 /* detectorTest.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = detectorTest.h; sourceTree = "<group>"; };
+		7CDA125816D1291300F0F456 /* detectorTest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = detectorTest.m; sourceTree = "<group>"; };
+		7CDA125A16D1291300F0F456 /* detectorTest-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "detectorTest-Prefix.pch"; sourceTree = "<group>"; };
+		7CE3FBCE16CCFA8500E23C6F /* CollisionDetector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CollisionDetector.h; sourceTree = "<group>"; };
+		7CE3FBCF16CCFA8500E23C6F /* CollisionDetector.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CollisionDetector.m; sourceTree = "<group>"; };
+		7CEBDBBE16CA5B640064B92F /* Matrix2D.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Matrix2D.h; sourceTree = "<group>"; };
+		7CEBDBBF16CA5B640064B92F /* Matrix2D.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Matrix2D.m; sourceTree = "<group>"; };
+		7CEBDBC016CA5B640064B92F /* Vector2D.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Vector2D.h; sourceTree = "<group>"; };
+		7CEBDBC116CA5B640064B92F /* Vector2D.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Vector2D.m; sourceTree = "<group>"; };
+		7CEBDBC616CA5CF70064B92F /* PERectangle.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PERectangle.h; sourceTree = "<group>"; };
+		7CEBDBC716CA5CF70064B92F /* PERectangle.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PERectangle.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		7C8AC15516CA463A004A9A89 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7C8AC15D16CA463A004A9A89 /* UIKit.framework in Frameworks */,
+				7C8AC15F16CA463A004A9A89 /* Foundation.framework in Frameworks */,
+				7C8AC16116CA463A004A9A89 /* CoreGraphics.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7CDA11D816D117A200F0F456 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7CDA11DE16D117A200F0F456 /* SenTestingKit.framework in Frameworks */,
+				7CDA11E016D117A200F0F456 /* Cocoa.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7CDA124A16D1291200F0F456 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7CDA124F16D1291200F0F456 /* SenTestingKit.framework in Frameworks */,
+				7CDA125016D1291200F0F456 /* Cocoa.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		7C695CF016CBBC7500F70DEA /* simulating */ = {
+			isa = PBXGroup;
+			children = (
+				7CA611A216CA74C200EC4876 /* MyWorld.h */,
+				7CA611A316CA74C200EC4876 /* MyWorld.m */,
+				7CE3FBCE16CCFA8500E23C6F /* CollisionDetector.h */,
+				7CE3FBCF16CCFA8500E23C6F /* CollisionDetector.m */,
+				7CBCC79816CF128C00580A88 /* ContactPoint.h */,
+				7CBCC79916CF128C00580A88 /* ContactPoint.m */,
+			);
+			name = simulating;
+			sourceTree = "<group>";
+		};
+		7C695CF116CBBC9800F70DEA /* model */ = {
+			isa = PBXGroup;
+			children = (
+				7CEBDBC616CA5CF70064B92F /* PERectangle.h */,
+				7CEBDBC716CA5CF70064B92F /* PERectangle.m */,
+			);
+			name = model;
+			sourceTree = "<group>";
+		};
+		7C695CF216CBBCA200F70DEA /* utility */ = {
+			isa = PBXGroup;
+			children = (
+				7CA6119916CA664000EC4876 /* ConstantLibrary.h */,
+				7CA6119A16CA664000EC4876 /* ConstantLibrary.m */,
+				7CEBDBBE16CA5B640064B92F /* Matrix2D.h */,
+				7CEBDBBF16CA5B640064B92F /* Matrix2D.m */,
+				7CEBDBC016CA5B640064B92F /* Vector2D.h */,
+				7CEBDBC116CA5B640064B92F /* Vector2D.m */,
+			);
+			name = utility;
+			sourceTree = "<group>";
+		};
+		7C8AC14D16CA4639004A9A89 = {
+			isa = PBXGroup;
+			children = (
+				7C75762316CDD5D100DD48D2 /* atom.000.png */,
+				7C75762116CDD55B00DD48D2 /* atom.png */,
+				7CB9B10A16DE847F002F0F00 /* circle.png */,
+				7C8AC16216CA463A004A9A89 /* PhysicsEngine */,
+				7CDA11E516D117A200F0F456 /* PERectangleTest */,
+				7CDA125116D1291200F0F456 /* detectorTest */,
+				7C8AC15B16CA463A004A9A89 /* Frameworks */,
+				7C8AC15916CA463A004A9A89 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		7C8AC15916CA463A004A9A89 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				7C8AC15816CA463A004A9A89 /* PhysicsEngine.app */,
+				7CDA11DC16D117A200F0F456 /* PERectangleTest.octest */,
+				7CDA124E16D1291200F0F456 /* detectorTest.octest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		7C8AC15B16CA463A004A9A89 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				7C8AC15C16CA463A004A9A89 /* UIKit.framework */,
+				7C8AC15E16CA463A004A9A89 /* Foundation.framework */,
+				7C8AC16016CA463A004A9A89 /* CoreGraphics.framework */,
+				7CDA11DD16D117A200F0F456 /* SenTestingKit.framework */,
+				7CDA11DF16D117A200F0F456 /* Cocoa.framework */,
+				7CDA11E116D117A200F0F456 /* Other Frameworks */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		7C8AC16216CA463A004A9A89 /* PhysicsEngine */ = {
+			isa = PBXGroup;
+			children = (
+				7C695CF216CBBCA200F70DEA /* utility */,
+				7C695CF116CBBC9800F70DEA /* model */,
+				7C695CF016CBBC7500F70DEA /* simulating */,
+				7CA611A516CA763200EC4876 /* delegateProtocal */,
+				7C8AC16B16CA463A004A9A89 /* MyPEAppDelegate.h */,
+				7C8AC16C16CA463A004A9A89 /* MyPEAppDelegate.m */,
+				7C8AC17416CA463A004A9A89 /* MainStoryboard.storyboard */,
+				7C8AC17716CA463A004A9A89 /* MyPEViewController.h */,
+				7C8AC17816CA463A004A9A89 /* MyPEViewController.m */,
+				7C695CF616CBCF0300F70DEA /* PERectangleViewController.h */,
+				7C695CF716CBCF0300F70DEA /* PERectangleViewController.m */,
+				7CB9B10D16DE8544002F0F00 /* PECircleViewController.h */,
+				7CB9B10E16DE8544002F0F00 /* PECircleViewController.m */,
+				7C8AC16316CA463A004A9A89 /* Supporting Files */,
+			);
+			path = PhysicsEngine;
+			sourceTree = "<group>";
+		};
+		7C8AC16316CA463A004A9A89 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				7C8AC16416CA463A004A9A89 /* PhysicsEngine-Info.plist */,
+				7C8AC16516CA463A004A9A89 /* InfoPlist.strings */,
+				7C8AC16816CA463A004A9A89 /* main.m */,
+				7C8AC16A16CA463A004A9A89 /* PhysicsEngine-Prefix.pch */,
+				7C8AC16E16CA463A004A9A89 /* Default.png */,
+				7C8AC17016CA463A004A9A89 /* Default@2x.png */,
+				7C8AC17216CA463A004A9A89 /* Default-568h@2x.png */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		7CA611A516CA763200EC4876 /* delegateProtocal */ = {
+			isa = PBXGroup;
+			children = (
+				7C8AC17F16CA4681004A9A89 /* UpdatePositionInViewDelegate.h */,
+			);
+			name = delegateProtocal;
+			sourceTree = "<group>";
+		};
+		7CDA11E116D117A200F0F456 /* Other Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				7CDA11E216D117A200F0F456 /* AppKit.framework */,
+				7CDA11E316D117A200F0F456 /* CoreData.framework */,
+				7CDA11E416D117A200F0F456 /* Foundation.framework */,
+			);
+			name = "Other Frameworks";
+			sourceTree = "<group>";
+		};
+		7CDA11E516D117A200F0F456 /* PERectangleTest */ = {
+			isa = PBXGroup;
+			children = (
+				7CDA11EB16D117A200F0F456 /* PERectangleTest.h */,
+				7CDA11EC16D117A200F0F456 /* PERectangleTest.m */,
+				7CDA11E616D117A200F0F456 /* Supporting Files */,
+			);
+			path = PERectangleTest;
+			sourceTree = "<group>";
+		};
+		7CDA11E616D117A200F0F456 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				7CDA11E716D117A200F0F456 /* PERectangleTest-Info.plist */,
+				7CDA11E816D117A200F0F456 /* InfoPlist.strings */,
+				7CDA11EE16D117A200F0F456 /* PERectangleTest-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		7CDA125116D1291200F0F456 /* detectorTest */ = {
+			isa = PBXGroup;
+			children = (
+				7CDA125716D1291300F0F456 /* detectorTest.h */,
+				7CDA125816D1291300F0F456 /* detectorTest.m */,
+				7CDA125216D1291300F0F456 /* Supporting Files */,
+			);
+			path = detectorTest;
+			sourceTree = "<group>";
+		};
+		7CDA125216D1291300F0F456 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				7CDA125316D1291300F0F456 /* detectorTest-Info.plist */,
+				7CDA125416D1291300F0F456 /* InfoPlist.strings */,
+				7CDA125A16D1291300F0F456 /* detectorTest-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		7C8AC15716CA463A004A9A89 /* PhysicsEngine */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 7C8AC17C16CA463A004A9A89 /* Build configuration list for PBXNativeTarget "PhysicsEngine" */;
+			buildPhases = (
+				7C8AC15416CA463A004A9A89 /* Sources */,
+				7C8AC15516CA463A004A9A89 /* Frameworks */,
+				7C8AC15616CA463A004A9A89 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = PhysicsEngine;
+			productName = PhysicsEngine;
+			productReference = 7C8AC15816CA463A004A9A89 /* PhysicsEngine.app */;
+			productType = "com.apple.product-type.application";
+		};
+		7CDA11DB16D117A200F0F456 /* PERectangleTest */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 7CDA11F116D117A200F0F456 /* Build configuration list for PBXNativeTarget "PERectangleTest" */;
+			buildPhases = (
+				7CDA11D716D117A200F0F456 /* Sources */,
+				7CDA11D816D117A200F0F456 /* Frameworks */,
+				7CDA11D916D117A200F0F456 /* Resources */,
+				7CDA11DA16D117A200F0F456 /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = PERectangleTest;
+			productName = PERectangleTest;
+			productReference = 7CDA11DC16D117A200F0F456 /* PERectangleTest.octest */;
+			productType = "com.apple.product-type.bundle";
+		};
+		7CDA124D16D1291200F0F456 /* detectorTest */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 7CDA125B16D1291300F0F456 /* Build configuration list for PBXNativeTarget "detectorTest" */;
+			buildPhases = (
+				7CDA124916D1291200F0F456 /* Sources */,
+				7CDA124A16D1291200F0F456 /* Frameworks */,
+				7CDA124B16D1291200F0F456 /* Resources */,
+				7CDA124C16D1291200F0F456 /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = detectorTest;
+			productName = detectorTest;
+			productReference = 7CDA124E16D1291200F0F456 /* detectorTest.octest */;
+			productType = "com.apple.product-type.bundle";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		7C8AC14F16CA463A004A9A89 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				CLASSPREFIX = MyPE;
+				LastUpgradeCheck = 0450;
+				ORGANIZATIONNAME = nus.cs3217;
+			};
+			buildConfigurationList = 7C8AC15216CA463A004A9A89 /* Build configuration list for PBXProject "PhysicsEngine" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 7C8AC14D16CA4639004A9A89;
+			productRefGroup = 7C8AC15916CA463A004A9A89 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				7C8AC15716CA463A004A9A89 /* PhysicsEngine */,
+				7CDA11DB16D117A200F0F456 /* PERectangleTest */,
+				7CDA124D16D1291200F0F456 /* detectorTest */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		7C8AC15616CA463A004A9A89 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7C8AC16716CA463A004A9A89 /* InfoPlist.strings in Resources */,
+				7C8AC16F16CA463A004A9A89 /* Default.png in Resources */,
+				7C8AC17116CA463A004A9A89 /* Default@2x.png in Resources */,
+				7C8AC17316CA463A004A9A89 /* Default-568h@2x.png in Resources */,
+				7C8AC17616CA463A004A9A89 /* MainStoryboard.storyboard in Resources */,
+				7C75762216CDD55B00DD48D2 /* atom.png in Resources */,
+				7C75762416CDD5D100DD48D2 /* atom.000.png in Resources */,
+				7CB9B10B16DE847F002F0F00 /* circle.png in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7CDA11D916D117A200F0F456 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7CDA11EA16D117A200F0F456 /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7CDA124B16D1291200F0F456 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7CDA125616D1291300F0F456 /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		7CDA11DA16D117A200F0F456 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
+		};
+		7CDA124C16D1291200F0F456 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		7C8AC15416CA463A004A9A89 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7CE3FBD116CCFAD500E23C6F /* CollisionDetector.m in Sources */,
+				7CA611A016CA6A2F00EC4876 /* Vector2D.m in Sources */,
+				7CA6119F16CA6A2B00EC4876 /* Matrix2D.m in Sources */,
+				7CA6119E16CA6A0300EC4876 /* PERectangle.m in Sources */,
+				7C8AC16916CA463A004A9A89 /* main.m in Sources */,
+				7C8AC16D16CA463A004A9A89 /* MyPEAppDelegate.m in Sources */,
+				7C8AC17916CA463A004A9A89 /* MyPEViewController.m in Sources */,
+				7CA6119B16CA664000EC4876 /* ConstantLibrary.m in Sources */,
+				7CA611A416CA74C200EC4876 /* MyWorld.m in Sources */,
+				7C695CF816CBCF0300F70DEA /* PERectangleViewController.m in Sources */,
+				7CBCC79A16CF128C00580A88 /* ContactPoint.m in Sources */,
+				7CB9B10F16DE8544002F0F00 /* PECircleViewController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7CDA11D716D117A200F0F456 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7CDA11F516D11AAD00F0F456 /* Matrix2D.m in Sources */,
+				7CDA11F616D11AAD00F0F456 /* Vector2D.m in Sources */,
+				7CDA11F416D11A8700F0F456 /* ConstantLibrary.m in Sources */,
+				7CDA11F316D11A6800F0F456 /* PERectangle.m in Sources */,
+				7CDA11ED16D117A200F0F456 /* PERectangleTest.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7CDA124916D1291200F0F456 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7CDA125E16D1293D00F0F456 /* ConstantLibrary.m in Sources */,
+				7CDA125F16D1293D00F0F456 /* Matrix2D.m in Sources */,
+				7CDA126016D1293D00F0F456 /* Vector2D.m in Sources */,
+				7CDA126116D1293D00F0F456 /* PERectangle.m in Sources */,
+				7CDA126316D1293D00F0F456 /* CollisionDetector.m in Sources */,
+				7CDA126416D1293D00F0F456 /* ContactPoint.m in Sources */,
+				7CDA125916D1291300F0F456 /* detectorTest.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		7C8AC16516CA463A004A9A89 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				7C8AC16616CA463A004A9A89 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		7C8AC17416CA463A004A9A89 /* MainStoryboard.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				7C8AC17516CA463A004A9A89 /* en */,
+			);
+			name = MainStoryboard.storyboard;
+			sourceTree = "<group>";
+		};
+		7CDA11E816D117A200F0F456 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				7CDA11E916D117A200F0F456 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		7CDA125416D1291300F0F456 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				7CDA125516D1291300F0F456 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		7C8AC17A16CA463A004A9A89 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = 2;
+			};
+			name = Debug;
+		};
+		7C8AC17B16CA463A004A9A89 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = 2;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		7C8AC17D16CA463A004A9A89 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "PhysicsEngine/PhysicsEngine-Prefix.pch";
+				INFOPLIST_FILE = "PhysicsEngine/PhysicsEngine-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		7C8AC17E16CA463A004A9A89 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "PhysicsEngine/PhysicsEngine-Prefix.pch";
+				INFOPLIST_FILE = "PhysicsEngine/PhysicsEngine-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		7CDA11EF16D117A200F0F456 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = "\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"";
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "PERectangleTest/PERectangleTest-Prefix.pch";
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				INFOPLIST_FILE = "PERectangleTest/PERectangleTest-Info.plist";
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Debug;
+		};
+		7CDA11F016D117A200F0F456 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				COMBINE_HIDPI_IMAGES = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				FRAMEWORK_SEARCH_PATHS = "\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"";
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "PERectangleTest/PERectangleTest-Prefix.pch";
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				INFOPLIST_FILE = "PERectangleTest/PERectangleTest-Info.plist";
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Release;
+		};
+		7CDA125C16D1291300F0F456 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = "\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"";
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "detectorTest/detectorTest-Prefix.pch";
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				INFOPLIST_FILE = "detectorTest/detectorTest-Info.plist";
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Debug;
+		};
+		7CDA125D16D1291300F0F456 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				COMBINE_HIDPI_IMAGES = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				FRAMEWORK_SEARCH_PATHS = "\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"";
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "detectorTest/detectorTest-Prefix.pch";
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				INFOPLIST_FILE = "detectorTest/detectorTest-Info.plist";
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		7C8AC15216CA463A004A9A89 /* Build configuration list for PBXProject "PhysicsEngine" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7C8AC17A16CA463A004A9A89 /* Debug */,
+				7C8AC17B16CA463A004A9A89 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		7C8AC17C16CA463A004A9A89 /* Build configuration list for PBXNativeTarget "PhysicsEngine" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7C8AC17D16CA463A004A9A89 /* Debug */,
+				7C8AC17E16CA463A004A9A89 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		7CDA11F116D117A200F0F456 /* Build configuration list for PBXNativeTarget "PERectangleTest" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7CDA11EF16D117A200F0F456 /* Debug */,
+				7CDA11F016D117A200F0F456 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		7CDA125B16D1291300F0F456 /* Build configuration list for PBXNativeTarget "detectorTest" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7CDA125C16D1291300F0F456 /* Debug */,
+				7CDA125D16D1291300F0F456 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 7C8AC14F16CA463A004A9A89 /* Project object */;
+}
