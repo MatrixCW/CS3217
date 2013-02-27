@@ -26,6 +26,8 @@
 		7CA6119F16CA6A2B00EC4876 /* Matrix2D.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CEBDBBF16CA5B640064B92F /* Matrix2D.m */; };
 		7CA611A016CA6A2F00EC4876 /* Vector2D.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CEBDBC116CA5B640064B92F /* Vector2D.m */; };
 		7CA611A416CA74C200EC4876 /* MyWorld.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CA611A316CA74C200EC4876 /* MyWorld.m */; };
+		7CB9B10B16DE847F002F0F00 /* circle.png in Resources */ = {isa = PBXBuildFile; fileRef = 7CB9B10A16DE847F002F0F00 /* circle.png */; };
+		7CB9B10F16DE8544002F0F00 /* PECircleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CB9B10E16DE8544002F0F00 /* PECircleViewController.m */; };
 		7CBCC79A16CF128C00580A88 /* ContactPoint.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CBCC79916CF128C00580A88 /* ContactPoint.m */; };
 		7CDA11DE16D117A200F0F456 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7CDA11DD16D117A200F0F456 /* SenTestingKit.framework */; };
 		7CDA11E016D117A200F0F456 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7CDA11DF16D117A200F0F456 /* Cocoa.framework */; };
@@ -74,6 +76,9 @@
 		7CA6119A16CA664000EC4876 /* ConstantLibrary.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConstantLibrary.m; sourceTree = "<group>"; };
 		7CA611A216CA74C200EC4876 /* MyWorld.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyWorld.h; sourceTree = "<group>"; };
 		7CA611A316CA74C200EC4876 /* MyWorld.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyWorld.m; sourceTree = "<group>"; };
+		7CB9B10A16DE847F002F0F00 /* circle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = circle.png; sourceTree = "<group>"; };
+		7CB9B10D16DE8544002F0F00 /* PECircleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PECircleViewController.h; sourceTree = "<group>"; };
+		7CB9B10E16DE8544002F0F00 /* PECircleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PECircleViewController.m; sourceTree = "<group>"; };
 		7CBCC79816CF128C00580A88 /* ContactPoint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactPoint.h; sourceTree = "<group>"; };
 		7CBCC79916CF128C00580A88 /* ContactPoint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactPoint.m; sourceTree = "<group>"; };
 		7CDA11DC16D117A200F0F456 /* PERectangleTest.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PERectangleTest.octest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -175,6 +180,7 @@
 			children = (
 				7C75762316CDD5D100DD48D2 /* atom.000.png */,
 				7C75762116CDD55B00DD48D2 /* atom.png */,
+				7CB9B10A16DE847F002F0F00 /* circle.png */,
 				7C8AC16216CA463A004A9A89 /* PhysicsEngine */,
 				7CDA11E516D117A200F0F456 /* PERectangleTest */,
 				7CDA125116D1291200F0F456 /* detectorTest */,
@@ -220,6 +226,8 @@
 				7C8AC17816CA463A004A9A89 /* MyPEViewController.m */,
 				7C695CF616CBCF0300F70DEA /* PERectangleViewController.h */,
 				7C695CF716CBCF0300F70DEA /* PERectangleViewController.m */,
+				7CB9B10D16DE8544002F0F00 /* PECircleViewController.h */,
+				7CB9B10E16DE8544002F0F00 /* PECircleViewController.m */,
 				7C8AC16316CA463A004A9A89 /* Supporting Files */,
 			);
 			path = PhysicsEngine;
@@ -394,6 +402,7 @@
 				7C8AC17616CA463A004A9A89 /* MainStoryboard.storyboard in Resources */,
 				7C75762216CDD55B00DD48D2 /* atom.png in Resources */,
 				7C75762416CDD5D100DD48D2 /* atom.000.png in Resources */,
+				7CB9B10B16DE847F002F0F00 /* circle.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -460,6 +469,7 @@
 				7CA611A416CA74C200EC4876 /* MyWorld.m in Sources */,
 				7C695CF816CBCF0300F70DEA /* PERectangleViewController.m in Sources */,
 				7CBCC79A16CF128C00580A88 /* ContactPoint.m in Sources */,
+				7CB9B10F16DE8544002F0F00 /* PECircleViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -705,6 +715,7 @@
 				7CDA11F016D117A200F0F456 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		7CDA125B16D1291300F0F456 /* Build configuration list for PBXNativeTarget "detectorTest" */ = {
 			isa = XCConfigurationList;
@@ -713,6 +724,7 @@
 				7CDA125D16D1291300F0F456 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

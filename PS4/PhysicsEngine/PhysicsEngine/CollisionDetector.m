@@ -28,6 +28,12 @@
     if(!rectA.identity && !rectB.identity)
         return;
    
+    if(rectA.identity == 2){
+        rectA.rotation = rectB.rotation;
+    }
+    if(rectB.identity == 2){
+        rectB.rotation = rectA.rotation;
+    }
     
     self.rectA = rectA;
     self.rectB = rectB;
@@ -377,6 +383,8 @@
            rectA.velocity = [rectA.velocity negateJustY];
            rectA.angularVelocity = rectA.angularVelocity + [rA cross:[Pn add:Pt]]/rectA.momentOfInetia;
             
+            
+            
         }
         
         
@@ -385,6 +393,8 @@
            rectB.velocity = [[rectB.velocity negateJustY] subtract:[[Pn add:Pt] multiply:(1.0/rectB.mass)]];
            rectB.velocity = [rectB.velocity negateJustY];
            rectB.angularVelocity = rectB.angularVelocity - [rB cross:[Pn add:Pt]]/rectB.momentOfInetia ;
+            
+            
                       
         }
        

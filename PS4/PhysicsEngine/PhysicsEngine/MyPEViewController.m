@@ -16,12 +16,24 @@
 {
     [super viewDidLoad];
 	
+    [self.view setBackgroundColor:[[UIColor alloc] initWithRed:0.6353
+                                                         green:0.8824
+                                                          blue:0.9490
+                                                         alpha:1.0 ]];
+    
+    UIImage *circle = [UIImage imageNamed:@"circle.png"];
+    
     _simulatedWorld = [[MyWorld alloc] init];
     
    
     
     
-   
+    PECircleViewController* circleView = [[PECircleViewController alloc] initPECircleWithCenter:CGPointMake(610,10)
+                                                                                           mass:500
+                                                                                       andImage:circle];
+    [self addChildViewController:circleView];
+    [self.simulatedWorld.objectsInWorld addObject:circleView.model];
+    [self.view addSubview:circleView.view];
             
     PERectangleViewController* test = [[PERectangleViewController alloc] initPERectangleWithCenter:CGPointMake(260, 380)
                                                                                              Width:50
@@ -33,6 +45,7 @@
     [self.view addSubview:test.view];
     
     
+    /*
     PERectangleViewController* test2 = [[PERectangleViewController alloc] initPERectangleWithCenter:CGPointMake(620, 60)
                                                                                              Width:200
                                                                                             Height:80
@@ -41,8 +54,9 @@
     [self addChildViewController:test2];
     [self.simulatedWorld.objectsInWorld addObject:test2.model];
     [self.view addSubview:test2.view];
+    */
     
-    PERectangleViewController* test3 = [[PERectangleViewController alloc] initPERectangleWithCenter:CGPointMake(300, 180)
+    PERectangleViewController* test3 = [[PERectangleViewController alloc] initPERectangleWithCenter:CGPointMake(300, 600)
                                                                                               Width:450
                                                                                              Height:100
                                                                                                mass:450*100*defaultDensity
@@ -72,7 +86,7 @@
     [self.view addSubview:test5.view];
     
     
-    PERectangleViewController* test6 = [[PERectangleViewController alloc] initPERectangleWithCenter:CGPointMake(560, 445)
+    PERectangleViewController* test6 = [[PERectangleViewController alloc] initPERectangleWithCenter:CGPointMake(570, 445)
                                                                                               Width:70
                                                                                              Height:325
                                                                                                mass:70*325*defaultDensity
@@ -91,6 +105,7 @@
     [self.view addSubview:test7.view];
     
     
+    /*
     PERectangleViewController* test8 = [[PERectangleViewController alloc] initPERectangleWithCenter:CGPointMake(220, 550)
                                                                                               Width:300
                                                                                              Height:30
@@ -99,7 +114,7 @@
     [self addChildViewController:test8];
     [self.simulatedWorld.objectsInWorld addObject:test8.model];
     [self.view addSubview:test8.view];
-
+    */
     
         
             

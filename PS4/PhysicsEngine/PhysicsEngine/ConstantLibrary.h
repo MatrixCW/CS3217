@@ -11,7 +11,7 @@
 
 extern CGFloat timeInterval;
 extern CGFloat defaultFrictionCoefficient;
-extern CGFloat groundCoefficient;
+extern CGFloat groundFrictionCoefficient;
 extern CGFloat defaultRestitutionCoefficient;
 extern CGFloat groundRestitutionCoefficient;
 extern CGFloat floatComparisonEpsilon;

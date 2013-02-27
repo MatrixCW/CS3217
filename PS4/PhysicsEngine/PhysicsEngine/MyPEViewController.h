@@ -12,6 +12,7 @@
 #import "PERectangleViewController.h"
 #import "MyWorld.h"
 #import "CollisionDetector.h"
+#import "PECircleViewController.h"
 
 @interface MyPEViewController : UIViewController
 // OVERVIEW: main view controller of the app

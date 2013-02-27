@@ -11,7 +11,7 @@
 
 CGFloat timeInterval = 1.0f/100.0f;
 CGFloat defaultFrictionCoefficient = 0.1;
-CGFloat groundCoefficient = 0.1;
+CGFloat groundFrictionCoefficient = 0.1;
 CGFloat defaultRestitutionCoefficient = 0.8;
 CGFloat groundRestitutionCoefficient = 0.5;
 CGFloat floatComparisonEpsilon = 0.00000000001;

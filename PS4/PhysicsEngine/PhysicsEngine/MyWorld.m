@@ -60,7 +60,7 @@
 -(void)updatePosition{
     
     for (PERectangle* rect in self.objectsInWorld){
-        if(rect.identity){
+        if(rect.identity != 0){
            CGFloat x = rect.center.x + rect.velocity.x * timeInterval;
            CGFloat y = rect.center.y + rect.velocity.y * timeInterval;
            rect.center = CGPointMake(x, y);
