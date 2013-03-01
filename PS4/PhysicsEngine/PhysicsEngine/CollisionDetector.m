@@ -29,7 +29,7 @@
         return;
    
     if(rectA.identity == 2){
-        rectA.rotation = rectB.rotation;
+       rectA.rotation = rectB.rotation;
     }
     if(rectB.identity == 2){
         rectB.rotation = rectA.rotation;
@@ -385,6 +385,8 @@
             
             
             
+            
+            
         }
         
         
@@ -394,8 +396,9 @@
            rectB.velocity = [rectB.velocity negateJustY];
            rectB.angularVelocity = rectB.angularVelocity - [rB cross:[Pn add:Pt]]/rectB.momentOfInetia ;
             
+        
             
-                      
+     
         }
        
            

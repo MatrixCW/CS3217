@@ -11,63 +11,77 @@
 #define ZERO 0
 #define SELECTBARHEIGHT 83
 
+@interface GameObject()
+
+@property (readwrite) CGFloat widthInPalette;
+@property (readwrite) CGFloat heightInPalette;
+@property (readwrite) CGPoint centerInPalette;
+
+@end
 
 @implementation GameObject
 
-@synthesize selfImgView;
-@synthesize gamearea;
-@synthesize selectBar;
-@synthesize center;
-@synthesize originalWidth;
-@synthesize originalHeight;
-@synthesize currentWidth;
-@synthesize currentHeight;
 
 
--(void)loadView{
-    self.view = self.selfImgView;
+-(id)init{
+    
+    UIImage *pigImage = [UIImage imageNamed:@"pig.png"];
+    UIImageView *pigView = [[UIImageView alloc] initWithImage:pigImage];
+    
+    self.widthInPalette = 2*pigImage.size.width;
+    self.heightInPalette = 2*pigImage.size.height;
+    self.centerInPalette = CGPointMake(25,25); 
+    
+    pigView.frame = CGRectMake(self.centerInPalette.x - self.widthInPalette/2,
+                               self.centerInPalette.y - self.heightInPalette/2,
+                               self.widthInPalette,
+                               self.heightInPalette);
+    self.view = pigView;
+    self.model = [[PERectangle alloc] initPERectangleWithCenter:self.view.center
+                                                         Width:self.widthInPalette
+                                                        Height:self.heightInPalette
+                                                        andMass:100];
+    
+    NSLog(@"%lf, %lf, %lf, %lf",self.centerInPalette.x,self.centerInPalette.y,self.widthInPalette,self.heightInPalette);
+    return self;
 }
 
-
 - (void)translate:(UIPanGestureRecognizer*)gesture{
+    
     // MODIFIES: object model (coordinates)
     // REQUIRES: game in designer mode
     // EFFECTS: the user drags around the object with one finger
     //          if the object is in the palette, it will be moved in the game area
     
-    
-    self.gamearea.scrollEnabled = NO;
+  
+    [self.myDelegate disableGamearea];
     
     CGPoint translation = [gesture translationInView:gesture.view.superview];
-    [gesture.view setBounds:CGRectMake(ZERO, ZERO, self.currentWidth, self.currentHeight)];
-     gesture.view.center = CGPointMake(gesture.view.center.x + translation.x,
+    gesture.view.center = CGPointMake(gesture.view.center.x + translation.x,
                                         gesture.view.center.y + translation.y);
     
+    NSLog(@"%lf", gesture.view.center.y - gesture.view.frame.size.height/2);
     [gesture setTranslation:CGPointZero inView:gesture.view.superview];
     
     
     if (gesture.state == UIGestureRecognizerStateChanged &&
-        gesture.view.superview == self.selectBar &&
-        gesture.view.center.y - self.view.frame.size.height/2 > self.selectBar.frame.size.height) {
+       [self.myDelegate shouldAddToGameArea:gesture.view]) {
         
-            gesture.view.center = CGPointMake(self.gamearea.contentOffset.x + gesture.view.center.x,
-                                              gesture.view.center.y - self.selectBar.frame.size.height);
             
-            [self.gamearea addSubview:gesture.view];
+            
+           [self.myDelegate addToGameArea:gesture.view];
         
     }
     
     
     if (gesture.state == UIGestureRecognizerStateEnded) {
         
-        self.gamearea.scrollEnabled = YES;
+        [self.myDelegate enableGamearea];
         
-        if (gesture.view.center.y - self.view.frame.size.height/2 <= self.selectBar.frame.size.height && gesture.view.superview == self.selectBar) {
+        if ([self.myDelegate notMovedOutOfPalette:gesture.view]) {
             
-            
-            [gesture.view setBounds:CGRectMake(ZERO, ZERO, self.originalWidth, self.originalHeight)];
-            gesture.view.center = CGPointMake(self.center.x , self.center.y);
-            
+            [self.myDelegate addToPalette:gesture.view];
+                        
         }
         
     }
@@ -81,15 +95,14 @@
     // REQUIRES: game in designer mode, object in game area
     // EFFECTS: the object is rotated with a two-finger rotation gesture
     
-    self.gamearea.scrollEnabled = NO;
     
-    //NSLog(@"%lf", gesture.rotation);
+    [self.myDelegate disableGamearea];
     
     gesture.view.transform = CGAffineTransformRotate(gesture.view.transform, gesture.rotation);
     gesture.rotation = 0;
     
     if (gesture.state == UIGestureRecognizerStateEnded) {
-        gamearea.scrollEnabled = YES;
+        [self.myDelegate enableGamearea];
     }
     
 }
@@ -101,7 +114,8 @@
     
     // You will need to define more methods to complete the specification.
     
-    self.gamearea.scrollEnabled = NO;
+    
+    [self.myDelegate disableGamearea];
     
     CGFloat pictureScaleA = gesture.view.transform.a;
     CGFloat pictureScaleB = gesture.view.transform.b;
@@ -114,84 +128,52 @@
     
     
     if(xScale>=2 || yScale >=2){
-    gesture.view.transform = CGAffineTransformScale(gesture.view.transform, 0.99, 0.99);
+        gesture.view.transform = CGAffineTransformScale(gesture.view.transform, 0.99, 0.99);
     }
-    else
-        if(xScale<=1 || yScale <=1){
-            gesture.view.transform = CGAffineTransformScale(gesture.view.transform, 1.01, 1.01);
-        }
-           else{
-                 gesture.view.transform = CGAffineTransformScale(gesture.view.transform, gesture.scale, gesture.scale);
+    else if(xScale<=1 || yScale <=1){
+        gesture.view.transform = CGAffineTransformScale(gesture.view.transform, 1.01, 1.01);
+    }
+    else{
+        gesture.view.transform = CGAffineTransformScale(gesture.view.transform, gesture.scale, gesture.scale);
     
-                }
+    }
     
     gesture.scale = 1;
     
     if (gesture.state == UIGestureRecognizerStateEnded) {
-        gamearea.scrollEnabled = YES;
+        [self.myDelegate enableGamearea];;
     }
     
 }
 
-- (void)setRecognizer{
+
+
+- (void)doubleTap:(UITapGestureRecognizer*) recognizer{
     
-    UIPanGestureRecognizer *pan = [[UIPanGestureRecognizer alloc]initWithTarget:self action:@selector(translate:)];
-    [pan setMaximumNumberOfTouches:1];
     
-    UITapGestureRecognizer *doubleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleDoubleTap:)];
-    [doubleTap setNumberOfTapsRequired:2];
-    
-    UIPinchGestureRecognizer *zoom = [[UIPinchGestureRecognizer alloc] initWithTarget:self action:@selector(zoom:)];
-    
-    UIRotationGestureRecognizer *rotate = [[UIRotationGestureRecognizer alloc] initWithTarget:self action:@selector(rotate:)];
-    
-    UITapGestureRecognizer *singleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleSingleTap:)];
-    [singleTap setNumberOfTapsRequired:1];
-    
-    [self.selfImgView addGestureRecognizer:pan];
-    pan.delegate = self;
-    [self.selfImgView addGestureRecognizer:doubleTap];
-    [self.selfImgView addGestureRecognizer:zoom];
-    zoom.delegate = self;
-    [self.selfImgView addGestureRecognizer:rotate];
-    rotate.delegate = self;
-    [self.selfImgView addGestureRecognizer:singleTap];
-    singleTap.delegate = self;
+   [self restore];
     
 }
 
-- (void)handleDoubleTap:(UITapGestureRecognizer*) recognizer{
+-(void) restore{
     
-    
-   
-    [self releaseObject];
-    
-}
-
--(void) releaseObject{
-    
+    NSLog(@"FANGPI");
+    NSLog(@"%lf, %lf, %lf, %lf",self.centerInPalette.x,self.centerInPalette.y,self.widthInPalette,self.heightInPalette);
     self.view.transform = CGAffineTransformIdentity;
-    
-    self.view.frame = CGRectMake(self.center.x-self.originalWidth/2,
-                                     self.center.y-self.originalHeight/2,
-                                     self.originalWidth,
-                                     self.originalHeight);
-        
-        
-        
-        [self.view setBounds:CGRectMake(ZERO, ZERO, self.originalWidth, self.originalHeight)];
-        [self.selectBar addSubview:self.view];
+    self.view.frame = CGRectMake(self.centerInPalette.x - self.widthInPalette/2,
+                                 self.centerInPalette.y - self.heightInPalette/2,
+                                 self.widthInPalette,
+                                 self.heightInPalette);
+    [self.myDelegate addToPalette:self.view];
     
 }
 
 
--(void)handleSingleTap:(UITapGestureRecognizer *)recognizer {
-    
-}
+
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
-    // Return YES for supported orientations
+    
 	return YES;
 }
 

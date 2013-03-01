@@ -65,8 +65,9 @@
            CGFloat y = rect.center.y + rect.velocity.y * timeInterval;
            rect.center = CGPointMake(x, y);
             
-            rect.rotation += rect.angularVelocity * timeInterval;
-           [rect.myDelegate UpdatePosition];
+           rect.rotation += rect.angularVelocity * timeInterval;
+                   
+            [rect.myDelegate UpdatePosition];
         }
     }
     

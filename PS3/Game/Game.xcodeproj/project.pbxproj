@@ -7,11 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7C0AD3C816DF488100CA0823 /* ConstantLibrary.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C0AD3BF16DF486700CA0823 /* ConstantLibrary.m */; };
+		7C0AD3C916DF488100CA0823 /* Matrix2D.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C0AD3C116DF486700CA0823 /* Matrix2D.m */; };
+		7C0AD3CA16DF488100CA0823 /* PERectangle.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C0AD3C316DF486700CA0823 /* PERectangle.m */; };
+		7C0AD3CB16DF488100CA0823 /* Vector2D.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C0AD3C616DF486800CA0823 /* Vector2D.m */; };
 		7C0BDF1B16BBE9BC00B60E81 /* wolfs.png in Resources */ = {isa = PBXBuildFile; fileRef = 7C0BDF1A16BBE9BC00B60E81 /* wolfs.png */; };
 		7C0BDF1E16BBEE3400B60E81 /* GameObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C0BDF1D16BBEE3400B60E81 /* GameObject.m */; };
-		7C2280F216BD3BB4004C6FA0 /* GamePig.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C2280F116BD3BB4004C6FA0 /* GamePig.m */; };
-		7C2280F616BD3E4D004C6FA0 /* GameBlock.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C2280F516BD3E4D004C6FA0 /* GameBlock.m */; };
-		7C2731A416BD45F400872EED /* GameWolf.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C2731A316BD45F400872EED /* GameWolf.m */; };
 		7C2731AA16BD6BB600872EED /* iron.png in Resources */ = {isa = PBXBuildFile; fileRef = 7C2731A916BD6BB600872EED /* iron.png */; };
 		7C2731AC16BD6BE700872EED /* stone.png in Resources */ = {isa = PBXBuildFile; fileRef = 7C2731AB16BD6BE700872EED /* stone.png */; };
 		7C35B78D16BAA6FF00ADD901 /* ViewController+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C35B78C16BAA6FF00ADD901 /* ViewController+Extension.m */; };
@@ -33,6 +34,15 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		7C0AD3BE16DF486700CA0823 /* ConstantLibrary.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ConstantLibrary.h; sourceTree = "<group>"; };
+		7C0AD3BF16DF486700CA0823 /* ConstantLibrary.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ConstantLibrary.m; sourceTree = "<group>"; };
+		7C0AD3C016DF486700CA0823 /* Matrix2D.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Matrix2D.h; sourceTree = "<group>"; };
+		7C0AD3C116DF486700CA0823 /* Matrix2D.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Matrix2D.m; sourceTree = "<group>"; };
+		7C0AD3C216DF486700CA0823 /* PERectangle.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PERectangle.h; sourceTree = "<group>"; };
+		7C0AD3C316DF486700CA0823 /* PERectangle.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PERectangle.m; sourceTree = "<group>"; };
+		7C0AD3C416DF486700CA0823 /* UpdatePositionInViewDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UpdatePositionInViewDelegate.h; sourceTree = "<group>"; };
+		7C0AD3C516DF486800CA0823 /* Vector2D.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Vector2D.h; sourceTree = "<group>"; };
+		7C0AD3C616DF486800CA0823 /* Vector2D.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Vector2D.m; sourceTree = "<group>"; };
 		7C0BDF1A16BBE9BC00B60E81 /* wolfs.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = wolfs.png; sourceTree = "<group>"; };
 		7C0BDF1D16BBEE3400B60E81 /* GameObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameObject.m; sourceTree = "<group>"; };
 		7C2280F016BD3BB4004C6FA0 /* GamePig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GamePig.h; sourceTree = "<group>"; };
@@ -65,6 +75,7 @@
 		7CDDD7BF16B01DAE0025C8EA /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		7CDDD7C616B01F250025C8EA /* background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = background.png; sourceTree = "<group>"; };
 		7CDDD7C716B01F250025C8EA /* ground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ground.png; sourceTree = "<group>"; };
+		7CDE6E7116E0521D00F1AA54 /* GestureHandlerProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GestureHandlerProtocol.h; sourceTree = "<group>"; };
 		7CF19E1F16B9513E009A42A1 /* GameObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameObject.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -126,6 +137,16 @@
 		7CDDD7A916B01DAE0025C8EA /* Game */ = {
 			isa = PBXGroup;
 			children = (
+				7CDE6E7116E0521D00F1AA54 /* GestureHandlerProtocol.h */,
+				7C0AD3BE16DF486700CA0823 /* ConstantLibrary.h */,
+				7C0AD3BF16DF486700CA0823 /* ConstantLibrary.m */,
+				7C0AD3C016DF486700CA0823 /* Matrix2D.h */,
+				7C0AD3C116DF486700CA0823 /* Matrix2D.m */,
+				7C0AD3C216DF486700CA0823 /* PERectangle.h */,
+				7C0AD3C316DF486700CA0823 /* PERectangle.m */,
+				7C0AD3C416DF486700CA0823 /* UpdatePositionInViewDelegate.h */,
+				7C0AD3C516DF486800CA0823 /* Vector2D.h */,
+				7C0AD3C616DF486800CA0823 /* Vector2D.m */,
 				7C35B78E16BAA83100ADD901 /* pics */,
 				7C35B78B16BAA6FF00ADD901 /* ViewController+Extension.h */,
 				7C35B78C16BAA6FF00ADD901 /* ViewController+Extension.m */,
@@ -234,14 +255,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7C0AD3C816DF488100CA0823 /* ConstantLibrary.m in Sources */,
+				7C0AD3C916DF488100CA0823 /* Matrix2D.m in Sources */,
+				7C0AD3CA16DF488100CA0823 /* PERectangle.m in Sources */,
+				7C0AD3CB16DF488100CA0823 /* Vector2D.m in Sources */,
 				7CDDD7B016B01DAE0025C8EA /* main.m in Sources */,
 				7CDDD7B416B01DAE0025C8EA /* AppDelegate.m in Sources */,
 				7CDDD7C016B01DAE0025C8EA /* ViewController.m in Sources */,
 				7C35B78D16BAA6FF00ADD901 /* ViewController+Extension.m in Sources */,
 				7C0BDF1E16BBEE3400B60E81 /* GameObject.m in Sources */,
-				7C2280F216BD3BB4004C6FA0 /* GamePig.m in Sources */,
-				7C2280F616BD3E4D004C6FA0 /* GameBlock.m in Sources */,
-				7C2731A416BD45F400872EED /* GameWolf.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

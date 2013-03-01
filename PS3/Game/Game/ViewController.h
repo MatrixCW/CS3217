@@ -11,7 +11,7 @@
 #import "GameWolf.h"
 #import "GamePig.h"
 #import "GameBlock.h"
-
+#import "GestureHandlerProtocol.h"
 
 #define NO_DATA_STORED         (@"You have no game data stored!")
 #define CHOOSE_FILE_TO_LOAD    (@"Choose a file to load")
@@ -20,7 +20,7 @@
 #define OK_BUTTON              (@"OK")
 
 
-@interface ViewController : UIViewController<UIAlertViewDelegate,UIActionSheetDelegate>
+@interface ViewController : UIViewController<UIAlertViewDelegate,UIActionSheetDelegate,GestureHandlerProtocol>
 
 @property (strong) GameWolf *myWolf;
 @property (strong) GamePig *myPig;
@@ -30,11 +30,10 @@
 
 @property (strong, nonatomic) IBOutlet UIBarButtonItem *myDeleteButton;
 @property (strong, nonatomic) IBOutlet UIBarButtonItem *myLoadButton;
-//used for trigger UIActionSheet animation
 
 
 @property (strong, nonatomic) IBOutlet UIScrollView *gamearea;
-@property (strong, nonatomic) IBOutlet UIView *selectBar;
+@property (strong, nonatomic) IBOutlet UIView *palette;
 
 
 - (IBAction)resetButtonPressed:(id)sender;

@@ -5,31 +5,17 @@
 //
 
 #import <UIKit/UIKit.h>
-
-// Constants for the three game objects to be implemented
-typedef enum {kGameObjectWolf = 1, kGameObjectPig = 2, kGameObjectBlock = 3} GameObjectType;
-
-//Constant for the three background of the straw
-typedef enum {GameBlockWood = 4, GameBlockIron = 5, GameBlockStone = 6} StrawType;
-
-@interface GameObject : UIViewController<UIGestureRecognizerDelegate, NSCoding> 
+#import "PERectangle.h"
+#import "GestureHandlerProtocol.h"
+@interface GameObject : UIViewController<UIGestureRecognizerDelegate>
  
 
-@property (nonatomic) UIImageView* selfImgView;
-@property (nonatomic) UIScrollView* gamearea;
-@property (nonatomic) UIView* selectBar;
-@property (nonatomic) CGPoint center;
-@property (nonatomic) CGFloat originalWidth;
-@property (nonatomic) CGFloat originalHeight;
-@property (nonatomic) CGFloat currentWidth;
-@property (nonatomic) CGFloat currentHeight;
+@property PERectangle *model;
+@property (weak) id<GestureHandlerProtocol> myDelegate;
 
-
-@property (strong) UIPanGestureRecognizer *pan;
-@property (strong) UITapGestureRecognizer *doubleTap;
-@property (strong) UITapGestureRecognizer *singleTap;
-@property (strong) UIPinchGestureRecognizer* zoom;
-@property (strong) UIRotationGestureRecognizer* rotate;
+@property (readonly) CGFloat widthInPalette;
+@property (readonly) CGFloat heightInPalette;
+@property (readonly) CGPoint centerInPalette;
 
 
 - (void)translate:(UIGestureRecognizer *)gesture;
@@ -48,17 +34,9 @@ typedef enum {GameBlockWood = 4, GameBlockIron = 5, GameBlockStone = 6} StrawTyp
   // REQUIRES: game in designer mode, object in game area
   // EFFECTS: the object is scaled up/down with a pinch gesture
 
-// You will need to define more methods to complete the specification.
-
-- (id)initWithBackground:(UIScrollView*) downArea:(UIView*)upArea;
-//init a gameObject and associate it with the gameArea and selectBar
-
-- (void)setRecognizer;
-// EFFECTS: add the gesture recognizer to the view
-
--(void) releaseObject;
+-(void) restore;
 // MODIFIES: views in gameArea
-// EFFECTS: add the view back to the selectBar
+// EFFECTS: add the view back to the palette
 
 
 @end

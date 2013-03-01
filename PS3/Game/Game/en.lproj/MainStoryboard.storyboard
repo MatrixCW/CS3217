@@ -76,14 +76,29 @@
                         <outlet property="gamearea" destination="D6C-3d-O7I" id="YdQ-6n-27O"/>
                         <outlet property="myDeleteButton" destination="sfH-fR-Tel" id="dIl-G2-D7t"/>
                         <outlet property="myLoadButton" destination="5vT-hM-iBY" id="ZXG-Af-XPf"/>
-                        <outlet property="selectBar" destination="t7P-Uq-1sE" id="4tx-hL-cf4"/>
+                        <outlet property="palette" destination="t7P-Uq-1sE" id="ZzI-31-XSY"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-6" y="-403"/>
+            <point key="canvasLocation" x="19" y="-427"/>
         </scene>
     </scenes>
+    <classes>
+        <class className="ViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/ViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="deleteButtonPressed:"/>
+                <relationship kind="action" name="loadButtonPressed:"/>
+                <relationship kind="action" name="resetButtonPressed:"/>
+                <relationship kind="action" name="saveButtonPressed:"/>
+                <relationship kind="outlet" name="gamearea" candidateClass="UIScrollView"/>
+                <relationship kind="outlet" name="myDeleteButton" candidateClass="UIBarButtonItem"/>
+                <relationship kind="outlet" name="myLoadButton" candidateClass="UIBarButtonItem"/>
+                <relationship kind="outlet" name="palette" candidateClass="UIView"/>
+            </relationships>
+        </class>
+    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar" statusBarStyle="blackTranslucent"/>
         <simulatedOrientationMetrics key="orientation"/>

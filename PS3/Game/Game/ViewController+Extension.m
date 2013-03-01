@@ -163,7 +163,7 @@
 // MODIFIES: gameArea
 // REQUIRES: loadName a valid name of a game data stored in the document directory
 // EFFECTS: change to gameArea to the state as loadName file specifies
-    
+    /*
     [self reset];
     
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
@@ -214,20 +214,20 @@
                 [self.myCurrentBlock moveToTarget:CGPointMake(X, Y)withTransform:CGAffineTransformFromString(transformValue) andTexture:count];
                                           
                                           
-                self.myCurrentBlock.nextGameBlock = [[GameBlock alloc] initWithBackground:self.gamearea :self.selectBar];
+                self.myCurrentBlock.nextGameBlock = [[GameBlock alloc] initWithBackground:self.gamearea :self.palette];
                 
                 self.myCurrentBlock = self.myCurrentBlock.nextGameBlock;
                 
                 assert(self.myCurrentBlock != nil);
                 
-                [self.selectBar addSubview:self.myCurrentBlock.view];
+                [self.palette addSubview:self.myCurrentBlock.view];
 
             }
       
     
     }
     
-    
+    */
     
 }
 
@@ -236,14 +236,15 @@
 - (void)reset{
 // REQUIRES: transform not equal to null
 // EFFECTS: reset the gameArea
-    
+   
+    /*
     [self.myWolf releaseObject];
     [self.myPig releaseObject];
     
     
     GameBlock *tempBlock = self.myRootBlock;
     
-    while(tempBlock.view.superview != self.selectBar){
+    while(tempBlock.view.superview != self.palette){
         
             [tempBlock releaseObject];
             tempBlock = tempBlock.nextGameBlock;
@@ -251,7 +252,7 @@
     
     self.myCurrentBlock = tempBlock;
     self.myRootBlock = tempBlock;
-    
+    */
 }
 
 
