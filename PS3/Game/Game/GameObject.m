@@ -23,28 +23,7 @@
 
 
 
--(id)init{
-    
-    UIImage *pigImage = [UIImage imageNamed:@"pig.png"];
-    UIImageView *pigView = [[UIImageView alloc] initWithImage:pigImage];
-    
-    self.widthInPalette = 2*pigImage.size.width;
-    self.heightInPalette = 2*pigImage.size.height;
-    self.centerInPalette = CGPointMake(25,25); 
-    
-    pigView.frame = CGRectMake(self.centerInPalette.x - self.widthInPalette/2,
-                               self.centerInPalette.y - self.heightInPalette/2,
-                               self.widthInPalette,
-                               self.heightInPalette);
-    self.view = pigView;
-    self.model = [[PERectangle alloc] initPERectangleWithCenter:self.view.center
-                                                         Width:self.widthInPalette
-                                                        Height:self.heightInPalette
-                                                        andMass:100];
-    
-    NSLog(@"%lf, %lf, %lf, %lf",self.centerInPalette.x,self.centerInPalette.y,self.widthInPalette,self.heightInPalette);
-    return self;
-}
+
 
 - (void)translate:(UIPanGestureRecognizer*)gesture{
     
@@ -57,10 +36,11 @@
     [self.myDelegate disableGamearea];
     
     CGPoint translation = [gesture translationInView:gesture.view.superview];
+    [gesture.view setBounds:CGRectMake(0, 0, 2*self.widthInPalette, 2*self.heightInPalette)];
     gesture.view.center = CGPointMake(gesture.view.center.x + translation.x,
                                         gesture.view.center.y + translation.y);
     
-    NSLog(@"%lf", gesture.view.center.y - gesture.view.frame.size.height/2);
+    
     [gesture setTranslation:CGPointZero inView:gesture.view.superview];
     
     
@@ -80,12 +60,13 @@
         
         if ([self.myDelegate notMovedOutOfPalette:gesture.view]) {
             
-            [self.myDelegate addToPalette:gesture.view];
+            [self restore];
                         
         }
         
     }
     
+    self.model.center = gesture.view.center;
     
 }
 
@@ -104,6 +85,10 @@
     if (gesture.state == UIGestureRecognizerStateEnded) {
         [self.myDelegate enableGamearea];
     }
+    
+    self.model.rotation = atan2(self.view.transform.b, self.view.transform.a);
+    
+   // NSLog(@"%lf", self.model.rotation);
     
 }
 
@@ -144,6 +129,17 @@
         [self.myDelegate enableGamearea];;
     }
     
+    
+    CGAffineTransform t = self.view.transform;
+    CGFloat xSize = sqrt(t.a * t.a + t.c * t.c);
+    CGFloat ySize = sqrt(t.b * t.b + t.d * t.d);
+
+    
+    self.model.width = 2*self.widthInPalette * xSize;
+    self.model.height = 2*self.heightInPalette * ySize;
+    
+    [self.model updateMomentOfInertia];
+        
 }
 
 
@@ -157,8 +153,7 @@
 
 -(void) restore{
     
-    NSLog(@"FANGPI");
-    NSLog(@"%lf, %lf, %lf, %lf",self.centerInPalette.x,self.centerInPalette.y,self.widthInPalette,self.heightInPalette);
+    
     self.view.transform = CGAffineTransformIdentity;
     self.view.frame = CGRectMake(self.centerInPalette.x - self.widthInPalette/2,
                                  self.centerInPalette.y - self.heightInPalette/2,
@@ -169,7 +164,16 @@
 }
 
 
+- (void)singleTap:(UITapGestureRecognizer*) recognizer{
+    
+    
+    [self changeTexture];
+    
+}
 
+-(void) changeTexture{
+    
+}
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {

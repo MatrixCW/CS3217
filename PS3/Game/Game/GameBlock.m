@@ -10,182 +10,199 @@
 
 @interface GameBlock ()
 
+@property (readwrite) CGFloat widthInPalette;
+@property (readwrite) CGFloat heightInPalette;
+@property (readwrite) CGPoint centerInPalette;
+
 @end
 
 @implementation GameBlock
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
 
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
-	// Do any additional setup after loading the view.
-}
-
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
-- (GameBlock*)initWithBackground:(UIScrollView*) downArea:(UIView*)upArea{
-//override
-//init a gameObject and associate it with the gameArea and selectBar
-    
+- (id)init{
         
-    self.originalHeight = 55;
-    self.originalWidth = 55;
-    self.currentHeight = 130;
-    self.currentWidth = 30;
-    self.center =CGPointMake(320, 60);
-    self.gamearea = downArea;
-    self.selectBar = upArea;
+   
     
     UIImage* blockImg = [UIImage imageNamed:@"straw.png"];
     UIImageView* block = [[UIImageView alloc]initWithImage:blockImg];
     
-    block.frame =  CGRectMake(self.center.x-self.originalWidth/2,
-                              self.center.y-self.originalHeight/2,
-                              self.originalWidth,
-                              self.originalHeight);
+    self.widthInPalette =  blockImg.size.width;
+    self.heightInPalette =  blockImg.size.height;
+    self.centerInPalette = CGPointMake(250,50);
     
-    self.selfImgView = block;
-    self.selfImgView.tag = kGameObjectBlock;
-    self.selfImgView.userInteractionEnabled = YES;
     
-    [self setRecognizer];
+    block.frame = CGRectMake(self.centerInPalette.x - self.widthInPalette/2,
+                               self.centerInPalette.y - self.heightInPalette/2,
+                               self.widthInPalette,
+                               self.heightInPalette);
+    self.view = block;
+    self.model = [[PERectangle alloc] initPERectangleWithCenter:self.view.center
+                                                          Width:self.widthInPalette
+                                                         Height:4*self.heightInPalette
+                                                        andMass:100];
     
-    self.view.tag = kGameObjectBlock;
-    self.count = 0;
-    
-    return  self;
+    return self;
+
     
 }
 
 
 - (void)translate:(UIPanGestureRecognizer*)gesture{
+    
     // MODIFIES: object model (coordinates)
     // REQUIRES: game in designer mode
     // EFFECTS: the user drags around the object with one finger
     //          if the object is in the palette, it will be moved in the game area
     
     
-    self.gamearea.scrollEnabled = NO;
+    [self.myDelegate disableGamearea];
     
     CGPoint translation = [gesture translationInView:gesture.view.superview];
-    [gesture.view setBounds:CGRectMake(0, 0, self.currentWidth, self.currentHeight)];
+    [gesture.view setBounds:CGRectMake(0, 0, self.widthInPalette, 4*self.heightInPalette)];
     gesture.view.center = CGPointMake(gesture.view.center.x + translation.x,
                                       gesture.view.center.y + translation.y);
+    
     
     [gesture setTranslation:CGPointZero inView:gesture.view.superview];
     
     
     if (gesture.state == UIGestureRecognizerStateChanged &&
-        gesture.view.superview == self.selectBar &&
-        gesture.view.center.y - self.view.frame.size.height/2 >= self.selectBar.frame.size.height) {
         
-        gesture.view.center = CGPointMake(self.gamearea.contentOffset.x + gesture.view.center.x,
-                                          gesture.view.center.y - self.selectBar.frame.size.height);
+        [self.myDelegate shouldAddToGameArea:gesture.view]) {
         
-        [self.gamearea addSubview:gesture.view];
+        [self.myDelegate addToGameArea:gesture.view];
         
-        self.nextGameBlock = [[GameBlock alloc] initWithBackground:self.gamearea :self.selectBar];
+        [self.myDelegate createNewGameBlock];
         
-        [self.selectBar addSubview:self.nextGameBlock.view];
-        
-            
     }
     
     
     if (gesture.state == UIGestureRecognizerStateEnded) {
         
-        self.gamearea.scrollEnabled = YES;
+        [self.myDelegate enableGamearea];
         
-        if (gesture.view.center.y <= self.selectBar.frame.size.height && gesture.view.superview == self.selectBar) {
+        if ([self.myDelegate notMovedOutOfPalette:gesture.view]) {
             
-            
-            [gesture.view setBounds:CGRectMake(0, 0, self.originalWidth, self.originalHeight)];
-            gesture.view.center = CGPointMake(self.center.x , self.center.y);
+            self.view.transform = CGAffineTransformIdentity;
+            self.view.frame = CGRectMake(self.centerInPalette.x - self.widthInPalette/2,
+                                         self.centerInPalette.y - self.heightInPalette/2,
+                                         self.widthInPalette,
+                                         self.heightInPalette);
+            [self.myDelegate addToPalette:self.view];
+
             
         }
         
     }
     
+    self.model.center = gesture.view.center;
     
 }
 
--(void) releaseObject{
+
+- (void)zoom:(UIPinchGestureRecognizer *)gesture{
+    // MODIFIES: object model (size)
+    // REQUIRES: game in designer mode, object in game area
+    // EFFECTS: the object is scaled up/down with a pinch gesture
     
-    [self.view removeFromSuperview];
+    // You will need to define more methods to complete the specification.
+    
+    
+    [self.myDelegate disableGamearea];
+    
+    CGFloat pictureScaleA = gesture.view.transform.a;
+    CGFloat pictureScaleB = gesture.view.transform.b;
+    CGFloat pictureScaleC = gesture.view.transform.c;
+    CGFloat pictureScaleD = gesture.view.transform.d;
+    
+    CGFloat xScale = sqrt(pictureScaleA*pictureScaleA+pictureScaleC*pictureScaleC);
+    CGFloat yScale = sqrt(pictureScaleB*pictureScaleB+pictureScaleD*pictureScaleD);
+    
+    
+    
+    if(xScale>=2 || yScale >=2){
+        gesture.view.transform = CGAffineTransformScale(gesture.view.transform, 0.99, 0.99);
+    }
+    else if(xScale<=1 || yScale <=1){
+        gesture.view.transform = CGAffineTransformScale(gesture.view.transform, 1.01, 1.01);
+    }
+    else{
+        gesture.view.transform = CGAffineTransformScale(gesture.view.transform, gesture.scale, gesture.scale);
+        
+    }
+    
+    gesture.scale = 1;
+    
+    if (gesture.state == UIGestureRecognizerStateEnded) {
+        [self.myDelegate enableGamearea];;
+    }
+    
+    
+    CGAffineTransform t = self.view.transform;
+    CGFloat xSize = sqrt(t.a * t.a + t.c * t.c);
+    CGFloat ySize = sqrt(t.b * t.b + t.d * t.d);
+    
+    
+    self.model.width = 2*self.widthInPalette * xSize;
+    self.model.height = 4*self.heightInPalette * ySize;
+    
+    [self.model updateMomentOfInertia];
     
 }
 
--(void)handleSingleTap:(UITapGestureRecognizer *)recognizer {
-    
-    [self changeTexture];
-    
-    
-}
 
 
 -(void)changeTexture{
     
-    if(self.view.superview == self.gamearea){
+    if(![self.myDelegate isInPalette:self.view]){
         
         if(self.count == 0){
             
-            self.count = (++self.count)%3;
+            self.count = 1;
             UIImage* blockImg = [UIImage imageNamed:@"stone.png"];
             UIImageView* block = [[UIImageView alloc]initWithImage:blockImg];
-            block.frame =CGRectMake(0, 0, self.currentWidth, self.currentHeight);
+            block.frame = CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height);
             [self.view addSubview:block];
-            self.view.tag = 4;
             
             
-        }else
             
-            if(self.count == 1){
-                self.count = (++self.count)%3;
-                UIImage* blockImg = [UIImage imageNamed:@"iron.png"];
-                UIImageView* block = [[UIImageView alloc]initWithImage:blockImg];
-                block.frame =CGRectMake(0, 0, self.currentWidth, self.currentHeight);
-                [self.view addSubview:block];
-                self.view.tag = 5;
+        }else if(self.count == 1){
+            
+            self.count = 2;
+            UIImage* blockImg = [UIImage imageNamed:@"iron.png"];
+            UIImageView* block = [[UIImageView alloc]initWithImage:blockImg];
+            block.frame = CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height);
+            [self.view addSubview:block];
+        
+        }else if(self.count == 2){
+            
+            self.count = 0;
+            UIImage* blockImg = [UIImage imageNamed:@"straw.png"];
+            UIImageView* block = [[UIImageView alloc]initWithImage:blockImg];
+            block.frame = CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height);
 
-                
-            }else
-                
-                if(self.count == 2){
-                    self.count = (++self.count)%3;
-                    UIImage* blockImg = [UIImage imageNamed:@"straw.png"];
-                    UIImageView* block = [[UIImageView alloc]initWithImage:blockImg];
-                    block.frame =CGRectMake(0, 0, self.currentWidth, self.currentHeight);
-                    [self.view addSubview:block];
-                    self.view.tag = 3;
+            [self.view addSubview:block];
+                    
 
                     
-                }
+        }
         
         
     }
+    
 }
 
--(void) moveToTarget:(CGPoint)center withTransform:(CGAffineTransform)transform andTexture:(int)count{
+
+-(void) restore{
     
-    [self.view setBounds:CGRectMake(0, 0, self.currentWidth, self.currentHeight)];
-    self.view.center = center;
-    self.view.transform = transform;
-    self.count = (count+2)%3;
-    [self.gamearea addSubview:self.view];
-    [self changeTexture];
+    if(![self.myDelegate isInPalette:self.view]){
+        [self.view removeFromSuperview];
+        [self removeFromParentViewController];
+    }
+    
 }
+
+
 
 
 @end

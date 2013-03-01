@@ -40,6 +40,7 @@
 
 -(id)initPERectangleWithCenter:(CGPoint)center Width:(CGFloat)width Height:(CGFloat)height andMass:(CGFloat)mass;
 -(id)initPECircleWithCenter:(CGPoint)center Width:(CGFloat)width Height:(CGFloat)height andMass:(CGFloat)mass;
+-(void)updateMomentOfInertia;
 
 -(Vector2D*)centerOfRectangle;
 

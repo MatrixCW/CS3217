@@ -33,12 +33,14 @@
 - (void) alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
     
-    if(buttonIndex == 0){
+    if(buttonIndex == 0)
         return;
-    }
-    else{
+    
+    
+    if([alertView.title isEqual:@"Enter file name "]){
       
-      UITextField* textField = [alertView textFieldAtIndex:0];
+        
+        UITextField* textField = [alertView textFieldAtIndex:0];
         
       if(textField.text != Nil && ![textField.text isEqual:@""])
         [self saveWithFileName:textField.text];
@@ -53,7 +55,7 @@
           [savingAborted show];
           }
                 
-     }
+    }
 
 }
 
@@ -234,25 +236,11 @@
 
 
 - (void)reset{
-// REQUIRES: transform not equal to null
-// EFFECTS: reset the gameArea
-   
-    /*
-    [self.myWolf releaseObject];
-    [self.myPig releaseObject];
-    
-    
-    GameBlock *tempBlock = self.myRootBlock;
-    
-    while(tempBlock.view.superview != self.palette){
-        
-            [tempBlock releaseObject];
-            tempBlock = tempBlock.nextGameBlock;
+
+    for(UIViewController* controller in self.childViewControllers){
+        if([controller isKindOfClass:GameObject.class])
+            [(GameObject*)controller restore];
     }
-    
-    self.myCurrentBlock = tempBlock;
-    self.myRootBlock = tempBlock;
-    */
 }
 
 

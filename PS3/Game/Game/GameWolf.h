@@ -8,8 +8,10 @@
 
 #import "GameObject.h"
 
+#define WOLFMASS 100
+
 @interface GameWolf : GameObject<UIGestureRecognizerDelegate>
 
--(void) moveToTarget:(CGPoint)center withTransform:(CGAffineTransform)transform;
+
 
 @end

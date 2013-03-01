@@ -44,6 +44,11 @@
     return self;
 }
 
+
+-(void)updateMomentOfInertia{
+    self.momentOfInetia = self.mass * (pow(self.width,2.0) + pow(self.height, 2.0))/12;
+}
+
 -(id)initPECircleWithCenter:(CGPoint)center Width:(CGFloat)width Height:(CGFloat)height andMass:(CGFloat)mass{
     self = [super init];
     

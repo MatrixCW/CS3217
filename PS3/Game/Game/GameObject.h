@@ -38,5 +38,7 @@
 // MODIFIES: views in gameArea
 // EFFECTS: add the view back to the palette
 
+-(void) changeTexture;
+
 
 @end

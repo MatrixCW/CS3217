@@ -10,80 +10,41 @@
 
 @interface GameWolf ()
 
+@property (readwrite) CGFloat widthInPalette;
+@property (readwrite) CGFloat heightInPalette;
+@property (readwrite) CGPoint centerInPalette;
+
 @end
 
 @implementation GameWolf
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
 
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
-- (GameWolf*)initWithBackground:(UIScrollView*) downArea:(UIView*)upArea{
-//override
-//init a gameObject and associate it with the gameArea and selectBar
-
+-(id)init{
     
-    self.originalHeight = 90;
-    self.originalWidth = 150;
-    self.currentHeight = 150;
-    self.currentWidth = 225;
-    self.center =CGPointMake(80, 60);
-    self.gamearea = downArea;
-    self.selectBar = upArea;
     
     UIImage* wolfsImage = [UIImage imageNamed:@"wolfs.png"];
-    
     CGImageRef imageRef = CGImageCreateWithImageInRect([wolfsImage CGImage], CGRectMake(0,0,225,150));
-    
     UIImage* singleWolfImage = [UIImage imageWithCGImage:imageRef];
-    
     CGImageRelease(imageRef);
-    
     UIImageView* wolf = [[UIImageView alloc] initWithImage:singleWolfImage];
-    
     [wolf sizeToFit];
     
-    wolf.frame = CGRectMake(self.center.x-self.originalWidth/2,
-                            self.center.y-self.originalHeight/2,
-                            self.originalWidth,
-                            self.originalHeight);
+    self.widthInPalette = 0.5 * singleWolfImage.size.width;
+    self.heightInPalette = 0.5 * singleWolfImage.size.height;
+    self.centerInPalette = CGPointMake(50,50);
     
-    self.selfImgView = wolf;
-    self.selfImgView.userInteractionEnabled = YES;
+    wolf.frame = CGRectMake(self.centerInPalette.x - self.widthInPalette/2,
+                            self.centerInPalette.y - self.heightInPalette/2,
+                            self.widthInPalette,
+                            self.heightInPalette);
+    self.view = wolf;
+    self.model = [[PERectangle alloc] initPERectangleWithCenter:self.view.center
+                                                          Width:2*self.widthInPalette
+                                                         Height:2*self.heightInPalette
+                                                        andMass:WOLFMASS];
     
-    self.view.tag = kGameObjectWolf;
+    return self;
     
-    [self setRecognizer];
-    
-    
-    
-    
-    return  self;
-    
-}
-
-
--(void) moveToTarget:(CGPoint)center withTransform:(CGAffineTransform)transform{
-    
-    [self.view setBounds:CGRectMake(0, 0, self.currentWidth, self.currentHeight)];
-    self.view.center = center;
-    self.view.transform = transform;
-    
-
-    [self.gamearea addSubview:self.view];
-        
-
 }
 
 

@@ -78,7 +78,7 @@
     CGFloat gameareaWidth = backgroundWidth;
     [_gamearea setContentSize:CGSizeMake(gameareaWidth, gameareaHeight)];
     
-    GameObject *test = [[GameObject alloc] init];
+    GameObject *test = [[GameWolf alloc] init];
     test.myDelegate = self;
     [self addChildViewController:test];
     [self.palette addSubview:test.view];
@@ -86,7 +86,22 @@
     test.view.userInteractionEnabled = YES;
     
     
+    GameObject *test2 = [[GamePig alloc] init];
+    test2.myDelegate = self;
+    [self addChildViewController:test2];
+    [self.palette addSubview:test2.view];
+    [self addRecognizer:test2.view :test2];
+    test2.view.userInteractionEnabled = YES;
     
+    
+    GameObject *test3 = [[GameBlock alloc] init];
+    test3.myDelegate = self;
+    [self addChildViewController:test3];
+    [self.palette addSubview:test3.view];
+    [self addRecognizer:test3.view :test3];
+    test3.view.userInteractionEnabled = YES;
+    
+        
 
     
 }
@@ -101,22 +116,34 @@
     pan.delegate = (GameObject*)controller;
     [view addGestureRecognizer:pan];
     
-    UITapGestureRecognizer *doubleTap = [[UITapGestureRecognizer alloc] initWithTarget:controller
-                                                                                action:@selector(doubleTap:)];
-    [doubleTap setNumberOfTapsRequired:2];
-    doubleTap.delegate = (GameObject*)controller;;
-    [view addGestureRecognizer:doubleTap];
+    
     
     UIPinchGestureRecognizer *zoom = [[UIPinchGestureRecognizer alloc] initWithTarget:controller
                                                                                action:@selector(zoom:)];
     zoom.delegate = (GameObject*)controller;;
     [view addGestureRecognizer:zoom];
     
+    
+    
     UIRotationGestureRecognizer *rotate = [[UIRotationGestureRecognizer alloc] initWithTarget:controller
                                                                                        action:@selector(rotate:)];
     rotate.delegate = (GameObject*)controller;
     [view addGestureRecognizer:rotate];
     
+    
+    
+    UITapGestureRecognizer *singaleTap = [[UITapGestureRecognizer alloc] initWithTarget:controller
+                                                                                 action:@selector(singleTap:)];
+    [singaleTap setNumberOfTapsRequired:1];
+    singaleTap.delegate = (GameObject*)controller;;
+    [view addGestureRecognizer:singaleTap];
+    
+    
+    UITapGestureRecognizer *doubleTap = [[UITapGestureRecognizer alloc] initWithTarget:controller
+                                                                                action:@selector(doubleTap:)];
+    [doubleTap setNumberOfTapsRequired:2];
+    doubleTap.delegate = (GameObject*)controller;;
+    [view addGestureRecognizer:doubleTap];
     
     
         
@@ -150,7 +177,20 @@
 
     [self.palette addSubview:view];
 }
+-(BOOL)isInPalette:(UIView*) view{
+    return view.superview == self.palette;
+}
+-(void)createNewGameBlock{
+    
+    GameObject *test = [[GameBlock alloc] init];
+    test.myDelegate = self;
+    [self addChildViewController:test];
+    [self.palette addSubview:test.view];
+    [self addRecognizer:test.view :test];
+    test.view.userInteractionEnabled = YES;
 
+    
+}
 
 
 - (void)didReceiveMemoryWarning
@@ -178,7 +218,7 @@
     
     NSArray *files = [self getAllFilesUnderGameDirectory];
     
-    if(files.count == 0){ //currently no file saved
+    if(files.count == 0){
         
         UIAlertView* dialog = [[UIAlertView alloc] initWithTitle:NO_DATA_STORED
                                                          message:Nil
@@ -195,14 +235,12 @@
                                                                   destructiveButtonTitle:nil
                                                                   otherButtonTitles:nil];
         
-        for (NSString* name in files) {
-            
+        for (NSString* name in files)
             [browseActionSheet addButtonWithTitle: name];
             
-        }
+        
         
         browseActionSheet.actionSheetStyle = UIActionSheetStyleAutomatic;
-        
         [browseActionSheet showFromBarButtonItem: self.myLoadButton animated:YES];
         
     }
@@ -235,8 +273,8 @@
         for (NSString* name in files)  
               [browseActionSheet addButtonWithTitle: name];
         
-    browseActionSheet.actionSheetStyle = UIActionSheetStyleAutomatic;
-    [browseActionSheet showFromBarButtonItem: self.myDeleteButton animated:YES];
+       browseActionSheet.actionSheetStyle = UIActionSheetStyleAutomatic;
+       [browseActionSheet showFromBarButtonItem: self.myDeleteButton animated:YES];
     
     }
     

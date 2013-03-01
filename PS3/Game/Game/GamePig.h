@@ -10,7 +10,6 @@
 
 @interface GamePig : GameObject<UIGestureRecognizerDelegate>
 
--(void) moveToTarget:(CGPoint)center withTransform:(CGAffineTransform)transform;
 
 
 @end

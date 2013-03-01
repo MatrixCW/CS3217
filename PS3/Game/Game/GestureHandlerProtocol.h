@@ -14,7 +14,9 @@
 -(void)enableGamearea;
 -(BOOL)shouldAddToGameArea:(UIView*) view;
 -(BOOL)notMovedOutOfPalette:(UIView*) view;
+-(BOOL)isInPalette:(UIView*) view;
 -(void)addToGameArea:(UIView*) view;
 -(void)addToPalette:(UIView*) view;
+-(void)createNewGameBlock;
 
 @end

@@ -22,10 +22,6 @@
 
 @interface ViewController : UIViewController<UIAlertViewDelegate,UIActionSheetDelegate,GestureHandlerProtocol>
 
-@property (strong) GameWolf *myWolf;
-@property (strong) GamePig *myPig;
-@property (strong) GameBlock *myCurrentBlock; 
-@property (strong) GameBlock *myRootBlock; 
 
 
 @property (strong, nonatomic) IBOutlet UIBarButtonItem *myDeleteButton;
