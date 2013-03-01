@@ -19,6 +19,7 @@
 @implementation GameWolf
 
 
+
 -(id)init{
     
     
@@ -29,6 +30,7 @@
     UIImageView* wolf = [[UIImageView alloc] initWithImage:singleWolfImage];
     [wolf sizeToFit];
     
+    NSLog(@"dada");
     self.widthInPalette = 0.5 * singleWolfImage.size.width;
     self.heightInPalette = 0.5 * singleWolfImage.size.height;
     self.centerInPalette = CGPointMake(50,50);
@@ -42,11 +44,25 @@
                                                           Width:2*self.widthInPalette
                                                          Height:2*self.heightInPalette
                                                         andMass:WOLFMASS];
+    self.model.myDelegate = self;
+    
+    
+    self.view.tag = 1;
+    
     
     return self;
     
 }
 
 
+-(void)restoreModel{
+    
+    self.model = [[PERectangle alloc] initPERectangleWithCenter:CGPointMake(50,50)
+                                                          Width:2*self.widthInPalette
+                                                         Height:2*self.heightInPalette
+                                                        andMass:WOLFMASS];
+
+    
+}
 
 @end

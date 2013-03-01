@@ -11,7 +11,7 @@
 @interface GameBlock : GameObject<UIGestureRecognizerDelegate>
 
 
-@property int count;
+
 
 
 @end

@@ -38,10 +38,20 @@
                                                           Width:2*self.widthInPalette
                                                          Height:2*self.heightInPalette
                                                         andMass:100];
+    self.model.myDelegate = self;
+    self.view.tag = 2;
     
     return self;
 }
 
 
+-(void)restoreModel{
+    
+    self.model = [[PERectangle alloc] initPERectangleWithCenter:CGPointMake(150,50)
+                                                          Width:2*self.widthInPalette
+                                                         Height:2*self.heightInPalette
+                                                        andMass:100];
+    
+}
 
 @end

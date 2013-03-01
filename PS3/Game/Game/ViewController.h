@@ -37,5 +37,6 @@
 - (IBAction)loadButtonPressed:(id)sender;
 - (IBAction)deleteButtonPressed:(id)sender;
 
+-(void)addRecognizer:(UIView*)view :(UIViewController*)controller;
 
 @end

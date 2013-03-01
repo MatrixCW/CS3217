@@ -7,7 +7,7 @@
 #import <UIKit/UIKit.h>
 #import "PERectangle.h"
 #import "GestureHandlerProtocol.h"
-@interface GameObject : UIViewController<UIGestureRecognizerDelegate>
+@interface GameObject : UIViewController<UIGestureRecognizerDelegate,UpdatePositionInViewDelegate>
  
 
 @property PERectangle *model;
@@ -16,6 +16,7 @@
 @property (readonly) CGFloat widthInPalette;
 @property (readonly) CGFloat heightInPalette;
 @property (readonly) CGPoint centerInPalette;
+
 
 
 - (void)translate:(UIGestureRecognizer *)gesture;

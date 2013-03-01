@@ -162,10 +162,7 @@
 
 
 - (void)loadWithName:(NSString*)loadName{
-// MODIFIES: gameArea
-// REQUIRES: loadName a valid name of a game data stored in the document directory
-// EFFECTS: change to gameArea to the state as loadName file specifies
-    /*
+
     [self reset];
     
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
@@ -175,8 +172,8 @@
     NSMutableDictionary* dictionary = [[NSMutableDictionary alloc] initWithContentsOfFile:fileName];
     
     
-    NSNumber *wolfTag = [[NSNumber alloc] initWithInt:kGameObjectWolf];
-    NSNumber *PigTag = [[NSNumber alloc] initWithInt:kGameObjectPig];
+    NSNumber *wolfTag = [[NSNumber alloc] initWithInt:1];
+    NSNumber *PigTag = [[NSNumber alloc] initWithInt:2];
     
     
     for(NSString *key in [dictionary allKeys]){
@@ -189,47 +186,126 @@
             CGFloat Y = [(NSNumber*)[data objectAtIndex:2] floatValue];
             NSString* transformValue =(NSString*)[data objectAtIndex:3];
             
-            [self.myWolf moveToTarget:CGPointMake(X, Y)
-                         withTransform:CGAffineTransformFromString(transformValue)];
-        }else
-            if([[data objectAtIndex:0] isEqual:PigTag]){ // a pig is found
+            GameWolf* tempViewControllerForWolf = [self getGameWolfViewController];
+            
+            tempViewControllerForWolf.view.center = CGPointMake(X, Y);
+            tempViewControllerForWolf.view.bounds = CGRectMake(0, 0,
+                                                               2*tempViewControllerForWolf.widthInPalette,
+                                                               2*tempViewControllerForWolf.heightInPalette);
+            
+            CGAffineTransform t = CGAffineTransformFromString(transformValue);
+            
+            tempViewControllerForWolf.view.transform = t;
+            
+            tempViewControllerForWolf.view.tag = 1;
+            [self.gamearea addSubview:tempViewControllerForWolf.view];
+            
+            
+            tempViewControllerForWolf.model.center = tempViewControllerForWolf.view.center;
+            
+            CGFloat xSize = sqrt(t.a * t.a + t.c * t.c);
+            CGFloat ySize = sqrt(t.b * t.b + t.d * t.d);
+            tempViewControllerForWolf.model.width = 2*tempViewControllerForWolf.widthInPalette * xSize;
+            tempViewControllerForWolf.model.height = 2*tempViewControllerForWolf.heightInPalette * ySize;
+            tempViewControllerForWolf.model.rotation = atan2(tempViewControllerForWolf.view.transform.b,
+                                                             tempViewControllerForWolf.view.transform.a);
+            [tempViewControllerForWolf.model updateMomentOfInertia];
+            
+            NSLog(@"%lf, %lf, %lf, %lf, %lf",tempViewControllerForWolf.model.center.x,
+                                        tempViewControllerForWolf.model.center.y,
+                                        tempViewControllerForWolf.model.width,
+                                        tempViewControllerForWolf.model.height,
+                                        tempViewControllerForWolf.model.rotation);
+            
+            NSLog(@"%lf, %lf, %lf, %lf", tempViewControllerForWolf.view.center.x,tempViewControllerForWolf.view.center.y,
+                                         tempViewControllerForWolf.view.frame.size.width,
+                                         tempViewControllerForWolf.view.frame.size.height);
+           
+            
+        }
+        else if([[data objectAtIndex:0] isEqual:PigTag]){ // a pig is found
                 
                 CGFloat X = [(NSNumber*)[data objectAtIndex:1] floatValue];
                 CGFloat Y = [(NSNumber*)[data objectAtIndex:2] floatValue];
                 NSString* transformValue =(NSString*)[data objectAtIndex:3];
                 
-                [self.myPig moveToTarget:CGPointMake(X, Y)
-                            withTransform:CGAffineTransformFromString(transformValue)];
-                
-            }else{
+            GamePig* tempViewControllerForPig = [self getGamePigViewController];
+            
+            tempViewControllerForPig.view.center = CGPointMake(X, Y);
+            tempViewControllerForPig.view.bounds = CGRectMake(0, 0,
+                                                              2 * tempViewControllerForPig.widthInPalette,
+                                                              2 * tempViewControllerForPig.heightInPalette);
+            
+            CGAffineTransform t = CGAffineTransformFromString(transformValue);
+            
+            tempViewControllerForPig.view.transform = t;
+            
+            tempViewControllerForPig.view.tag = 2;
+            
+            [self.gamearea addSubview:tempViewControllerForPig.view];
+            
+            
+            tempViewControllerForPig.model.center = tempViewControllerForPig.view.center;
+            
+            CGFloat xSize = sqrt(t.a * t.a + t.c * t.c);
+            CGFloat ySize = sqrt(t.b * t.b + t.d * t.d);
+            tempViewControllerForPig.model.width = 2*tempViewControllerForPig.widthInPalette * xSize;
+            tempViewControllerForPig.model.height = 2*tempViewControllerForPig.heightInPalette * ySize;
+            tempViewControllerForPig.model.rotation = atan2(tempViewControllerForPig.view.transform.b,
+                                                             tempViewControllerForPig.view.transform.a);
+            [tempViewControllerForPig.model updateMomentOfInertia];
+
+            
+        }else{
                 
                 int currentTag = [[data objectAtIndex:0] intValue];
-                
                 assert(currentTag==3 ||currentTag==4||currentTag==5);
-                
-                int count = (currentTag - kGameObjectBlock)%3;
+            
                 
                 CGFloat X = [(NSNumber*)[data objectAtIndex:1] floatValue];
                 CGFloat Y = [(NSNumber*)[data objectAtIndex:2] floatValue];
                 NSString* transformValue =(NSString*)[data objectAtIndex:3];
-                                          
-                [self.myCurrentBlock moveToTarget:CGPointMake(X, Y)withTransform:CGAffineTransformFromString(transformValue) andTexture:count];
-                                          
-                                          
-                self.myCurrentBlock.nextGameBlock = [[GameBlock alloc] initWithBackground:self.gamearea :self.palette];
-                
-                self.myCurrentBlock = self.myCurrentBlock.nextGameBlock;
-                
-                assert(self.myCurrentBlock != nil);
-                
-                [self.palette addSubview:self.myCurrentBlock.view];
+                CGAffineTransform t = CGAffineTransformFromString(transformValue);
+            
+               GameBlock *tempViewControllerForBlock = [[GameBlock alloc] init];
+               tempViewControllerForBlock.myDelegate = self;
+               [self addChildViewController:tempViewControllerForBlock];
+               [self addRecognizer:tempViewControllerForBlock.view :tempViewControllerForBlock];
+               tempViewControllerForBlock.view.userInteractionEnabled = YES;
+            
+               tempViewControllerForBlock.view.center = CGPointMake(X, Y);
+               tempViewControllerForBlock.view.bounds = CGRectMake(0, 0,
+                                                                   tempViewControllerForBlock.widthInPalette,
+                                                                   4 * tempViewControllerForBlock.heightInPalette);
+               tempViewControllerForBlock.view.transform = t;
+            
+               CGFloat xSize = sqrt(t.a * t.a + t.c * t.c);
+               CGFloat ySize = sqrt(t.b * t.b + t.d * t.d);
+               tempViewControllerForBlock.model.width = tempViewControllerForBlock.widthInPalette * xSize;
+               tempViewControllerForBlock.model.height = 4*tempViewControllerForBlock.heightInPalette * ySize;
+               tempViewControllerForBlock.model.rotation = atan2(tempViewControllerForBlock.view.transform.b,
+                                                            tempViewControllerForBlock.view.transform.a);
+               [tempViewControllerForBlock.model updateMomentOfInertia];
+            
+               if(currentTag == 3)
+                   tempViewControllerForBlock.view.tag = 5;
+               else if(currentTag == 4)
+                   tempViewControllerForBlock.view.tag = 3;
+               else
+                   tempViewControllerForBlock.view.tag = 4;
+            
+               [tempViewControllerForBlock changeTexture];
+            
+               [self.gamearea addSubview:tempViewControllerForBlock.view];
 
             }
+         
+          
       
     
     }
     
-    */
+    
     
 }
 
@@ -299,6 +375,22 @@
     CGFloat ty = transform.ty;
     str = [str stringByAppendingFormat:@"{%lf,%lf,%lf,%lf,%lf,%lf}",a,b,c,d,tx,ty];
     return str;
+}
+
+
+-(GameWolf*)getGameWolfViewController{
+    for(UIViewController *controller in self.childViewControllers)
+        if([controller isKindOfClass:GameWolf.class])
+            return (GameWolf*)controller;
+    return Nil;
+}
+
+-(GamePig*)getGamePigViewController{
+    for(UIViewController *controller in self.childViewControllers)
+        if([controller isKindOfClass:GamePig.class])
+            return (GamePig*)controller;
+    
+    return Nil;
 }
 
 @end

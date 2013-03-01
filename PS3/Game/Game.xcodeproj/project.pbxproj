@@ -32,7 +32,6 @@
 		7CDDD7C816B01F250025C8EA /* background.png in Resources */ = {isa = PBXBuildFile; fileRef = 7CDDD7C616B01F250025C8EA /* background.png */; };
 		7CDDD7C916B01F250025C8EA /* ground.png in Resources */ = {isa = PBXBuildFile; fileRef = 7CDDD7C716B01F250025C8EA /* ground.png */; };
 		7CDE6E7216E07CCB00F1AA54 /* GameWolf.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C2731A316BD45F400872EED /* GameWolf.m */; };
-		7CDE6E7516E07EEE00F1AA54 /* pig.png in Sources */ = {isa = PBXBuildFile; fileRef = 7C672DDF16B93E8E00E8D301 /* pig.png */; };
 		7CDE6E7616E07EFE00F1AA54 /* GamePig.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C2280F116BD3BB4004C6FA0 /* GamePig.m */; };
 		7CDE6E7816E0866000F1AA54 /* GameBlock.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C2280F516BD3E4D004C6FA0 /* GameBlock.m */; };
 /* End PBXBuildFile section */
@@ -261,7 +260,6 @@
 			files = (
 				7CDE6E7816E0866000F1AA54 /* GameBlock.m in Sources */,
 				7CDE6E7616E07EFE00F1AA54 /* GamePig.m in Sources */,
-				7CDE6E7516E07EEE00F1AA54 /* pig.png in Sources */,
 				7CDE6E7216E07CCB00F1AA54 /* GameWolf.m in Sources */,
 				7C0AD3C816DF488100CA0823 /* ConstantLibrary.m in Sources */,
 				7C0AD3C916DF488100CA0823 /* Matrix2D.m in Sources */,

@@ -40,6 +40,8 @@
                                                           Width:self.widthInPalette
                                                          Height:4*self.heightInPalette
                                                         andMass:100];
+    self.model.myDelegate = self;
+    self.view.tag = 3;
     
     return self;
 
@@ -156,9 +158,9 @@
     
     if(![self.myDelegate isInPalette:self.view]){
         
-        if(self.count == 0){
+        if(self.view.tag == 3){
             
-            self.count = 1;
+            self.view.tag = 4;
             UIImage* blockImg = [UIImage imageNamed:@"stone.png"];
             UIImageView* block = [[UIImageView alloc]initWithImage:blockImg];
             block.frame = CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height);
@@ -166,17 +168,17 @@
             
             
             
-        }else if(self.count == 1){
+        }else if(self.view.tag == 4){
             
-            self.count = 2;
+            self.view.tag = 5;
             UIImage* blockImg = [UIImage imageNamed:@"iron.png"];
             UIImageView* block = [[UIImageView alloc]initWithImage:blockImg];
             block.frame = CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height);
             [self.view addSubview:block];
         
-        }else if(self.count == 2){
+        }else if(self.view.tag == 5){
             
-            self.count = 0;
+            self.view.tag = 3;
             UIImage* blockImg = [UIImage imageNamed:@"straw.png"];
             UIImageView* block = [[UIImageView alloc]initWithImage:blockImg];
             block.frame = CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height);

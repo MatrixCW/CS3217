@@ -5,11 +5,8 @@
 //  Created by Cui Wei on 2/1/13.
 //  Copyright (c) 2013 nus.cs3217. All rights reserved.
 //
-
+ 
 #import "GameObject.h"
-
-#define ZERO 0
-#define SELECTBARHEIGHT 83
 
 @interface GameObject()
 
@@ -19,10 +16,8 @@
 
 @end
 
+
 @implementation GameObject
-
-
-
 
 
 - (void)translate:(UIPanGestureRecognizer*)gesture{
@@ -159,10 +154,27 @@
                                  self.centerInPalette.y - self.heightInPalette/2,
                                  self.widthInPalette,
                                  self.heightInPalette);
+    
+    [self restoreModel];
     [self.myDelegate addToPalette:self.view];
     
 }
 
+
+-(void)UpdatePosition{
+    
+    
+    
+    self.view.center = self.model.center;
+    [self.view setTransform: CGAffineTransformMakeRotation(-self.model.rotation)];
+    
+    
+}
+
+
+-(void)restoreModel{
+    
+}
 
 - (void)singleTap:(UITapGestureRecognizer*) recognizer{
     
