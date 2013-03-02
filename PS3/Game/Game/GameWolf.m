@@ -30,9 +30,8 @@
     UIImageView* wolf = [[UIImageView alloc] initWithImage:singleWolfImage];
     [wolf sizeToFit];
     
-    NSLog(@"dada");
-    self.widthInPalette = 0.5 * singleWolfImage.size.width;
-    self.heightInPalette = 0.5 * singleWolfImage.size.height;
+    self.widthInPalette = 0.4 * singleWolfImage.size.width;
+    self.heightInPalette = 0.4 * singleWolfImage.size.height;
     self.centerInPalette = CGPointMake(50,50);
     
     wolf.frame = CGRectMake(self.centerInPalette.x - self.widthInPalette/2,
@@ -61,8 +60,73 @@
                                                           Width:2*self.widthInPalette
                                                          Height:2*self.heightInPalette
                                                         andMass:WOLFMASS];
+    
+    self.model.myDelegate = self;
 
     
 }
+
+- (void)singleTap:(UITapGestureRecognizer*) recognizer{
+    
+    if(![self.myDelegate isInGameArea:self.view] || ![self.myDelegate isInMiddleOfGame])
+        return;
+    
+    [self.view removeFromSuperview];
+    [self blow];
+}
+
+
+
+-(void)blow{
+    
+    
+    
+    
+    UIImage* wolfsImage = [UIImage imageNamed:@"wolfs.png"];
+    CGImageRef imageRef;
+    UIImage* singleWolfImage;
+    CGRect cropRect;
+    
+    NSMutableArray * animationArray = [NSMutableArray array];
+    
+    for (int i = 0; i < 3; i++) {
+        for (int j = 0; j < 5; j++) {
+            cropRect = CGRectMake(0+j*225, 0+i*150, 225,150);
+            imageRef = CGImageCreateWithImageInRect([wolfsImage CGImage], cropRect);
+            singleWolfImage = [UIImage imageWithCGImage:imageRef];
+            CGImageRelease(imageRef);
+            [animationArray addObject:singleWolfImage];
+                    }
+    }
+    
+    
+    UIImageView *animationView=[[UIImageView alloc]initWithFrame:self.view.frame];
+    
+    
+    animationView.animationImages=animationArray;
+    animationView.animationDuration=1;
+    animationView.animationRepeatCount=1;
+    [animationView startAnimating];
+    [self.myDelegate addDirectlyToGameArea:animationView];
+    
+    [self performSelector:@selector(restoreView) withObject:Nil afterDelay:animationView.animationDuration];
+    
+    
+    
+}
+
+
+-(void)restoreView{
+    [self.myDelegate addDirectlyToGameArea:self.view];
+}
+
+- (void)rotate:(UIGestureRecognizer *)gesture{
+    
+}
+- (void)zoom:(UIGestureRecognizer *)gesture{
+    
+}
+
+
 
 @end

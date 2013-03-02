@@ -8,7 +8,8 @@
 
 #import "ViewController.h"
 #import "GameObject.h"
-
+#import "Aimer.h"
+#import "PowerMeter.h"
 @interface ViewController (Extension)
 
 
@@ -33,4 +34,13 @@
 
 -(NSArray*)getAllFilesUnderGameDirectory;
 //EFFECTS: return an array of strings of the fileNames under the document directory
+
+-(GameWolf*)getGameWolfViewController;
+
+-(GamePig*)getGamePigViewController;
+
+-(Aimer*)getAimerViewController;
+
+-(PowerMeter*)getPowerMeterViewController;
+
 @end

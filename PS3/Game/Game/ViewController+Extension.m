@@ -393,4 +393,21 @@
     return Nil;
 }
 
+-(Aimer*)getAimerViewController{
+    for(UIViewController *controller in self.childViewControllers)
+        if([controller isKindOfClass:Aimer.class])
+            return (Aimer*)controller;
+    
+    return Nil;
+}
+
+-(PowerMeter*)getPowerMeterViewController{
+    for(UIViewController *controller in self.childViewControllers)
+        if([controller isKindOfClass:PowerMeter.class])
+            return (PowerMeter*)controller;
+    
+    return Nil;
+}
+
+
 @end

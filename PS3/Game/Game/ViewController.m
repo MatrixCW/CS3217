@@ -47,6 +47,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    self.simulatedWorld = [[MyWorld alloc] init];
 
     UIImage *bgImage = [UIImage imageNamed:@"background.png"];
     UIImage *groundImage = [UIImage imageNamed:@"ground.png"];
@@ -100,6 +102,16 @@
     [self.palette addSubview:test3.view];
     [self addRecognizer:test3.view :test3];
     test3.view.userInteractionEnabled = YES;
+    
+    self.lowerBound = [PERectangleViewController getLowerHorizontalBoundRectangle];
+    //[self.gamearea addSubview:self.lowerBound.view];
+    self.leftBound = [PERectangleViewController getLeftVerticalBoundRectangle];
+    //[self.gamearea addSubview:self.leftBound.view];
+    self.rightBound = [PERectangleViewController getRightVerticalBoundRectangle];
+    //[self.gamearea addSubview:self.rightBound.view];
+
+    
+    
     
         
 
@@ -180,6 +192,9 @@
 -(BOOL)isInPalette:(UIView*) view{
     return view.superview == self.palette;
 }
+-(BOOL)isInGameArea:(UIView*) view{
+    return view.superview == self.gamearea;
+}
 -(void)createNewGameBlock{
     
     GameObject *test = [[GameBlock alloc] init];
@@ -188,8 +203,31 @@
     [self.palette addSubview:test.view];
     [self addRecognizer:test.view :test];
     test.view.userInteractionEnabled = YES;
-
+}
+-(void)addDirectlyToGameArea:(UIView*) view{
+    [self.gamearea addSubview:view];
+}
+-(BOOL)isInMiddleOfGame{
+    return self.gameStarted;
+}
+-(void)firePuff:(int) power{
     
+    UIImage* puffImages = [UIImage imageNamed:@"windblow.png"];
+    CGImageRef imageRef = CGImageCreateWithImageInRect([puffImages CGImage], CGRectMake(338.25,0,112.75,104));
+    UIImage* singlePuffImage = [UIImage imageWithCGImage:imageRef];
+    
+    Aimer* myAimer = [self getAimerViewController];
+    
+    Vector2D* fireDirection = myAimer.direction;
+    NSLog(@"zzzzz %lf", atan2(fireDirection.x, fireDirection.y));
+    PECircleViewController *puff = [[PECircleViewController alloc] initPECircleWithCenter:CGPointMake(myAimer.view.center.x + 80 ,
+                                                                                                      myAimer.view.center.y - 15)
+                                                                                     mass:100
+                                                                                 andImage:singlePuffImage];
+    [self addChildViewController:puff];
+    [self.gamearea addSubview:puff.view];
+    puff.model.velocity =  [Vector2D vectorWith:50*power*fireDirection.x y:-50*power*fireDirection.y];
+    [self.simulatedWorld.objectsInWorld addObject:puff.model];
 }
 
 
@@ -201,7 +239,9 @@
 
 - (IBAction)resetButtonPressed:(id)sender {
     
-    
+    [self.simulatedWorld stopTimer];
+    [self removeAimer];
+    self.gameStarted = NO;
     [self reset];
     
 }
@@ -281,11 +321,90 @@
    
 }
 
+- (IBAction)startButtonPressed:(id)sender {
+    
+   
+    
+    
+    if([self canStartGame]){
+    
+        self.gameStarted = YES;
+        [self drawBounds];
+        [self drawAimer];
+        
+        for(UIViewController *controller in self.childViewControllers){
+            if(controller.view.superview == self.gamearea && [controller isKindOfClass:GameObject.class]){
+                GameObject* temp = (GameObject*) controller;
+                [self.simulatedWorld.objectsInWorld addObject:temp.model];
+              }
+         }
+    
+       [self.simulatedWorld run];
+    }
+    
+    
+    
+}
+
+-(BOOL)canStartGame{
+    return self.simulatedWorld.objectsInWorld.count == 0 &&
+           [self getGameWolfViewController].view.superview == self.gamearea &&
+           [self getGamePigViewController].view.superview == self.gamearea;    
+}
 
 
+-(void)drawAimer{
+    
+    GameWolf *myGameWolf = [self getGameWolfViewController];
+    myGameWolf.view.center = CGPointMake(myGameWolf.view.center.x, 415);
+    myGameWolf.model.center = myGameWolf.view.center;
+    
+    Aimer* myAimer = [[Aimer alloc] initWithPosition:CGPointMake(myGameWolf.view.center.x,
+                                                                 myGameWolf.view.center.y)];
+    [self.gamearea addSubview:myAimer.view];
+    [self addChildViewController:myAimer];
+    
+    PowerMeter* myPowerMeter = [[PowerMeter alloc] initWithPosition:CGPointMake(myGameWolf.view.center.x - 50,
+                                                                                myGameWolf.view.center.y)];
+    myPowerMeter.myDelegate = self;
+    [self addChildViewController:myPowerMeter];
+    [self.gamearea addSubview:myPowerMeter.view];
+    
+    
+    
+    
+    UIImage* directionDegree = [UIImage imageNamed:@"direction-degree.png"];
+    UIImageView* directionDegreeView = [[UIImageView alloc]initWithImage:directionDegree];
+    directionDegreeView.tag = -1;
+    directionDegreeView.frame =  CGRectMake(myGameWolf.view.center.x + 30,
+                                            myGameWolf.view.center.y - 190,
+                                            directionDegree.size.width,
+                                            directionDegree.size.height);
+    
+    [self.gamearea addSubview:directionDegreeView];
+}
 
+-(void)drawBounds{
+    [self.simulatedWorld.objectsInWorld addObject:self.lowerBound.model];
 
+    [self.simulatedWorld.objectsInWorld addObject:self.leftBound.model];
 
+    [self.simulatedWorld.objectsInWorld addObject:self.rightBound.model];
+
+    
+}
+-(void)removeAimer{
+    
+    [[self getAimerViewController].view removeFromSuperview];
+    [[self getAimerViewController] removeFromParentViewController];
+    
+    [[self getPowerMeterViewController].view removeFromSuperview];
+    [[self getPowerMeterViewController] removeFromParentViewController];
+    
+    for(UIView* vw in self.gamearea.subviews)
+        if(vw.tag == -1)
+            [vw removeFromSuperview];
+}
 
 
 @end

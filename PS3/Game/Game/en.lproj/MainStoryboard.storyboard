@@ -16,7 +16,11 @@
                                 <rect key="frame" x="0.0" y="704" width="1024" height="44"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                 <items>
-                                    <barButtonItem systemItem="play" id="Hcm-gF-nc0"/>
+                                    <barButtonItem systemItem="play" id="Hcm-gF-nc0">
+                                        <connections>
+                                            <action selector="startButtonPressed:" destination="2" id="ikW-7q-Qtt"/>
+                                        </connections>
+                                    </barButtonItem>
                                     <barButtonItem systemItem="refresh" id="Bfq-d9-96r">
                                         <connections>
                                             <action selector="resetButtonPressed:" destination="2" id="TqP-3E-ttl"/>
@@ -84,21 +88,6 @@
             <point key="canvasLocation" x="19" y="-427"/>
         </scene>
     </scenes>
-    <classes>
-        <class className="ViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/ViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="deleteButtonPressed:"/>
-                <relationship kind="action" name="loadButtonPressed:"/>
-                <relationship kind="action" name="resetButtonPressed:"/>
-                <relationship kind="action" name="saveButtonPressed:"/>
-                <relationship kind="outlet" name="gamearea" candidateClass="UIScrollView"/>
-                <relationship kind="outlet" name="myDeleteButton" candidateClass="UIBarButtonItem"/>
-                <relationship kind="outlet" name="myLoadButton" candidateClass="UIBarButtonItem"/>
-                <relationship kind="outlet" name="palette" candidateClass="UIView"/>
-            </relationships>
-        </class>
-    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar" statusBarStyle="blackTranslucent"/>
         <simulatedOrientationMetrics key="orientation"/>

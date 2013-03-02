@@ -24,8 +24,8 @@
     UIImage* pigImg = [UIImage imageNamed:@"pig.png"];
     UIImageView* pigView = [[UIImageView alloc]initWithImage:pigImg];
     
-    self.widthInPalette =  pigImg.size.width;
-    self.heightInPalette =  pigImg.size.height;
+    self.widthInPalette =  0.6*pigImg.size.width;
+    self.heightInPalette =  0.6*pigImg.size.height;
     self.centerInPalette = CGPointMake(150,50);
     
         
@@ -51,6 +51,8 @@
                                                           Width:2*self.widthInPalette
                                                          Height:2*self.heightInPalette
                                                         andMass:100];
+    
+     self.model.myDelegate = self;
     
 }
 

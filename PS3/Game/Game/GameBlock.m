@@ -99,6 +99,12 @@
     
     self.model.center = gesture.view.center;
     
+    NSLog(@"%lf, %lf, %lf, %lf, %lf",self.model.center.x,
+          self.model.center.y,
+          self.model.rotation,
+          self.model.width,
+          self.model.height);
+    
 }
 
 
@@ -150,8 +156,16 @@
     
     [self.model updateMomentOfInertia];
     
+    
+    
 }
 
+
+- (void)singleTap:(UITapGestureRecognizer*) recognizer{
+    
+    [self changeTexture];
+    
+}
 
 
 -(void)changeTexture{

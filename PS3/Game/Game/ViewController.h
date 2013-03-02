@@ -11,7 +11,13 @@
 #import "GameWolf.h"
 #import "GamePig.h"
 #import "GameBlock.h"
+#import "MyWorld.h"
 #import "GestureHandlerProtocol.h"
+#import "PERectangleViewController.h"
+#import "Aimer.h"
+#import "PowerMeter.h"
+#import "PECircleViewController.h"
+#import "Vector2D.h"
 
 #define NO_DATA_STORED         (@"You have no game data stored!")
 #define CHOOSE_FILE_TO_LOAD    (@"Choose a file to load")
@@ -31,11 +37,20 @@
 @property (strong, nonatomic) IBOutlet UIScrollView *gamearea;
 @property (strong, nonatomic) IBOutlet UIView *palette;
 
+@property MyWorld *simulatedWorld;
+
+
+@property PERectangleViewController * lowerBound;
+@property PERectangleViewController * leftBound;
+@property PERectangleViewController * rightBound;
+
+@property BOOL gameStarted;
 
 - (IBAction)resetButtonPressed:(id)sender;
 - (IBAction)saveButtonPressed:(id)sender;
 - (IBAction)loadButtonPressed:(id)sender;
 - (IBAction)deleteButtonPressed:(id)sender;
+- (IBAction)startButtonPressed:(id)sender;
 
 -(void)addRecognizer:(UIView*)view :(UIViewController*)controller;
 

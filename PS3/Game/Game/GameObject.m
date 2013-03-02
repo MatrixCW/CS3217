@@ -28,6 +28,9 @@
     //          if the object is in the palette, it will be moved in the game area
     
   
+    if([self.myDelegate isInMiddleOfGame])
+        return;
+    
     [self.myDelegate disableGamearea];
     
     CGPoint translation = [gesture translationInView:gesture.view.superview];
@@ -63,6 +66,11 @@
     
     self.model.center = gesture.view.center;
     
+    NSLog(@"%lf, %lf, %lf, %lf, %lf",self.model.center.x,
+              self.model.center.y,
+              self.model.rotation,
+              self.model.width,
+              self.model.height);
 }
 
 
@@ -164,7 +172,6 @@
 -(void)UpdatePosition{
     
     
-    
     self.view.center = self.model.center;
     [self.view setTransform: CGAffineTransformMakeRotation(-self.model.rotation)];
     
@@ -179,13 +186,10 @@
 - (void)singleTap:(UITapGestureRecognizer*) recognizer{
     
     
-    [self changeTexture];
     
 }
 
--(void) changeTexture{
-    
-}
+
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {

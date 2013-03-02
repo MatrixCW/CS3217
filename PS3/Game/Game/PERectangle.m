@@ -85,7 +85,7 @@
 +(id)getLowerHorizontalBoundRectangle{
     
     PERectangle* temp = [PERectangle alloc];
-    temp = [temp initPERectangleWithCenter:CGPointMake(384, 1144) Width:768 Height:300 andMass:INFINITY];
+    temp = [temp initPERectangleWithCenter:CGPointMake(1000, 580) Width:3000 Height:200 andMass:INFINITY];
     temp.identity = 0;
     temp.frictionCoefficient = groundFrictionCoefficient;
     temp.restitutionCoefficient = groundRestitutionCoefficient;
@@ -96,7 +96,7 @@
 
 +(id)getLeftVerticalBoundRectangle{
     PERectangle* temp = [PERectangle alloc];
-    temp = [temp initPERectangleWithCenter:CGPointMake(-150, 512) Width:300 Height:1024 andMass:INFINITY];
+    temp = [temp initPERectangleWithCenter:CGPointMake(-90, 300) Width:200 Height:1000 andMass:INFINITY];
     temp.identity = 0;
     temp.frictionCoefficient = groundFrictionCoefficient;
     temp.restitutionCoefficient = groundRestitutionCoefficient;
@@ -106,7 +106,7 @@
 }
 +(id)getRightVerticalBoundRectangle{
     PERectangle* temp = [PERectangle alloc];
-    temp = [temp initPERectangleWithCenter:CGPointMake(918, 512) Width:300 Height:1024 andMass:INFINITY];
+    temp = [temp initPERectangleWithCenter:CGPointMake(1660, 512) Width:300 Height:1024 andMass:INFINITY];
     temp.identity = 0;
     temp.frictionCoefficient = groundFrictionCoefficient;
     temp.restitutionCoefficient = groundRestitutionCoefficient;

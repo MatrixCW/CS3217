@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
+
 @protocol GestureHandlerProtocol <NSObject>
 
 -(void)disableGamearea;
@@ -15,8 +16,13 @@
 -(BOOL)shouldAddToGameArea:(UIView*) view;
 -(BOOL)notMovedOutOfPalette:(UIView*) view;
 -(BOOL)isInPalette:(UIView*) view;
+-(BOOL)isInGameArea:(UIView*) view;
 -(void)addToGameArea:(UIView*) view;
 -(void)addToPalette:(UIView*) view;
 -(void)createNewGameBlock;
+-(void)addDirectlyToGameArea:(UIView*) view;
+-(BOOL)isInMiddleOfGame;
+-(void)firePuff:(int) power;
+
 
 @end
