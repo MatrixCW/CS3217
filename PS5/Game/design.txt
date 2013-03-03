@@ -1,0 +1,74 @@
+Question 1:
+
+     When the game begins, the user can rotate the aiming arrow with one finger, and tap the arrow to indicate that they are done aiming. Then they hold the power bar, a red bar will increase to indicate the strength of the puff. When the user lift their fingers, a puff will be fired.
+     Users can choose the puff type under the wolf. Single tap a puff and the UI will show the type chosen.
+     To integrate the puff with the physics engine, the aiming arrow has a delegate which pass the rotation angle to the delegate, and the delegate will then add a projectile object with the proper velocity to the objects in physics engine.     I choose this way of implementation because it is simple, natural, and most of all, follows strictly the MVC design pattern.
+
+
+Question 2a:
+
+   A circular object in this problem set does not pose to much requirements. So my circular object is essentially still a rectangle object. In the physics engine, when a collision between this circular object and another rectangle object is detected, the circular object(actually a rectangle) is rotated to some degree such that it will behave exactly like a circular object. The rotation degree is the rectangle's degree, such that the two rectangles will be parallel to each other.
+
+
+Question 3.
+
+   The physics engine keeps track of all the colliding objects and when it senses a puff has collided with something, it will inform the view controller(through delegate), to remove this puff. And also when it senses a block is struck by some puff, it will inform the view controller(also through delegate) to decrement the "life count" of the block, and when the block's life count is 0, the view controller will remove it.
+   There are three types of blocks: straw, stone and iron, with life count 1,2,3 respectively.
+   Also these different types of blocks have different mass(100, 200, 300), so the colliding effect is different.
+   An alternative is to calculate the impulse on each block when this block has been struck by something and then determine whether or not to remove this block. The problem is, since the in each stage the simulation is run multiple times, it is hard to keep track of exactly what this impulse is. However, it calculated correctly, this way of implementation will be more realistic. But the code will be considerably harder.
+
+
+
+
+Question 4
+   
+The integration is very similar to what I have done in PS4: adding and removing objects to the objects list in the physics engine and update the corresponding views after each simulation. My design allows the integration of a physics engines simply because it follows strictly the MVC design pattern, such that concerns are separated and each class will focus on some particular purposes and the code will be much cleaner. The problem is that each updating position  will have to go through a delegate method call, resulting in much more code to write. But still, the benefits outweigh the drawbacks.
+   An alternative, is to create no concrete classes for models, and the physics engine will communicate directly to the view controllers, this can save a lot of code but of course this is a bad design: the view controller deals with too much tasks.
+
+
+
+
+
+Black-box testing:
+
+-test level designer:
+   drag different number of blocks to the game area, resize, rotate them
+   save the game, quit and then reload, see if it still works properly. 
+
+-test start game
+   use level designer to design the game, then start and play
+   load a saved game and play
+
+-test wolf breadth
+   for different settings(different position, texture(thus mass and life count) of the blocks, different numbers of blocks)
+       change the angle of breadth
+       change the power of breadth
+       change the blow type of the breadth
+   see if the animation is correct and the physics engine runs correctly.
+
+-test physics engine:
+   this one is simple, follow the same testing strategies in PS4, with slightly changes
+     -testCollision           add two objects, use iPad, set the size and mass of the objects, and tilt device into different directions and see if the collision works properly.           adjust the object size and mass, and see repeat the above step.           adjust the restitution coefficient and bias value, repeat the first step and see the effect. add different number of objects (4, 6, 8), and repeat the above three steps.     -testFriction           repeat the testCollision strategy, but with different set of friction coefficient(0.01, 0.1, 0.5, 1), and observe changes. Note that when friction is large enough, say 1.0, when the objects hit ground, 
+           it would appear that they are "adhesive".
+     -testing circular objects
+           add one or multiple circular objects(puffs) and run the game, see if the interaction is still correct and realistic.
+
+
+
+
+My game features:
+
+    each motion has animation: blow a puff, pig dies or wolf dies, puff disperse, etc.
+    a life count for the wolf: i.e., it can only blow a certain number of puffs(20)
+    game winning or losing will trigger a alert view to inform the player
+    player can change the type of the puffs and thus the animation of the puff
+
+
+
+My refection:
+
+  1. I spent about 45 hours on this problem set.
+  2. This problem set is really easy: there is really not much things to think about after I have gone through all the previous problem sets. Everything needed to finish this problem set has been practiced extensively. So I feel that this problem set is more like a muscular labor job instead of a challenging programming assignment. We have to work like bees to add little by little the features and functions. I hope I have started early thus I do not have to stay up late.
+  3. Not much I can recall.
+
+The previous 4 problem sets is OK but I do not like this PS5, like I have mentioned, this problem set is more like a muscular labor job instead of a challenging programming assignment. I do feel that little has been learned through this problem set, compared with the previous 4 assignments. But in general, yes, the assignments are all of high quality and I do believe they can guide a student into proper path into software engineering. If the in the lectures more stuff about objective-c and XCode was covered, it will be even greater. Also I think occasionally the lecturer can adopt the way people teach iOS programming in stanford: teach new ideas through concrete examples and demostrations.
