@@ -33,9 +33,13 @@
 - (void) alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
     
-    if(buttonIndex == 0)
+    if(buttonIndex == 0 && ![alertView.title isEqualToString:@"Congratulations"])
         return;
     
+    if([alertView.title isEqualToString:@"Congratulations"]){
+        assert(buttonIndex == 0);
+        [self resetButtonPressed:Nil];
+    }
     
     if([alertView.title isEqual:@"Enter file name "]){
       
@@ -405,6 +409,14 @@
     for(UIViewController *controller in self.childViewControllers)
         if([controller isKindOfClass:PowerMeter.class])
             return (PowerMeter*)controller;
+    
+    return Nil;
+}
+
+-(PECircleViewController*)getPuffViewController{
+    for(UIViewController *controller in self.childViewControllers)
+        if([controller isKindOfClass:PECircleViewController.class])
+            return (PECircleViewController*)controller;
     
     return Nil;
 }

@@ -10,6 +10,6 @@
 
 @interface GamePig : GameObject<UIGestureRecognizerDelegate>
 
-
+-(void)cry;
 
 @end

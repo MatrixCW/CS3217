@@ -83,7 +83,6 @@
 
 -(void)analyzeDetection{
     
-    
     for(int i = 0; i < self.objectsInWorld.count; i++)
         for(int j = i + 1; j < self.objectsInWorld.count; j++){
             
@@ -98,6 +97,21 @@
     if(self.conllisionDetector.contactPoints.count)
         for(int i = 0; i < numOfIteration ; i++)
            [self.conllisionDetector applyImpulse];
+    
+    if(self.conllisionDetector.puffCollisionDetected){
+        
+        assert(self.myDelegate != Nil);
+        [self.myDelegate removePuff];
+        self.conllisionDetector.puffCollisionDetected = NO;
+    }
+    
+    if(self.conllisionDetector.pigCryDetected){
+        
+
+        assert(self.myDelegate != Nil);
+        [self.myDelegate pigCry];
+        self.conllisionDetector.pigCryDetected = NO;
+    }
     
     [self.conllisionDetector.contactPoints removeAllObjects];
     

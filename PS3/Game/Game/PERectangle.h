@@ -26,7 +26,7 @@
 @property CGFloat rotation;
 @property CGFloat angularVelocity;
 
-@property (readonly) int identity;
+@property int identity;
 
 @property Vector2D* velocity;
 @property (nonatomic) Matrix2D* rotationMatrix;

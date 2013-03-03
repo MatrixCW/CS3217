@@ -18,6 +18,8 @@
 #import "PowerMeter.h"
 #import "PECircleViewController.h"
 #import "Vector2D.h"
+#import "PigPuffInteractionProtocal.h"
+
 
 #define NO_DATA_STORED         (@"You have no game data stored!")
 #define CHOOSE_FILE_TO_LOAD    (@"Choose a file to load")
@@ -26,7 +28,7 @@
 #define OK_BUTTON              (@"OK")
 
 
-@interface ViewController : UIViewController<UIAlertViewDelegate,UIActionSheetDelegate,GestureHandlerProtocol>
+@interface ViewController : UIViewController<UIAlertViewDelegate,UIActionSheetDelegate,GestureHandlerProtocol,PigPuffInteractionProtocal>
 
 
 

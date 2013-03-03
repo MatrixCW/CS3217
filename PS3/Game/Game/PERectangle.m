@@ -8,11 +8,7 @@
 
 #import "PERectangle.h"
 
-@interface PERectangle()
 
-@property (readwrite) int identity;
-
-@end
 
 
 @implementation PERectangle
@@ -64,7 +60,7 @@
         self.angularVelocity = 0.0;
         self.frictionCoefficient = defaultFrictionCoefficient;
         self.restitutionCoefficient = defaultRestitutionCoefficient;
-        self.identity = 2;
+        self.identity = -1;
         
     }
     

@@ -88,7 +88,6 @@
     [self clean];
     CGFloat width = self.view.bounds.size.width * 0.7;
     CGFloat height = self.view.bounds.size.height * self.counter / 20;
-    NSLog(@"xixixixix %lf ",self.view.bounds.size.height-height/2);
     UIView* power = [[UIView alloc] initWithFrame:CGRectMake(width/2 - 3,
                                                              self.view.bounds.size.height-height - 4,
                                                              width,

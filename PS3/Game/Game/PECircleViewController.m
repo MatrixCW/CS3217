@@ -29,9 +29,48 @@
                                                      andMass:mass];
     self.model.myDelegate = self;
     
+
     self.view = imageView;
         
     return self;
+}
+
+
+-(void)animate{
+    
+    
+    
+    
+    UIImage* puffDisperseImages = [UIImage imageNamed:@"wind-disperse.png"];
+    CGImageRef imageRef;
+    UIImage* singlePuffImage;
+    CGRect cropRect;
+    
+    NSMutableArray * animationArray = [NSMutableArray array];
+    
+    for (int i = 0; i < 2; i++) {
+        for (int j = 0; j < 5; j++) {
+            cropRect = CGRectMake(0+j*253, 0+i*259, 253,259);
+            imageRef = CGImageCreateWithImageInRect([puffDisperseImages CGImage], cropRect);
+            singlePuffImage = [UIImage imageWithCGImage:imageRef];
+            CGImageRelease(imageRef);
+            [animationArray addObject:singlePuffImage];
+        }
+    }
+    
+    
+    UIImageView *animationView=[[UIImageView alloc]initWithFrame:self.view.frame];
+    
+    
+    animationView.animationImages=animationArray;
+    animationView.animationDuration=1;
+    animationView.animationRepeatCount=1;
+    [animationView startAnimating];
+    [self.myDelegate addDirectlyToGameArea:animationView];
+    
+
+    
+    
 }
 
 

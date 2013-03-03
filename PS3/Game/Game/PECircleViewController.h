@@ -9,13 +9,17 @@
 #import <UIKit/UIKit.h>
 #import "PERectangle.h"
 #import "UpdatePositionInViewDelegate.h"
+#import "GestureHandlerProtocol.h"
 
 @interface PECircleViewController : UIViewController<UpdatePositionInViewDelegate>
 
 @property PERectangle* model;
-
+@property (weak) id<GestureHandlerProtocol> myDelegate;
 
 -(id)initPECircleWithCenter:(CGPoint)center mass:(CGFloat)mass andImage:(UIImage*) image;
+
+-(void)animate;
+
 
 
 @end

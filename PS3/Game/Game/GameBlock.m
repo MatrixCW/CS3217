@@ -26,7 +26,7 @@
     UIImage* blockImg = [UIImage imageNamed:@"straw.png"];
     UIImageView* block = [[UIImageView alloc]initWithImage:blockImg];
     
-    self.widthInPalette =  blockImg.size.width;
+    self.widthInPalette =  0.6*blockImg.size.width;
     self.heightInPalette =  blockImg.size.height;
     self.centerInPalette = CGPointMake(250,50);
     
@@ -56,8 +56,14 @@
     // EFFECTS: the user drags around the object with one finger
     //          if the object is in the palette, it will be moved in the game area
     
+    assert(self.myDelegate != Nil);
+    
+    if([self.myDelegate isInMiddleOfGame])
+        return;
     
     [self.myDelegate disableGamearea];
+    
+    
     
     CGPoint translation = [gesture translationInView:gesture.view.superview];
     [gesture.view setBounds:CGRectMake(0, 0, self.widthInPalette, 4*self.heightInPalette)];
@@ -99,11 +105,7 @@
     
     self.model.center = gesture.view.center;
     
-    NSLog(@"%lf, %lf, %lf, %lf, %lf",self.model.center.x,
-          self.model.center.y,
-          self.model.rotation,
-          self.model.width,
-          self.model.height);
+    
     
 }
 
@@ -151,7 +153,7 @@
     CGFloat ySize = sqrt(t.b * t.b + t.d * t.d);
     
     
-    self.model.width = 2*self.widthInPalette * xSize;
+    self.model.width = self.widthInPalette * xSize;
     self.model.height = 4*self.heightInPalette * ySize;
     
     [self.model updateMomentOfInertia];

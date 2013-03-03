@@ -66,11 +66,7 @@
     
     self.model.center = gesture.view.center;
     
-    NSLog(@"%lf, %lf, %lf, %lf, %lf",self.model.center.x,
-              self.model.center.y,
-              self.model.rotation,
-              self.model.width,
-              self.model.height);
+    
 }
 
 
@@ -89,9 +85,9 @@
         [self.myDelegate enableGamearea];
     }
     
-    self.model.rotation = atan2(self.view.transform.b, self.view.transform.a);
+    self.model.rotation = - atan2(self.view.transform.b, self.view.transform.a);
     
-   // NSLog(@"%lf", self.model.rotation);
+   
     
 }
 
@@ -156,6 +152,7 @@
 
 -(void) restore{
     
+    [self.view.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
     
     self.view.transform = CGAffineTransformIdentity;
     self.view.frame = CGRectMake(self.centerInPalette.x - self.widthInPalette/2,

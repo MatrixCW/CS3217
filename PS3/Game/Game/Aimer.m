@@ -22,7 +22,7 @@
     UIImageView* directionArrowView = [[UIImageView alloc]initWithImage:directionArrow];
     
     directionArrowView.frame =  CGRectMake(center.x+25,
-                                           157,
+                                           177,
                                            directionArrow.size.width ,
                                            directionArrow.size.height);
     
@@ -48,7 +48,7 @@
                                                                      action:@selector(rotate:)];
     [view addGestureRecognizer:rotate];
     view.userInteractionEnabled = YES;
-    NSLog(@"dadaddddd");
+    
        
 }
 
@@ -65,7 +65,7 @@
     CGFloat delta = 0 ;
     
     CGPoint newPosition = [gesture translationInView:gesture.view.superview];
-    NSLog(@"%lf %lf %lf", blowAngle, newPosition.x, newPosition.y);
+    
     
     if (newPosition.y > 0 ) {
         userWantToIncreaseAngle = YES;
@@ -90,7 +90,6 @@
     
     gesture.view.transform = CGAffineTransformRotate(gesture.view.transform,delta);
     
-     NSLog(@"%lf", atan2(gesture.view.transform.b, gesture.view.transform.a));
     
    [gesture setTranslation:CGPointZero inView:gesture.view.superview];
     

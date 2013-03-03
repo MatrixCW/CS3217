@@ -10,6 +10,8 @@
 #import "GameObject.h"
 #import "Aimer.h"
 #import "PowerMeter.h"
+
+
 @interface ViewController (Extension)
 
 
@@ -42,5 +44,7 @@
 -(Aimer*)getAimerViewController;
 
 -(PowerMeter*)getPowerMeterViewController;
+
+-(PECircleViewController*)getPuffViewController;
 
 @end

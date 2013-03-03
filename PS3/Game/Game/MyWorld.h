@@ -11,6 +11,7 @@
 #import "ConstantLibrary.h"
 #import "PERectangle.h"
 #import "CollisionDetector.h"
+#import "PigPuffInteractionProtocal.h"
 
 @interface MyWorld : NSObject
 // OVERVIEW: This class implements an simulated world
@@ -20,6 +21,8 @@
 @property NSTimer* timer;
 @property Vector2D* gravity;
 @property CollisionDetector* conllisionDetector;
+
+@property (weak) id<PigPuffInteractionProtocal> myDelegate;
 
 - (void)run;
 - (void)stopTimer;

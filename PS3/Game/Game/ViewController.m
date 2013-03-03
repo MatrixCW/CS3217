@@ -49,6 +49,8 @@
     [super viewDidLoad];
     
     self.simulatedWorld = [[MyWorld alloc] init];
+    self.simulatedWorld.myDelegate = self;
+
 
     UIImage *bgImage = [UIImage imageNamed:@"background.png"];
     UIImage *groundImage = [UIImage imageNamed:@"ground.png"];
@@ -212,6 +214,49 @@
 }
 -(void)firePuff:(int) power{
     
+    [[self getGameWolfViewController].view removeFromSuperview];
+    [[self getGameWolfViewController] blow];
+    
+    [self performSelector:@selector(addPuff:) withObject:[NSNumber numberWithInt:power] afterDelay:0.6];
+    
+    
+}
+
+-(void)removePuff{
+    
+    PECircleViewController* puffViewController = [self getPuffViewController];
+    
+    [puffViewController.view removeFromSuperview];
+    [puffViewController animate];
+    [self.simulatedWorld.objectsInWorld removeObject:puffViewController.model];
+    [self performSelector:@selector(removePuffViewControl:) withObject:puffViewController afterDelay:1];
+    
+}
+
+
+-(void)removePuffViewControl:(PECircleViewController*)puffViewController{
+    [puffViewController removeFromParentViewController];
+}
+
+
+-(void)pigCry{
+    
+    [[self getGamePigViewController] cry];
+    
+    UIAlertView *youWin = [[UIAlertView alloc] initWithTitle:@"Congratulations"
+                                                    message:@"You have won the game"
+                                                   delegate:self
+                                          cancelButtonTitle:@"start new game"
+                                          otherButtonTitles:Nil];
+    [youWin show];
+    
+}
+
+
+
+-(void)addPuff:(NSNumber*) powerValue{
+    
+    int power = [powerValue intValue];
     UIImage* puffImages = [UIImage imageNamed:@"windblow.png"];
     CGImageRef imageRef = CGImageCreateWithImageInRect([puffImages CGImage], CGRectMake(338.25,0,112.75,104));
     UIImage* singlePuffImage = [UIImage imageWithCGImage:imageRef];
@@ -219,18 +264,18 @@
     Aimer* myAimer = [self getAimerViewController];
     
     Vector2D* fireDirection = myAimer.direction;
-    NSLog(@"zzzzz %lf", atan2(fireDirection.x, fireDirection.y));
-    PECircleViewController *puff = [[PECircleViewController alloc] initPECircleWithCenter:CGPointMake(myAimer.view.center.x + 80 ,
-                                                                                                      myAimer.view.center.y - 15)
+    PECircleViewController *puff = [[PECircleViewController alloc] initPECircleWithCenter:CGPointMake(myAimer.view.center.x + 100 ,
+                                                                                                      myAimer.view.center.y - 20)
                                                                                      mass:100
                                                                                  andImage:singlePuffImage];
+    puff.myDelegate = self;
     [self addChildViewController:puff];
     [self.gamearea addSubview:puff.view];
     puff.model.velocity =  [Vector2D vectorWith:50*power*fireDirection.x y:-50*power*fireDirection.y];
     [self.simulatedWorld.objectsInWorld addObject:puff.model];
-}
-
-
+    
+    
+}  
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
@@ -336,7 +381,8 @@
             if(controller.view.superview == self.gamearea && [controller isKindOfClass:GameObject.class]){
                 GameObject* temp = (GameObject*) controller;
                 [self.simulatedWorld.objectsInWorld addObject:temp.model];
-              }
+                
+            }
          }
     
        [self.simulatedWorld run];

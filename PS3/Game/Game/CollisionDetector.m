@@ -18,7 +18,8 @@
 -(id)initCoiisionDetector{
     
     self.contactPoints = [NSMutableArray array];
-    
+    self.puffCollisionDetected = NO;
+    self.pigCryDetected = NO;
     return self;
 }
 
@@ -381,10 +382,12 @@
            
            rectA.velocity = [[rectA.velocity negateJustY] add:[[Pn add:Pt] multiply:(1.0/rectA.mass)]];
            rectA.velocity = [rectA.velocity negateJustY];
+            if(rectA.velocity.length < 5)
+                rectA.velocity = [Vector2D vectorWith:0 y:0];
            rectA.angularVelocity = rectA.angularVelocity + [rA cross:[Pn add:Pt]]/rectA.momentOfInetia;
             
-            
-            
+            if(rectA.identity == -1)
+                self.puffCollisionDetected = YES;
             
             
         }
@@ -394,12 +397,19 @@
             
            rectB.velocity = [[rectB.velocity negateJustY] subtract:[[Pn add:Pt] multiply:(1.0/rectB.mass)]];
            rectB.velocity = [rectB.velocity negateJustY];
+            if(rectB.velocity.length < 5)
+                rectB.velocity = [Vector2D vectorWith:0 y:0];
            rectB.angularVelocity = rectB.angularVelocity - [rB cross:[Pn add:Pt]]/rectB.momentOfInetia ;
             
-        
-            
-     
+            if(rectB.identity == -1)
+                self.puffCollisionDetected = YES;
         }
+        
+        if(rectB.identity == -1 && rectA.identity == -2)
+            self.pigCryDetected = YES;
+        
+        if(rectA.identity == -1 && rectB.identity == -2)
+            self.pigCryDetected = YES;
        
            
     }

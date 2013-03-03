@@ -13,6 +13,7 @@
 #import "ConstantLibrary.h"
 #import "ContactPoint.h"
 
+
 @interface CollisionDetector : NSObject
 // OVERVIEW: This class implements an collision detecter
 // that can determine if two moving objects are colliding or not
@@ -24,6 +25,10 @@
 @property PERectangle* rectB;
 
 @property NSMutableArray* contactPoints;
+
+@property BOOL puffCollisionDetected;
+
+@property BOOL pigCryDetected;
 
 -(id)initCoiisionDetector;
 -(void)detectCollisionBetweenRectA:(PERectangle*) rectA andRectB:(PERectangle*) rectB;

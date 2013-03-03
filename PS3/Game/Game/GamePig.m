@@ -39,9 +39,22 @@
                                                          Height:2*self.heightInPalette
                                                         andMass:100];
     self.model.myDelegate = self;
+    
+    self.model.identity = -2;
+    
     self.view.tag = 2;
     
     return self;
+}
+
+-(void)cry{
+    
+    
+    UIImage* pigCryImg = [UIImage imageNamed:@"pig2.png"];
+    UIImageView* pigCryView = [[UIImageView alloc]initWithImage:pigCryImg];
+    pigCryView.frame = self.view.bounds;
+    [self.view addSubview:pigCryView];
+    
 }
 
 
@@ -51,7 +64,8 @@
                                                           Width:2*self.widthInPalette
                                                          Height:2*self.heightInPalette
                                                         andMass:100];
-    
+    self.model.identity = -2;
+
      self.model.myDelegate = self;
     
 }
