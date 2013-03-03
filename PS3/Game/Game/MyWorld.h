@@ -20,7 +20,7 @@
 @property NSMutableArray* objectsInWorld;
 @property NSTimer* timer;
 @property Vector2D* gravity;
-@property CollisionDetector* conllisionDetector;
+@property CollisionDetector* collisionDetector;
 
 @property (weak) id<PigPuffInteractionProtocal> myDelegate;
 

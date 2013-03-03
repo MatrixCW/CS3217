@@ -34,7 +34,7 @@
         self.frictionCoefficient = defaultFrictionCoefficient;
         self.restitutionCoefficient = defaultRestitutionCoefficient;
         self.identity = 1;
-        
+        self.life = 100;
     }
     
     return self;
@@ -61,6 +61,7 @@
         self.frictionCoefficient = defaultFrictionCoefficient;
         self.restitutionCoefficient = defaultRestitutionCoefficient;
         self.identity = -1;
+        self.life = 100;
         
     }
     

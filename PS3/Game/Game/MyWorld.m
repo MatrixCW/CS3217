@@ -17,7 +17,7 @@
     self.objectsInWorld = [[NSMutableArray alloc] init];
     self.gravity = [Vector2D vectorWith:0 y:defaultGravity];
     
-    self.conllisionDetector = [[CollisionDetector alloc] initCoiisionDetector];
+    self.collisionDetector = [[CollisionDetector alloc] initCoiisionDetector];
     
     return self;
 }
@@ -67,6 +67,7 @@
     
     for (PERectangle* rect in self.objectsInWorld){
         if(rect.identity != 0){
+            
            CGFloat x = rect.center.x + rect.velocity.x * timeInterval;
            CGFloat y = rect.center.y + rect.velocity.y * timeInterval;
            rect.center = CGPointMake(x, y);
@@ -78,6 +79,8 @@
         }
     }
     
+    
+    
 }
 
 
@@ -88,32 +91,33 @@
             
             PERectangle* rectA = [self.objectsInWorld objectAtIndex:i];
             PERectangle* rectB = [self.objectsInWorld objectAtIndex:j];
-            
-            [self.conllisionDetector detectCollisionBetweenRectA:rectA andRectB:rectB];
-            
-    }
-    
-    
-    if(self.conllisionDetector.contactPoints.count)
-        for(int i = 0; i < numOfIteration ; i++)
-           [self.conllisionDetector applyImpulse];
-    
-    if(self.conllisionDetector.puffCollisionDetected){
-        
-        assert(self.myDelegate != Nil);
-        [self.myDelegate removePuff];
-        self.conllisionDetector.puffCollisionDetected = NO;
-    }
-    
-    if(self.conllisionDetector.pigCryDetected){
         
 
-        assert(self.myDelegate != Nil);
-        [self.myDelegate pigCry];
-        self.conllisionDetector.pigCryDetected = NO;
+            [self.collisionDetector detectCollisionBetweenRectA:rectA andRectB:rectB];
+            
     }
     
-    [self.conllisionDetector.contactPoints removeAllObjects];
+    
+    if(self.collisionDetector.contactPoints.count)
+        for(int i = 0; i < numOfIteration ; i++)
+           [self.collisionDetector applyImpulse];
+    
+    
+    
+    if(self.collisionDetector.puffCollisionDetected){
+        assert(self.myDelegate != Nil);
+        [self.myDelegate removePuff];
+        self.collisionDetector.puffCollisionDetected = NO;
+    }
+    
+    for(PERectangle *rect in self.collisionDetector.hittedObjects){
+        assert(self.collisionDetector.hittedObjects.count == 1);
+        [rect.myDelegate decrementRemainingHit];
+    }
+    
+    [self.collisionDetector.hittedObjects removeAllObjects];
+
+    [self.collisionDetector.contactPoints removeAllObjects];
     
 }
 

@@ -170,11 +170,23 @@
     
     
     self.view.center = self.model.center;
+    self.view.bounds = CGRectMake(0, 0, self.model.width, self.model.height);
+    
+    for(UIView* vw in self.view.subviews)
+        vw.frame = CGRectMake(0, 0, self.model.width, self.model.height);
+    
     [self.view setTransform: CGAffineTransformMakeRotation(-self.model.rotation)];
     
     
 }
 
+-(void)decrementRemainingHit{
+    
+    self.canTakeNumberOfHit--;
+    
+    if(self.canTakeNumberOfHit == 0)
+       [self.myDelegate objectDestroyed:self];
+}
 
 -(void)restoreModel{
     

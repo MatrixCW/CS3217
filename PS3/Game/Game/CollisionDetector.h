@@ -26,9 +26,10 @@
 
 @property NSMutableArray* contactPoints;
 
+@property NSMutableArray* hittedObjects;
+
 @property BOOL puffCollisionDetected;
 
-@property BOOL pigCryDetected;
 
 -(id)initCoiisionDetector;
 -(void)detectCollisionBetweenRectA:(PERectangle*) rectA andRectB:(PERectangle*) rectB;

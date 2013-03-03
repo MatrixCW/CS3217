@@ -40,6 +40,8 @@
                                                         andMass:100];
     self.model.myDelegate = self;
     
+    self.canTakeNumberOfHit = 1;
+    
     self.model.identity = -2;
     
     self.view.tag = 2;

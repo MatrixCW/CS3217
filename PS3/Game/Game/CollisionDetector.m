@@ -18,8 +18,8 @@
 -(id)initCoiisionDetector{
     
     self.contactPoints = [NSMutableArray array];
+    self.hittedObjects = [NSMutableArray array];
     self.puffCollisionDetected = NO;
-    self.pigCryDetected = NO;
     return self;
 }
 
@@ -380,6 +380,7 @@
         
         if(rectA.identity){
            
+                
            rectA.velocity = [[rectA.velocity negateJustY] add:[[Pn add:Pt] multiply:(1.0/rectA.mass)]];
            rectA.velocity = [rectA.velocity negateJustY];
             if(rectA.velocity.length < 5)
@@ -390,10 +391,13 @@
                 self.puffCollisionDetected = YES;
             
             
+            
         }
         
         
         if(rectB.identity){
+            
+            
             
            rectB.velocity = [[rectB.velocity negateJustY] subtract:[[Pn add:Pt] multiply:(1.0/rectB.mass)]];
            rectB.velocity = [rectB.velocity negateJustY];
@@ -403,14 +407,21 @@
             
             if(rectB.identity == -1)
                 self.puffCollisionDetected = YES;
+            
         }
         
-        if(rectB.identity == -1 && rectA.identity == -2)
-            self.pigCryDetected = YES;
+        if(rectA.identity == -1 && rectB.identity !=0){
+            if(![self.hittedObjects containsObject:rectB])
+               [self.hittedObjects addObject:rectB];
+        }
         
-        if(rectA.identity == -1 && rectB.identity == -2)
-            self.pigCryDetected = YES;
-       
+        if(rectB.identity == -1 && rectA.identity !=0){
+            if(![self.hittedObjects containsObject:rectA])
+                [self.hittedObjects addObject:rectA];
+        }
+
+        
+               
            
     }
     

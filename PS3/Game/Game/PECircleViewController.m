@@ -35,6 +35,9 @@
     return self;
 }
 
+-(void)decrementRemainingHit{
+    
+}
 
 -(void)animate{
     

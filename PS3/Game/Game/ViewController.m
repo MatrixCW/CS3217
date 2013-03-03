@@ -222,6 +222,22 @@
     
 }
 
+-(void)objectDestroyed:(GameObject*) uivc{
+    
+    if([uivc isKindOfClass:GamePig.class]){
+        
+        [self gamePigDestroyed];
+    }
+    else{
+        
+        [self.simulatedWorld.objectsInWorld removeObject:uivc.model];
+        [uivc.view removeFromSuperview];
+        [uivc removeFromParentViewController];
+        
+    }
+    
+}
+
 -(void)removePuff{
     
     PECircleViewController* puffViewController = [self getPuffViewController];
@@ -239,7 +255,7 @@
 }
 
 
--(void)pigCry{
+-(void)gamePigDestroyed{
     
     [[self getGamePigViewController] cry];
     
@@ -271,7 +287,7 @@
     puff.myDelegate = self;
     [self addChildViewController:puff];
     [self.gamearea addSubview:puff.view];
-    puff.model.velocity =  [Vector2D vectorWith:50*power*fireDirection.x y:-50*power*fireDirection.y];
+    puff.model.velocity =  [Vector2D vectorWith:70*power*fireDirection.x y:-70*power*fireDirection.y];
     [self.simulatedWorld.objectsInWorld addObject:puff.model];
     
     
@@ -400,6 +416,10 @@
 
 
 -(void)drawAimer{
+    
+    GamePig *myGamePig = [self getGamePigViewController];
+    myGamePig.view.center = CGPointMake(myGamePig.view.center.x, 430);
+    myGamePig.model.center = myGamePig.view.center;
     
     GameWolf *myGameWolf = [self getGameWolfViewController];
     myGameWolf.view.center = CGPointMake(myGameWolf.view.center.x, 415);

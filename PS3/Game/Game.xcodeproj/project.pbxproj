@@ -62,6 +62,7 @@
 		7CDE6E7216E07CCB00F1AA54 /* GameWolf.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C2731A316BD45F400872EED /* GameWolf.m */; };
 		7CDE6E7616E07EFE00F1AA54 /* GamePig.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C2280F116BD3BB4004C6FA0 /* GamePig.m */; };
 		7CDE6E7816E0866000F1AA54 /* GameBlock.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C2280F516BD3E4D004C6FA0 /* GameBlock.m */; };
+		7CE737AE16E33C9C005F5AFA /* font.png in Resources */ = {isa = PBXBuildFile; fileRef = 7CE737AD16E33C9C005F5AFA /* font.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -144,6 +145,7 @@
 		7CDDD7BF16B01DAE0025C8EA /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		7CDE6E7116E0521D00F1AA54 /* GestureHandlerProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GestureHandlerProtocol.h; sourceTree = "<group>"; };
 		7CE737AB16E2F419005F5AFA /* PigPuffInteractionProtocal.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PigPuffInteractionProtocal.h; sourceTree = "<group>"; };
+		7CE737AD16E33C9C005F5AFA /* font.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = font.png; sourceTree = "<group>"; };
 		7CF19E1F16B9513E009A42A1 /* GameObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameObject.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -176,6 +178,7 @@
 				7CAE6C0016E231CE000CDAFD /* heart.png */,
 				7CAE6C0116E231CE000CDAFD /* iron.png */,
 				7CAE6C0216E231CE000CDAFD /* pig-die-smoke.png */,
+				7CE737AD16E33C9C005F5AFA /* font.png */,
 				7CAE6C0316E231CE000CDAFD /* pig.png */,
 				7CAE6C0416E231CE000CDAFD /* pig2.png */,
 				7CAE6C0516E231CE000CDAFD /* score.png */,
@@ -395,6 +398,7 @@
 				7CAE6C2F16E231CE000CDAFD /* windsuck.png in Resources */,
 				7CAE6C3016E231CE000CDAFD /* wolfdie.png in Resources */,
 				7CAE6C3116E231CE000CDAFD /* wolfs.png in Resources */,
+				7CE737AE16E33C9C005F5AFA /* font.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

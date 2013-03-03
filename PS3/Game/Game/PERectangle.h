@@ -26,6 +26,8 @@
 @property CGFloat rotation;
 @property CGFloat angularVelocity;
 
+@property CGFloat life;
+
 @property int identity;
 
 @property Vector2D* velocity;

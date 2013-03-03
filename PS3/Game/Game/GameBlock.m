@@ -42,6 +42,7 @@
                                                         andMass:100];
     self.model.myDelegate = self;
     self.view.tag = 3;
+    self.canTakeNumberOfHit = 1;
     
     return self;
 
@@ -174,10 +175,13 @@
     
     if(![self.myDelegate isInPalette:self.view]){
         
+        [self.view.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
+        
         if(self.view.tag == 3){
             
             self.view.tag = 4;
             UIImage* blockImg = [UIImage imageNamed:@"stone.png"];
+            self.canTakeNumberOfHit = 2;
             UIImageView* block = [[UIImageView alloc]initWithImage:blockImg];
             block.frame = CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height);
             [self.view addSubview:block];
@@ -188,6 +192,7 @@
             
             self.view.tag = 5;
             UIImage* blockImg = [UIImage imageNamed:@"iron.png"];
+            self.canTakeNumberOfHit = 3;
             UIImageView* block = [[UIImageView alloc]initWithImage:blockImg];
             block.frame = CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height);
             [self.view addSubview:block];
@@ -196,6 +201,7 @@
             
             self.view.tag = 3;
             UIImage* blockImg = [UIImage imageNamed:@"straw.png"];
+            self.canTakeNumberOfHit = 1;
             UIImageView* block = [[UIImageView alloc]initWithImage:blockImg];
             block.frame = CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height);
 

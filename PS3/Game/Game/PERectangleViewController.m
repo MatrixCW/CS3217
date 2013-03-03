@@ -80,4 +80,9 @@
 
 }
 
+
+-(void)decrementRemainingHit{
+    
+}
+
 @end

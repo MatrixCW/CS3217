@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
+@class GameObject;
 
 @protocol GestureHandlerProtocol <NSObject>
 
@@ -23,6 +24,7 @@
 -(void)addDirectlyToGameArea:(UIView*) view;
 -(BOOL)isInMiddleOfGame;
 -(void)firePuff:(int) power;
+-(void)objectDestroyed:(GameObject*) uivc;
 
 
 @end

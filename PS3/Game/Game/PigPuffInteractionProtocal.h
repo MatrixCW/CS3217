@@ -11,6 +11,6 @@
 @protocol PigPuffInteractionProtocal <NSObject>
 
 -(void)removePuff;
--(void)pigCry;
+
 
 @end

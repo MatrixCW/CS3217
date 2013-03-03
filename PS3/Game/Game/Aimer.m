@@ -47,6 +47,11 @@
     UIPanGestureRecognizer *rotate = [[UIPanGestureRecognizer alloc] initWithTarget:self
                                                                      action:@selector(rotate:)];
     [view addGestureRecognizer:rotate];
+    
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self
+                                                                             action:@selector(changeState)];
+    [view addGestureRecognizer:tap];
+    
     view.userInteractionEnabled = YES;
     
        
@@ -98,6 +103,31 @@
     
 }
 
+-(void)changeState{
+    
+   
+    if(!self.view.subviews.count){
+        
+        UIImage* directionArrowSelected = [UIImage imageNamed:@"direction-arorw-selected.png"];
+        UIImageView* directionArrowSelectedView = [[UIImageView alloc]initWithImage:directionArrowSelected];
+        
+        directionArrowSelectedView.frame =  CGRectMake(0,
+                                               0,
+                                               self.view.bounds.size.width,
+                                               self.view.bounds.size.height);
+        
+        
+        
+        
+        [self.view addSubview:directionArrowSelectedView];
+        
+        
+        
+    }
+    else{
+                [self.view.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
+    }
+}
 
 
 @end

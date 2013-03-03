@@ -12,4 +12,6 @@
 
 -(void)UpdatePosition;
 
+-(void)decrementRemainingHit;
+
 @end

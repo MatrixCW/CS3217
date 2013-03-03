@@ -11,13 +11,14 @@
  
 
 @property PERectangle *model;
+
 @property (weak) id<GestureHandlerProtocol> myDelegate;
 
 @property (readonly) CGFloat widthInPalette;
 @property (readonly) CGFloat heightInPalette;
 @property (readonly) CGPoint centerInPalette;
 
-
+@property int canTakeNumberOfHit;
 
 - (void)translate:(UIGestureRecognizer *)gesture;
   // MODIFIES: object model (coordinates)
